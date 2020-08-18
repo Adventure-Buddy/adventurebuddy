@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+<div id="thumbnail-container"></div>
+<script>
+    const client = filestack.init(fileStackKey);
+    const options = {
+        onUploadDone: updateForm,
+        maxSize: 10 * 1024 * 1024,
+        accept: 'image/*',
+        uploadInBackground: false,
+    };
+    const picker = client.picker(options);
+
+    const container = document.getElementById('thumbnail-container');
+    const thumbnail = document.getElementById('thumbnail') || new Image();
+    thumbnail.id = 'thumbnail';
+    thumbnail.src = client.transform(fileData.handle, {
+        resize: {
+            width: 200
+        }
+    });
+
+    if (!container.contains(thumbnail)) {
+        container.appendChild(thumbnail);
+    }
+</script>
+</body>
+</html>
