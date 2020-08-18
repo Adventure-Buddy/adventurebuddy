@@ -8,9 +8,9 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String addressOne;
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String addressTwo;
 
     @Column(nullable = false)
@@ -18,12 +18,15 @@ public class Address {
 
     @Column(nullable = false)
     private String state;
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String zipCode;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToOne(mappedBy = "address")
+    private Trail trail;
 
     public Address(long id, String addressOne, String addressTwo, String city, String state, String zipCode) {
         this.id = id;
@@ -32,6 +35,9 @@ public class Address {
         this.city = city;
         this.state = state;
         this.zipCode = zipCode;
+    }
+
+    public Address() {
     }
 
     public long getId() {
@@ -82,6 +88,19 @@ public class Address {
         this.zipCode = zipCode;
     }
 
-    public Address() {
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Trail getTrail() {
+        return trail;
+    }
+
+    public void setTrail(Trail trail) {
+        this.trail = trail;
     }
 }
