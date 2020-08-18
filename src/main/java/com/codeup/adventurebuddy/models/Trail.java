@@ -12,36 +12,45 @@ public class Trail {
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
-    private double distanceInMI;
+    private double distanceInMi;
     @Column(nullable = false)
     private double lat;
     @Column(nullable = false)
     private double lng;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
     @Column(nullable = false)
-    private long addressId;
-
+    private int ascent;
+    @Column(nullable = false)
+    private int descent;
+    @Column(nullable = true)
+    private String summary;
+    @Column(nullable = false)
+    private String type;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "trail")
     private List<Review> reviewsList;
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name="activity_trail",
-            joinColumns={@JoinColumn(name="activity_id")},
-            inverseJoinColumns={@JoinColumn(name="trail_id")}
-    )
-    private List<Activity> activities;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Trail(long id, String name, double distanceInMI, double lat, double lng, long addressId) {
+
+    public Trail(long id, String name, double distanceInMI, double lat, double lng, Address address, int ascent, int descent, String summary, String type, List<Review> reviewsList, List<Activity> activities, User user) {
         this.id = id;
         this.name = name;
-        this.distanceInMI = distanceInMI;
+        this.distanceInMi = distanceInMI;
         this.lat = lat;
         this.lng = lng;
-        this.addressId = addressId;
+        this.address = address;
+        this.ascent = ascent;
+        this.descent = descent;
+        this.summary = summary;
+        this.type = type;
+        this.reviewsList = reviewsList;
+        this.user = user;
+    }
+
+    public Trail() {
     }
 
     public long getId() {
@@ -61,11 +70,11 @@ public class Trail {
     }
 
     public double getDistanceInMI() {
-        return distanceInMI;
+        return distanceInMi;
     }
 
     public void setDistanceInMI(double distanceInMI) {
-        this.distanceInMI = distanceInMI;
+        this.distanceInMi = distanceInMI;
     }
 
     public double getLat() {
@@ -84,14 +93,59 @@ public class Trail {
         this.lng = lng;
     }
 
-    public long getAddressId() {
-        return addressId;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddressId(long addressId) {
-        this.addressId = addressId;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
-    public Trail() {
+    public int getAscent() {
+        return ascent;
+    }
+
+    public void setAscent(int ascent) {
+        this.ascent = ascent;
+    }
+
+    public int getDescent() {
+        return descent;
+    }
+
+    public void setDescent(int descent) {
+        this.descent = descent;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public List<Review> getReviewsList() {
+        return reviewsList;
+    }
+
+    public void setReviewsList(List<Review> reviewsList) {
+        this.reviewsList = reviewsList;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
