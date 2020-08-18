@@ -2,7 +2,7 @@ USE ab_db;
 
 TRUNCATE users;
 INSERT INTO users (id, username, password, email, phone_number, date_of_birth, address_id)
-VALUES (1, 'testuser', 'password', 'test@email.com', '210-123-4567', '12/31/1999', 1);
+VALUES (1, 'testuser', 'password', 'test@email.com', '210-123-4567', '1999-12-31', 1);
 
 TRUNCATE activities;
 INSERT INTO activities (id, name)
