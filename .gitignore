@@ -35,3 +35,4 @@ build/
 
 src/main/resources/application.properties
 src/main/java/com/codeup/adventurebuddy/database/ab_db/ab_db.sql
+src/main/resources/static/keys.js
