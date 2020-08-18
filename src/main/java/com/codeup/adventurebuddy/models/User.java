@@ -1,12 +1,15 @@
 package com.codeup.adventurebuddy.models;
 
 
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Table(name="users")
-public class User {
+public abstract class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -57,6 +60,13 @@ public class User {
     }
 
     public User() {
+    }
+
+    public User(User copy) {
+        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
     }
 
     public long getId() {
@@ -162,4 +172,6 @@ public class User {
     public void setEvents(List<Event> events) {
         this.events = events;
     }
+
+    public abstract Collection<? extends GrantedAuthority> getAuthority();
 }
