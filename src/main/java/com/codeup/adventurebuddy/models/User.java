@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name="users")
-public abstract class User {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -180,5 +180,4 @@ public abstract class User {
         this.events = events;
     }
 
-    public abstract Collection<? extends GrantedAuthority> getAuthority();
 }

@@ -42,8 +42,8 @@ VALUES (1, 'This was a challenging trail but it was very beautiful. Sparsely sha
 
 TRUNCATE events;
 INSERT INTO events (id, date, host_id, trail_id, description, title, activity_id)
-VALUES (1, '2020-09-15', 1,  7043446, 'Going on a quick hike on the Outer Loop at Friedrich!', 'Outer Loop Hike', 1),
-       (2, '2020-10-15', 1,  7043446, 'I plan on doing two laps of the loop this time. So make sure to bring plenty of water!', 'Outer Loop Trail x2' , 1);
+VALUES (1, '2020-09-15', 1,  1, 'Going on a quick hike on the Outer Loop at Friedrich!', 'Outer Loop Hike', 1),
+       (2, '2020-10-15', 1,  2, 'I plan on doing two laps of the loop this time. So make sure to bring plenty of water!', 'Outer Loop Trail x2' , 1);
 
 INSERT INTO event_user (user_id, event_id)
 VALUES (1, 1),

@@ -13,14 +13,9 @@ public class UserWithRoles extends User implements UserDetails {
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthority(){
-        String roles = "";
-        return AuthorityUtils.commaSeparatedStringToAuthorityList(roles);
-    }
-
-    @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        String roles = ""; // Since we're not using the authorization part of the component
+        return AuthorityUtils.commaSeparatedStringToAuthorityList(roles);
     }
 
     @Override
