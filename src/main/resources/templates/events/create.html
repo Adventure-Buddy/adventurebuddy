@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="partials/head :: header-links">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Events</title>
+</head>
+<body>
+<h1>Create Event</h1>
+<form th:action="@{'/events/create'}" th:method="POST" th:object="${event}">
+
+<!--    <div class="input">-->
+<!--        <label for="title">Title:</label>-->
+<!--        <input type="text" id="title" th:object="*{title}>-->
+<!--    </div>-->
+
+<!--    <div class="input">-->
+<!--        <label for="description">Title:</label>-->
+<!--        <input type="text" id="description" th:object="*{description}>-->
+<!--    </div>-->
+
+    <div class="input">
+        <label for="date">Date:</label>
+        <input type="date" id="date" th:object="*{date}">
+    </div>
+
+    <button>Create Event</button>
+
+</form>
+</body>
+</html>
