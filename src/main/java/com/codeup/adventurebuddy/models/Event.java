@@ -10,18 +10,56 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(nullable = false)
-    private long trailId;
+    private String title;
+    @Column(nullable = false)
+    private String description;
+    @ManyToOne
+    @JoinColumn(name = "trail_id")
+    private Trail trail;
     @Column(nullable = false)
     private String date;
-    @Column(nullable = false)
-    private long hostId;
-
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "host_id")
     private User user;
-
     @ManyToMany(mappedBy = "events")
     private List<User> userLists;
+    @ManyToOne
+    @JoinColumn(name = "activity_id")
+    private Activity activity;
+
+    public Event() { }
+
+    public Event(long id, Trail trail, String date, User user, List<User> userLists) {
+        this.id = id;
+        this.trail = trail;
+        this.date = date;
+        this.user = user;
+        this.userLists = userLists;
+    }
+
+    public Activity getActivity() {
+        return activity;
+    }
+
+    public void setActivity(Activity activity) {
+        this.activity = activity;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public long getId() {
         return id;
@@ -31,12 +69,12 @@ public class Event {
         this.id = id;
     }
 
-    public long getTrailId() {
-        return trailId;
+    public Trail getTrail() {
+        return trail;
     }
 
-    public void setTrailId(long trailId) {
-        this.trailId = trailId;
+    public void setTrail(Trail trail) {
+        this.trail = trail;
     }
 
     public String getDate() {
@@ -47,21 +85,19 @@ public class Event {
         this.date = date;
     }
 
-    public long getHostId() {
-        return hostId;
+    public User getUser() {
+        return user;
     }
 
-    public void setHostId(long hostId) {
-        this.hostId = hostId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Event(long id, long trailId, String date, long hostId) {
-        this.id = id;
-        this.trailId = trailId;
-        this.date = date;
-        this.hostId = hostId;
+    public List<User> getUserLists() {
+        return userLists;
     }
 
-    public Event() {
+    public void setUserLists(List<User> userLists) {
+        this.userLists = userLists;
     }
 }
