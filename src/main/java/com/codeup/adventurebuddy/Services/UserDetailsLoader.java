@@ -1,6 +1,6 @@
 package com.codeup.adventurebuddy.Services;
 
-import com.codeup.adventurebuddy.Repositories.UserRepository;
+import com.codeup.adventurebuddy.repositories.UserRepository;
 import com.codeup.adventurebuddy.models.User;
 import com.codeup.adventurebuddy.models.UserWithRoles;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,4 +1,4 @@
-package com.codeup.adventurebuddy.Repositories;
+package com.codeup.adventurebuddy.repositories;
 
 import com.codeup.adventurebuddy.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
