@@ -39,7 +39,7 @@ public abstract class User {
     private List<Trail> trailsList;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
-    private List<Event> eventssList;
+    private List<Event> eventsList;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -49,9 +49,18 @@ public abstract class User {
     )
     private List<Event> events;
 
-    public User(User user) {
+    public User(long id, String username, String email, String password, String phoneNumber, String dateOfBirth, long addressId) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.dateOfBirth = dateOfBirth;
+        this.addressId = addressId;
     }
 
+    public User() {
+    }
 
     public long getId() {
         return id;
@@ -109,17 +118,52 @@ public abstract class User {
         this.addressId = addressId;
     }
 
-    public User(long id, String username, String email, String password, String phoneNumber, String dateOfBirth, long addressId) {
-        this.id = id;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.phoneNumber = phoneNumber;
-        this.dateOfBirth = dateOfBirth;
-        this.addressId = addressId;
+    public List<EmergencyContact> getEmergencyContactsList() {
+        return emergencyContactsList;
     }
 
-    public User() {
+    public void setEmergencyContactsList(List<EmergencyContact> emergencyContactsList) {
+        this.emergencyContactsList = emergencyContactsList;
+    }
+
+    public List<Address> getAddressList() {
+        return addressList;
+    }
+
+    public void setAddressList(List<Address> addressList) {
+        this.addressList = addressList;
+    }
+
+    public List<Review> getReviewsList() {
+        return reviewsList;
+    }
+
+    public void setReviewsList(List<Review> reviewsList) {
+        this.reviewsList = reviewsList;
+    }
+
+    public List<Trail> getTrailsList() {
+        return trailsList;
+    }
+
+    public void setTrailsList(List<Trail> trailsList) {
+        this.trailsList = trailsList;
+    }
+
+    public List<Event> getEventsList() {
+        return eventsList;
+    }
+
+    public void setEventsList(List<Event> eventsList) {
+        this.eventsList = eventsList;
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
     }
 
     public abstract Collection<? extends GrantedAuthority> getAuthority();

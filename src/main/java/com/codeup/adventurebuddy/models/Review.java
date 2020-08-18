@@ -12,22 +12,29 @@ public class Review {
     private int rating;
     @Column(nullable = false)
     private String comment;
-    @Column(nullable = false)
     private String image;
     @Column(nullable = false)
-    private long user_id;
-    @Column(nullable = false)
-    private long trail_id;
-    @Column(nullable = false)
     private String createdAt;
-
     @ManyToOne
-    @JoinColumn(name = "user")
+    @JoinColumn(name = "user_id")
     private User user;
-
     @ManyToOne
-    @JoinColumn(name = "trail_num")
+    @JoinColumn(name = "trail_id")
     private Trail trail;
+
+
+    public Review(long id, int rating, String comment, String image, String createdAt, User user, Trail trail) {
+        this.id = id;
+        this.rating = rating;
+        this.comment = comment;
+        this.image = image;
+        this.createdAt = createdAt;
+        this.user = user;
+        this.trail = trail;
+    }
+
+    public Review() {
+    }
 
     public long getId() {
         return id;
@@ -61,22 +68,6 @@ public class Review {
         this.image = image;
     }
 
-    public long getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(long user_id) {
-        this.user_id = user_id;
-    }
-
-    public long getTrail_id() {
-        return trail_id;
-    }
-
-    public void setTrail_id(long trail_id) {
-        this.trail_id = trail_id;
-    }
-
     public String getCreatedAt() {
         return createdAt;
     }
@@ -85,16 +76,19 @@ public class Review {
         this.createdAt = createdAt;
     }
 
-    public Review(long id, int rating, String comment, String image, long user_id, long trail_id, String createdAt) {
-        this.id = id;
-        this.rating = rating;
-        this.comment = comment;
-        this.image = image;
-        this.user_id = user_id;
-        this.trail_id = trail_id;
-        this.createdAt = createdAt;
+    public User getUser() {
+        return user;
     }
 
-    public Review() {
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Trail getTrail() {
+        return trail;
+    }
+
+    public void setTrail(Trail trail) {
+        this.trail = trail;
     }
 }

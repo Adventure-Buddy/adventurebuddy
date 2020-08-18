@@ -9,9 +9,18 @@ public class Activity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(nullable = false)
+    private String name;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "activity")
+    private List<Event> events;
 
-    @ManyToMany(mappedBy = "activities")
-    private List<Trail> trailsList;
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
 
     public long getId() {
         return id;
@@ -36,7 +45,4 @@ public class Activity {
 
     public Activity() {
     }
-
-    @Column(nullable = false)
-    private String name;
 }
