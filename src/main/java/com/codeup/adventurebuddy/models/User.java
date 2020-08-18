@@ -1,12 +1,15 @@
 package com.codeup.adventurebuddy.models;
 
 
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Table(name="users")
-public class User {
+public abstract class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -45,6 +48,9 @@ public class User {
             inverseJoinColumns={@JoinColumn(name="event_id")}
     )
     private List<Event> events;
+
+    public User(User user) {
+    }
 
 
     public long getId() {
@@ -115,4 +121,6 @@ public class User {
 
     public User() {
     }
+
+    public abstract Collection<? extends GrantedAuthority> getAuthority();
 }
