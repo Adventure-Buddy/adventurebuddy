@@ -1,9 +1,14 @@
 package com.codeup.adventurebuddy.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.List;
+import java.util.Map;
 
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Table(name="trails")
 public class Trail {
     @Id
@@ -17,9 +22,9 @@ public class Trail {
     private double lat;
     @Column(nullable = false)
     private double lng;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
-    private Address address;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "address_id", referencedColumnName = "id")
+//    private Address address;
     @Column(nullable = false)
     private int ascent;
     @Column(nullable = false)
@@ -35,13 +40,13 @@ public class Trail {
     private User user;
 
 
-    public Trail(long id, String name, double distanceInMI, double lat, double lng, Address address, int ascent, int descent, String summary, String type, List<Review> reviewsList, List<Activity> activities, User user) {
+    public Trail(long id, String name, double distanceInMi, double lat, double lng, Address address, int ascent, int descent, String summary, String type, List<Review> reviewsList, List<Activity> activities, User user) {
         this.id = id;
         this.name = name;
-        this.distanceInMi = distanceInMI;
+        this.distanceInMi = distanceInMi;
         this.lat = lat;
         this.lng = lng;
-        this.address = address;
+//        this.address = address;
         this.ascent = ascent;
         this.descent = descent;
         this.summary = summary;
@@ -51,6 +56,14 @@ public class Trail {
     }
 
     public Trail() {
+    }
+
+    public double getDistanceInMi() {
+        return distanceInMi;
+    }
+
+    public void setDistanceInMi(double distanceInMi) {
+        this.distanceInMi = distanceInMi;
     }
 
     public long getId() {
@@ -69,14 +82,6 @@ public class Trail {
         this.name = name;
     }
 
-    public double getDistanceInMI() {
-        return distanceInMi;
-    }
-
-    public void setDistanceInMI(double distanceInMI) {
-        this.distanceInMi = distanceInMI;
-    }
-
     public double getLat() {
         return lat;
     }
@@ -93,13 +98,13 @@ public class Trail {
         this.lng = lng;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
+//    public Address getAddress() {
+//        return address;
+//    }
+//
+//    public void setAddress(Address address) {
+//        this.address = address;
+//    }
 
     public int getAscent() {
         return ascent;
@@ -147,5 +152,19 @@ public class Trail {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @JsonProperty("attributes")
+    public void setTrail(List<Map<String, Object>> trailDetails) {
+        Map<String, Object> attributes = trailDetails.get(0);
+        setId((Long) attributes.get("id"));
+        setName((String) attributes.get("name"));
+        setName((String) attributes.get("summary"));
+        setName((String) attributes.get("type"));
+        setDistanceInMi((Double) attributes.get("length"));
+        setAscent((Integer) attributes.get("ascent"));
+        setDescent((Integer) attributes.get("descent"));
+        setLat((Double) attributes.get("latitude"));
+        setLng((Double) attributes.get("longitude"));
     }
 }
