@@ -25,6 +25,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder())
         ;
     }
+
     @Override
     protected void configure(HttpSecurity http)throws Exception{
         http
@@ -47,6 +48,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/profile"
                 )
                 .authenticated()
+                .antMatchers("/register").permitAll()
+                .antMatchers("/confirm").permitAll();
         ;
     }
 }
