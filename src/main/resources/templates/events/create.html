@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="partials/head :: header-links">
+<head th:include="partials/head.html :: header-links">
 <head>
     <meta charset="UTF-8">
     <title>Create Events</title>
 </head>
 <body>
+<nav th:replace="partials/navbar.html :: navbar"></nav>
 <h1>Create Event</h1>
 <form th:action="@{/events/create/{trailId}(trailId=${trail.id})}" th:method="POST" th:object="${event}">
 

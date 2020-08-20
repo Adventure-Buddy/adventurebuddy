@@ -12,6 +12,6 @@ public class ProfileController {
     }
     @GetMapping("/profile")
     public String viewProfile(){
-        return "Profile";
+        return "profile";
     }
 }

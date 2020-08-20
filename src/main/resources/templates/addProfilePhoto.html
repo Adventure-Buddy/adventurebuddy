@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
+    <head th:include="partials/head.html :: header-links">
     <title>Profile</title>
     <script src="/keys.js"></script>
 </head>
 <body>
+<nav th:replace="partials/navbar.html :: navbar"></nav>
 <div id="inline">
     <form id="image">
         <label for="fileupload">Select a file to upload</label>

@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="eng">
 <head>
-    <meta charset="UTF-8">
-    <title></title>
+    <head th:include="partials/head.html :: header-links">
+    <title>View All Trails</title>
 </head>
 <body>
+<nav th:replace="partials/navbar.html :: navbar"></nav>
 <h1>Viewing all Trails in: San Antonio, TX</h1>
 <div th:each="trail: ${allTrails}">
     <a th:href="@{|trails/${trail.id}|}"><h4 th:text="${trail.name}"></h4></a>
@@ -13,6 +14,9 @@
         <li th:text="${trail.distanceInMi}"></li>
         <li th:text="${trail.type}"></li>
     </ul>
+<!--    <form th:action="@{|/events/create/${trail.id}|}" method="post">-->
+<!--        <button type="sumbit" th:value="${trail.id}">Create Event</button>-->
+<!--    </form>-->
 </div>
 </body>
 </html>
