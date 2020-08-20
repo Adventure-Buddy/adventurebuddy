@@ -1,6 +1,6 @@
 package com.codeup.adventurebuddy;
 
-import com.codeup.adventurebuddy.Services.TrailService;
+import com.codeup.adventurebuddy.services.TrailService;
 import com.codeup.adventurebuddy.models.Trail;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
