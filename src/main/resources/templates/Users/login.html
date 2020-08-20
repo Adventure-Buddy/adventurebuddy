@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head><title>Title</title>
+<head>
+    <head th:include="partials/head.html :: header-links">
+    <title>Title</title>
 </head>
 <body>
+<nav th:replace="partials/navbar.html :: navbar"></nav>
 <h1>Log In</h1>
 <div th:if="${param.error}">
     Invalid Username and Password.

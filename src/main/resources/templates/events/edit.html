@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="partials/head :: header-links">
+<head th:include="partials/head.html :: header-links">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-
+<nav th:replace="partials/navbar.html :: navbar"></nav>
 <h1>Edit Event</h1>
 
 <form th:action="@{'/events/' + ${event.id} + '/edit'}" th:method="POST">

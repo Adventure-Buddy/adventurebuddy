@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="partials/head :: header-links">
+<head th:include="partials/head.html :: header-links">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<nav th:replace="partials/navbar.html :: navbar"></nav>
 <div th:each="item : ${events}">
     <h3 th:text="${item.title}"></h3>
     <p th:text="${item.description}"></p>
