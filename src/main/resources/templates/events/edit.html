@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="partials/head :: header-links">
-<head>
     <meta charset="UTF-8">
-    <title>Create Events</title>
+    <title>Title</title>
 </head>
 <body>
-<h1>Create Event</h1>
-<form th:action="@{/events/create/{trailId}(trailId=${trail.id})}" th:method="POST" th:object="${event}">
 
+<h1>Edit Event</h1>
+
+<form th:action="@{'/events/' + ${event.id} + '/edit'}" th:method="POST">
 
     <div class="input">
         <label for="title">Title:</label>
-        <input type="text" id="title" th:field="*{title}">
+        <input type="text" name="title" id="title" th:value="*{event.title}">
     </div>
 
     <div class="input">
         <label for="description">Description:</label>
-        <input type="text" id="description" th:field="*{description}">
+        <input type="text" name="description" id="description" th:value="*{event.description}">
     </div>
 
     <div class="input">
         <label for="date">Date:</label>
-        <input type="date" id="date" th:field="*{date}">
+        <input type="date" name="date" id="date" th:value="*{event.date}">
     </div>
 
-    <button>Create Event</button>
+    <button>Save Changes</button>
 
 </form>
 </body>
