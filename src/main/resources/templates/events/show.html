@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="partials/head :: header-links">
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+<body>
+<div>
+    <h3 th:text="${event.title}"></h3>
+    <p th:text="${event.description}"></p>
+    <p>Date: <span th:text="${event.date}"></span></p>
+    <p>Host: <span th:text="${event.user.getUsername()}"></span></p>
+</div>
+</body>
+</html>
