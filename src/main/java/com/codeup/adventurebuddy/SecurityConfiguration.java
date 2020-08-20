@@ -1,6 +1,6 @@
 package com.codeup.adventurebuddy;
 
-import com.codeup.adventurebuddy.Services.UserDetailsLoader;
+import com.codeup.adventurebuddy.services.UserDetailsLoader;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -16,7 +16,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public SecurityConfiguration(UserDetailsLoader usersLoader){this.usersLoader = usersLoader;}
 
     @Bean
-    public PasswordEncoder passwordEncoder(){ return new BCryptPasswordEncoder(12); }
+    public PasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder(); }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
@@ -31,25 +31,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/events")
+                .defaultSuccessUrl("/profile")
                 .permitAll()
                 .and()
                 .logout()
                 .logoutSuccessUrl("/login?logout")
                 .and()
                 .authorizeRequests()
-                .antMatchers("/","/events")
+                .antMatchers("/")
                 .permitAll()
                 .and()
                 .authorizeRequests()
                 .antMatchers(
-                        "/events/create",
-                        "/events/{id}/edit",
-                        "/profile"
+                        "/profile",
+                        "/events/*",
+                        "/user","/user/*",
+                        "/event","event/*"
                 )
-                .authenticated()
-                .antMatchers("/register").permitAll()
-                .antMatchers("/confirm").permitAll();
-        ;
+                .authenticated();
     }
 }
