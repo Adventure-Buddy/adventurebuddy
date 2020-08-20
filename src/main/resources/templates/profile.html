@@ -6,28 +6,17 @@
 </head>
 <body>
 <div id="thumbnail-container"></div>
+<script src="https://static.filestackapi.com/adaptive/1.4.0/adaptive.min.js" crossorigin="anonymous"></script>
 <script>
     const client = filestack.init(fileStackKey);
     const options = {
-        onUploadDone: updateForm,
-        maxSize: 10 * 1024 * 1024,
-        accept: 'image/*',
-        uploadInBackground: false,
-    };
-    const picker = client.picker(options);
-
-    const container = document.getElementById('thumbnail-container');
-    const thumbnail = document.getElementById('thumbnail') || new Image();
-    thumbnail.id = 'thumbnail';
-    thumbnail.src = client.transform(fileData.handle, {
-        resize: {
-            width: 200
+        alt: 'windsurfer',
+        sizes: {
+            fallback: '60vw',
         }
-    });
-
-    if (!container.contains(thumbnail)) {
-        container.appendChild(thumbnail);
-    }
+    };
+    const el = fsAdaptive.picture(FILESTACK_HANDLE, options);
+    document.body.appendChild(el);
 </script>
 </body>
 </html>
