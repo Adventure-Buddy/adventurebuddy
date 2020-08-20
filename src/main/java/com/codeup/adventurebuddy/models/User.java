@@ -16,28 +16,28 @@ public class User {
     @Column(columnDefinition = "INT(10) UNSIGNED")
     private long id;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50, nullable = true)
     private String firstName;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50, nullable = true)
     private String lastName;
 
     @Column(nullable = false, length = 45, unique = true)
     private String username;
 
-    @Column(nullable = false, length = 110)
+    @Column(nullable = true, length = 110)
     private String email;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 250)
     private String password;
 
     @Column(nullable = true, length = 20)
     private String phoneNumber;
 
-    @Column(nullable = false, length = 15)
+    @Column(nullable = true, length = 15)
     private String dateOfBirth;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private long addressId;
 
     private boolean isEnabled;
