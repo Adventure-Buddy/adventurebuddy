@@ -28,14 +28,14 @@ public class EventController {
     @GetMapping("/events")
     public String events(Model model) {
         model.addAttribute("events", eventDao.findAll());
-        return "/events/index";
+        return "events/index";
     }
 
     @GetMapping("/events/{id}")
     public String eventId(@PathVariable long id, Model model) {
         Event event = eventDao.getOne(id);
         model.addAttribute("event", event);
-        return "/events/show";
+        return "events/show";
     }
 
     @GetMapping("/events/create/{trailId}")
@@ -43,7 +43,7 @@ public class EventController {
         Trail trail = trailDao.getOne(trailId);
         model.addAttribute("trail", trail);
         model.addAttribute("event", new Event());
-        return "/events/create";
+        return "events/create";
     }
 
     @PostMapping("/events/create/{trailId}")
@@ -59,7 +59,7 @@ public class EventController {
     @GetMapping("events/{id}/edit")
     public String getEditEvent(@PathVariable long id, Model model) {
         model.addAttribute("event", eventDao.getOne(id));
-        return "/events/edit";
+        return "events/edit";
     }
 
     @PostMapping("events/{id}/edit")
