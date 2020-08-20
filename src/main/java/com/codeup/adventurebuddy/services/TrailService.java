@@ -1,4 +1,4 @@
-package com.codeup.adventurebuddy.Services;
+package com.codeup.adventurebuddy.services;
 
 import com.codeup.adventurebuddy.Repositories.TrailRepository;
 import com.codeup.adventurebuddy.models.Trail;

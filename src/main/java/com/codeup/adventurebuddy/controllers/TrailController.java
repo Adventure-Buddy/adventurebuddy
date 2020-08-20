@@ -1,6 +1,6 @@
 package com.codeup.adventurebuddy.controllers;
 
-import com.codeup.adventurebuddy.Services.TrailService;
+import com.codeup.adventurebuddy.services.TrailService;
 import com.codeup.adventurebuddy.models.Trail;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
