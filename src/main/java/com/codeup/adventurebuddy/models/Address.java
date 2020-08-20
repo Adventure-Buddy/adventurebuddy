@@ -25,8 +25,8 @@ public class Address {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne(mappedBy = "address")
-    private Trail trail;
+//    @OneToOne(mappedBy = "address")
+//    private Trail trail;
 
     public Address(long id, String addressOne, String addressTwo, String city, String state, String zipCode) {
         this.id = id;
@@ -95,12 +95,12 @@ public class Address {
     public void setUser(User user) {
         this.user = user;
     }
+//
+//    public Trail getTrail() {
+//        return trail;
+//    }
 
-    public Trail getTrail() {
-        return trail;
-    }
-
-    public void setTrail(Trail trail) {
-        this.trail = trail;
-    }
+//    public void setTrail(Trail trail) {
+//        this.trail = trail;
+//    }
 }
