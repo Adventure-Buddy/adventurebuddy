@@ -2,6 +2,7 @@ package com.codeup.adventurebuddy.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 import javax.persistence.*;
 import java.util.List;
@@ -61,7 +62,7 @@ public class Trail {
     public double getDistanceInMi() {
         return distanceInMi;
     }
-
+    @JsonSetter ("length")
     public void setDistanceInMi(double distanceInMi) {
         this.distanceInMi = distanceInMi;
     }
@@ -69,7 +70,7 @@ public class Trail {
     public long getId() {
         return id;
     }
-
+    @JsonSetter("id")
     public void setId(long id) {
         this.id = id;
     }
@@ -77,7 +78,7 @@ public class Trail {
     public String getName() {
         return name;
     }
-
+    @JsonSetter("name")
     public void setName(String name) {
         this.name = name;
     }
@@ -85,7 +86,7 @@ public class Trail {
     public double getLat() {
         return lat;
     }
-
+    @JsonSetter("latitude")
     public void setLat(double lat) {
         this.lat = lat;
     }
@@ -93,7 +94,7 @@ public class Trail {
     public double getLng() {
         return lng;
     }
-
+    @JsonSetter("longitude")
     public void setLng(double lng) {
         this.lng = lng;
     }
@@ -109,15 +110,14 @@ public class Trail {
     public int getAscent() {
         return ascent;
     }
-
+    @JsonSetter("ascent")
     public void setAscent(int ascent) {
         this.ascent = ascent;
     }
-
     public int getDescent() {
         return descent;
     }
-
+    @JsonSetter("descent")
     public void setDescent(int descent) {
         this.descent = descent;
     }
@@ -125,7 +125,7 @@ public class Trail {
     public String getSummary() {
         return summary;
     }
-
+    @JsonSetter("summary")
     public void setSummary(String summary) {
         this.summary = summary;
     }
@@ -133,7 +133,7 @@ public class Trail {
     public String getType() {
         return type;
     }
-
+    @JsonSetter("type")
     public void setType(String type) {
         this.type = type;
     }
@@ -154,17 +154,17 @@ public class Trail {
         this.user = user;
     }
 
-    @JsonProperty("attributes")
-    public void setTrail(List<Map<String, Object>> trailDetails) {
-        Map<String, Object> attributes = trailDetails.get(0);
-        setId((Long) attributes.get("id"));
-        setName((String) attributes.get("name"));
-        setName((String) attributes.get("summary"));
-        setName((String) attributes.get("type"));
-        setDistanceInMi((Double) attributes.get("length"));
-        setAscent((Integer) attributes.get("ascent"));
-        setDescent((Integer) attributes.get("descent"));
-        setLat((Double) attributes.get("latitude"));
-        setLng((Double) attributes.get("longitude"));
-    }
+//    @JsonProperty("attributes")
+//    public void setTrail(List<Map<String, Object>> trailDetails) {
+//        Map<String, Object> attributes = trailDetails.get(0);
+//        setId((Long) attributes.get("id"));
+//        setName((String) attributes.get("name"));
+//        setSummary((String) attributes.get("summary"));
+//        setType((String) attributes.get("type"));
+//        setDistanceInMi((Double) attributes.get("length"));
+//        setAscent((Integer) attributes.get("ascent"));
+//        setDescent((Integer) attributes.get("descent"));
+//        setLat((Double) attributes.get("latitude"));
+//        setLng((Double) attributes.get("longitude"));
+//    }
 }
