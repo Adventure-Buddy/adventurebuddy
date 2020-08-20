@@ -1,4 +1,4 @@
-package com.codeup.adventurebuddy.Services;
+package com.codeup.adventurebuddy.services;
 
 import com.codeup.adventurebuddy.repositories.UserRepository;
 import com.codeup.adventurebuddy.models.User;

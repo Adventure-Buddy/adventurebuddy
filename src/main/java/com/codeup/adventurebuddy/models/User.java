@@ -10,21 +10,37 @@ import java.util.List;
 @Entity
 @Table(name="users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "INT(10) UNSIGNED")
     private long id;
+
+    @Column(length = 50, nullable = false)
+    private String firstName;
+
+    @Column(length = 50, nullable = false)
+    private String lastName;
+
     @Column(nullable = false, length = 45, unique = true)
     private String username;
+
     @Column(nullable = false, length = 110)
     private String email;
+
     @Column(nullable = false, length = 50)
     private String password;
+
     @Column(nullable = true, length = 20)
     private String phoneNumber;
+
     @Column(nullable = false, length = 15)
     private String dateOfBirth;
+
     @Column(nullable = false)
     private long addressId;
+
+    private boolean isEnabled;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<EmergencyContact> emergencyContactsList;
@@ -49,8 +65,10 @@ public class User {
     )
     private List<Event> events;
 
-    public User(long id, String username, String email, String password, String phoneNumber, String dateOfBirth, long addressId) {
+    public User(long id, String username, String email, String password, String phoneNumber, String dateOfBirth, long addressId, boolean isEnabled) {
         this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -64,6 +82,8 @@ public class User {
 
     public User(User copy) {
         id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        firstName = copy.firstName;
+        lastName = copy.lastName;
         email = copy.email;
         username = copy.username;
         password = copy.password;
@@ -76,6 +96,14 @@ public class User {
     public void setId(long id) {
         this.id = id;
     }
+
+    public void setFirstName(String firstName){this.firstName = firstName;}
+
+    public String getFirstName(){ return firstName;}
+
+    public void setLastName(String lastName){this.lastName = lastName;}
+
+    public String getLastName() { return lastName; }
 
     public String getUsername() {
         return username;
@@ -172,5 +200,9 @@ public class User {
     public void setEvents(List<Event> events) {
         this.events = events;
     }
+
+    public boolean isEnabled(){ return isEnabled;}
+
+    public void setEnabled(boolean enabled){ isEnabled = enabled; }
 
 }
