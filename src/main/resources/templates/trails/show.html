@@ -8,7 +8,7 @@
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div class="container">
     <h1 th:text="${singleTrail.name}"></h1>
-    <div id="map"></div>
+    <div id="map" style="width: 800px; height: 500px"></div>
     <ul>
         <li th:text="${singleTrail.summary}"></li>
         <li th:text="${singleTrail.distanceInMi}"></li>
@@ -76,5 +76,7 @@
         </li>
     </ul>
 </div>
+<script th:src="@{/keys.js}"></script>
+<script th:src="@{/mapbox.js}"></script>
 </body>
 </html>
