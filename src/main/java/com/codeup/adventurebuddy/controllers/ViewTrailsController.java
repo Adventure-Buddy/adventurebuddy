@@ -45,11 +45,9 @@ public class ViewTrailsController {
 
     @GetMapping("/trails/{id}/review")
     public String reviewTrail(@PathVariable long id, Model model){
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Trail trail = trailsDao.getOne(id);
         model.addAttribute("trail", trail);
         model.addAttribute("review", new Review());
-//        model.addAttribute("user", user);
         return "trails/review-trail";
     }
 
@@ -60,7 +58,7 @@ public class ViewTrailsController {
         LocalDateTime now = LocalDateTime.now();
         Trail trail = trailsDao.getOne(trailId);
         review.setCreatedAt(dtf.format(now));
-        review.setUser(usersDao.getOne(2L));
+        review.setUser((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         review.setTrail(trail);
 
         trail.getReviewsList().add(review);

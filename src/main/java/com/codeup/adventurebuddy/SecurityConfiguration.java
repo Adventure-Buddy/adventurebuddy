@@ -44,8 +44,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .authorizeRequests()
                     .antMatchers(
                         "/profile",
-                        "/events/*",
-                        "/events","events/*"
+                        "/events/create/{trailId}",
+                        "/events/{id}","events/{id}/edit"
                 )
                 .authenticated();
     }
