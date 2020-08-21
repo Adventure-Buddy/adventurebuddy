@@ -7,7 +7,8 @@
 <body>
 <div class="container">
     <h1 class="text-center">Write a Review:</h1>
-    <form th:method="post" th:action="@{|/trails/${trail.id}|}" th:object="${review}">
+    <form th:method="post" th:action="@{/trails}" th:object="${review}">
+        <input type="hidden" th:value="${trail.id}" th:name="trailId">
         <label for="comment">Description:</label><br>
         <textarea id="comment" th:field="*{comment}" placeholder="Write about your experience here."></textarea>
         <label for="rating">Rating:</label>

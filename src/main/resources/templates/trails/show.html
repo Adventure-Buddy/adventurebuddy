@@ -20,6 +20,7 @@
     <form th:method="post" th:action="@{/events/create}">
         <button type="submit" th:object="${singleTrail}">Add To Redo</button>
     </form>
+    <a th:href="@{|/events/create/${singleTrail.id}|}">Create Adventure!</a><br>
     <a th:href="@{|/trails/${singleTrail.id}/review|}">Write a Review</a>
     <h2>Reviews</h2>
     <ul>

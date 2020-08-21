@@ -53,18 +53,17 @@ public class ViewTrailsController {
         return "trails/review-trail";
     }
 
-    @PostMapping("/trails/{id}")
-    public String addReview(@PathVariable long id, @ModelAttribute Review review){
+    @PostMapping("/trails")
+    public String addReview(@RequestParam(value="trailId") long trailId, @ModelAttribute Review review){
         //get current date and time of review.
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
+        Trail trail = trailsDao.getOne(trailId);
+        review.setCreatedAt(dtf.format(now));
+        review.setUser(usersDao.getOne(2L));
+        review.setTrail(trail);
 
-        trailsDao.getOne(id);
-
-        review.setCreatedAt(dtf.format(now));;
-        review.setUser(usersDao.getOne(1L));
-        review.setTrail(trailsDao.getOne(1L));
-
+        trail.getReviewsList().add(review);
         reviewsDao.save(review);
         return "redirect:/trails";
     }
