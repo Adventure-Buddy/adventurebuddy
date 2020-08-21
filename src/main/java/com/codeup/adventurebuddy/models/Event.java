@@ -18,14 +18,13 @@ public class Event {
     private Trail trail;
     @Column(nullable = false)
     private String date;
+    @Column(nullable = false)
+    private String activity;
     @ManyToOne
     @JoinColumn(name = "host_id")
     private User user;
     @ManyToMany(mappedBy = "events")
     private List<User> userLists;
-    @ManyToOne
-    @JoinColumn(name = "activity_id")
-    private Activity activity;
 
     public Event() { }
 
@@ -37,11 +36,11 @@ public class Event {
         this.userLists = userLists;
     }
 
-    public Activity getActivity() {
+    public String getActivity() {
         return activity;
     }
 
-    public void setActivity(Activity activity) {
+    public void setActivity(String activity) {
         this.activity = activity;
     }
 

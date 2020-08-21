@@ -41,7 +41,7 @@ public class Trail {
     private User user;
 
 
-    public Trail(long id, String name, double distanceInMi, double lat, double lng, Address address, int ascent, int descent, String summary, String type, List<Review> reviewsList, List<Activity> activities, User user) {
+    public Trail(long id, String name, double distanceInMi, double lat, double lng, Address address, int ascent, int descent, String summary, String type, List<Review> reviewsList, User user) {
         this.id = id;
         this.name = name;
         this.distanceInMi = distanceInMi;

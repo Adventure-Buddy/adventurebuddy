@@ -43,6 +43,7 @@ public class EventController {
         Trail trail = trailDao.getOne(trailId);
         model.addAttribute("trail", trail);
         model.addAttribute("event", new Event());
+
         return "events/create";
     }
 
@@ -66,14 +67,22 @@ public class EventController {
     public String postEditEvent(@PathVariable long id,
                                 @RequestParam String title,
                                 @RequestParam String description,
-                                @RequestParam String date) {
+                                @RequestParam String date,
+                                @RequestParam String activity) {
         Event eventToEdit = eventDao.getOne(id);
         eventToEdit.setTitle(title);
         eventToEdit.setDescription(description);
         eventToEdit.setDate(date);
+        eventToEdit.setActivity(activity);
 
         eventDao.save(eventToEdit);
 
         return "redirect:/events/" + id;
+    }
+
+    @PostMapping("events/{id}/delete")
+    public String deleteEvent(@PathVariable long id) {
+        eventDao.deleteById(id);
+        return "redirect:/events";
     }
 }
