@@ -11,9 +11,10 @@
     <div id="map"></div>
     <ul>
         <li th:text="${singleTrail.summary}"></li>
+        <li th:text="${singleTrail.distanceInMi}"></li>
         <li th:text="${singleTrail.type}"></li>
         <li>
-            Ascent: <span th:text="${singleTrail.ascent}"></span> / Descent: <span th:text="${singleTrail.descent}"></span>
+            Ascent: <span th:text="${singleTrail.ascent}"></span>ft. / Descent: <span th:text="${singleTrail.descent}"></span>ft.
         </li>
     </ul>
     <form th:method="post" th:action="@{/events/create}">
