@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head th:include="partials/head.html :: header-links">
     <meta charset="UTF-8">
     <title>Title</title>
@@ -7,7 +7,6 @@
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <h1>Edit Event</h1>
-
 <form th:action="@{'/events/' + ${event.id} + '/edit'}" th:method="POST">
 
     <div class="input">
@@ -22,11 +21,20 @@
 
     <div class="input">
         <label for="date">Date:</label>
-        <input type="date" name="date" id="date" th:value="*{event.date}">
+        <input type="datetime-local" name="date" id="date" th:value="*{event.date}">
     </div>
+
+    <input type="radio" name="activity" value="hiking" th:field="*{event.activity}" checked>hiking<br>
+    <input type="radio" name="activity" value="mountain biking" th:field="*{event.activity}">mountain biking<br>
+    <input type="radio" name="activity" value="cycling" th:field="*{event.activity}">cycling<br>
+    <input type="radio" name="activity" value="other" th:field="*{event.activity}">other<br>
 
     <button>Save Changes</button>
 
+</form>
+
+<form th:action="@{'/events/' + ${event.id}}" th:method="get">
+    <button>Discard Changes</button>
 </form>
 </body>
 </html>
