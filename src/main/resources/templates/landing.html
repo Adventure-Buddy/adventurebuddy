@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="eng">
 <head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-<div class="ab-bg-image h-100 col-lg-3">
-    <div><h2>Welcome To Adventure Buddy, Where The Adventure Starts With You.</h2></div>
-</div>
-<div class="sand-bg h-100 col lg-6">
-<div class="ab-logo"></div>
+    <head th:include="partials/head.html :: header-links">
+        <title></title>
+    </head>
+<body class="ab-bg-image">
+<nav th:replace="partials/navbar.html :: navbar"></nav>
+<div class="green-trans-bg">
+    <h2 class="ab-font">Welcome To Adventure Buddy, Where The Adventure Starts With You.</h2>
 </div>
 </body>
 </html>
