@@ -10,7 +10,6 @@
 <h1>Create Event</h1>
 <form th:action="@{/events/create/{trailId}(trailId=${trail.id})}" th:method="POST" th:object="${event}">
 
-
     <div class="input">
         <label for="title">Title:</label>
         <input type="text" id="title" th:field="*{title}">
@@ -23,8 +22,13 @@
 
     <div class="input">
         <label for="date">Date:</label>
-        <input type="date" id="date" th:field="*{date}">
+        <input type="datetime-local" id="date" th:field="*{date}">
     </div>
+
+    <input type="radio" name="activity" value="hiking" th:field="*{activity}" checked>hiking<br>
+    <input type="radio" name="activity" value="mountain biking" th:field="*{activity}">mountain biking<br>
+    <input type="radio" name="activity" value="cycling" th:field="*{activity}">cycling<br>
+    <input type="radio" name="activity" value="other" th:field="*{activity}">other<br>
 
     <button>Create Event</button>
 

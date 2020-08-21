@@ -9,10 +9,19 @@
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div>
+    <h3 th:text="${event.trail.name}"></h3>
     <h3 th:text="${event.title}"></h3>
     <p th:text="${event.description}"></p>
     <p>Date: <span th:text="${event.date}"></span></p>
-    <p>Host: <span th:text="${event.user.getUsername()}"></span></p>
+    <p>Host: <span th:text="${event.user.username}"></span></p>
+    <p>Activity: <span th:text="${event.activity}"></span></p>
+
+    <form th:action="@{'/events/' + ${event.id} + '/edit'}" method="get">
+        <button>Edit Post</button>
+    </form>
+    <form th:action="@{'/events/' + ${event.id} + '/delete'}" method="post">
+        <button>Delete Post</button>
+    </form>
 </div>
 </body>
 </html>
