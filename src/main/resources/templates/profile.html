@@ -6,8 +6,9 @@
 </head>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
-<h1>Welcome, <span th:text="${user}">!</span></h1>
-<div id="thumbnail-container"></div>
+<h1>Welcome, <span th:text="${user.username}">!</span></h1>
+<div id="profile-image"></div>
+<a th:href="@{/profile/{id}/add(id=${user.id})}">Upload Profile Picture</a>
 <script src="https://static.filestackapi.com/adaptive/1.4.0/adaptive.min.js" crossorigin="anonymous"></script>
 <script>
     const client = filestack.init(fileStackKey);

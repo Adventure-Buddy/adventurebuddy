@@ -40,6 +40,17 @@ public class User {
     @Column(nullable = true)
     private long addressId;
 
+    @Column(nullable = false, length = 200)
+    private String profile_img;
+
+    public String getProfile_img() {
+        return profile_img;
+    }
+
+    public void setProfile_img(String profile_img) {
+        this.profile_img = profile_img;
+    }
+
     private boolean isEnabled;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
