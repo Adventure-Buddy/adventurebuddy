@@ -23,12 +23,13 @@ public class ProfileController {
 
     @GetMapping("/profile/{id}/add")
     public String viewAddProfilePhoto(@PathVariable long id, Model model) {
-        model.addAttribute("user", userDao.findById(id));
+        model.addAttribute("user", userDao.getOne(id));
         return "addProfilePhoto";
     }
 
     @PostMapping("/profile/{id}/add")
-    public String savePhoto(@RequestParam(name="profile_img") String img,@ModelAttribute User user) {
+    public String savePhoto(@RequestParam(name="profile_img") String img,@PathVariable long id){
+        User user = userDao.getOne(id);
         user.setProfile_img(img);
         userDao.save(user);
         return "redirect:/profile";

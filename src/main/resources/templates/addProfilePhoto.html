@@ -8,7 +8,7 @@
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div id="inline">
-    <form id="image" th:action="@{/profile}" method="post">
+    <form id="image" th:action="@{/profile/{id}/add(id=${user.id})}" th:method="POST">
         <label for="fileupload">Select a file to upload</label>
         <input type="hidden" id="fileupload">
         <button id="picker" type="button">Pick file</button>
