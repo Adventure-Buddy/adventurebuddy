@@ -6,20 +6,132 @@
 </head>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
+<main class="container">
+<!--    Header-->
 <h1>Welcome, <span th:text="${user.username}">!</span></h1>
-<div id="profile-image"></div>
+<div id="profile-image">
+    <img th:src="${user.profile_img}" alt="profile" class="img-fluid align-self-center mr-3" width="25%" height="25%">
+</div>
 <a th:href="@{/profile/{id}/add(id=${user.id})}">Upload Profile Picture</a>
+<!--    menu tabs-->
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true"><span class="badge badge-pill badge-secondary">1</span>
+                Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="basic-info-tab" data-toggle="tab" href="#basic-info" role="tab" aria-controls="basic-info" aria-selected="false"><span class="badge badge-pill badge-secondary">2</span>
+                Basic Info</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="username-tab" data-toggle="tab" href="#username" role="tab" aria-controls="toppings" aria-selected="false"><span class="badge badge-pill badge-secondary">3</span>
+                Username</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="emergency-tab" data-toggle="tab" href="#emergency" role="tab" aria-controls="toppings" aria-selected="false"><span class="badge badge-pill badge-secondary">3</span>
+                Emergency</a>
+        </li>
+    </ul>
+
+    <form action="" method="post">
+        <div class="tab-content" id="myTabContent">
+<!--            tab pane 1-->
+            <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+                <div class="card">
+
+<!--                    <div class="card-header bg-primary text-white">-->
+<!--                    </div>-->
+<!--                    <div class="card-body">-->
+<!--                        <div class="card mb-3">-->
+<!--                            <div class="card-header">-->
+<!--                                Hand Tossed-->
+<!--                            </div>-->
+<!--                            <div class="card-body">-->
+<!--                                Garlic seasoned crust with a rich,buttery taste.-->
+<!--                            </div>-->
+<!--                            <ul class="list-group">-->
+<!--                                <li class="list-group-item">-->
+<!--                                    <input type="radio" name="crust" value="hand-sm" id="hand-sm">-->
+<!--                                    <label for="hand-sm">Small (10")</label>-->
+<!--                                </li>-->
+<!--                                <li class="list-group-item">-->
+<!--                                    <input type="radio" name="crust" value="hand-md" id="hand-md">-->
+<!--                                    <label for="hand-md">Medium (12")</label>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+
+<!--                        </div>-->
+<!--                        <div class="card">-->
+<!--                            <div class="card-header">-->
+<!--                                Crispy Thin-->
+<!--                            </div>-->
+<!--                            <div class="card-body">-->
+<!--                                Thin enough for optimum crispy to crunchy ratio.-->
+<!--                            </div>-->
+<!--                            <ul class="list-group">-->
+<!--                                <li class="list-group-item">-->
+<!--                                    <input type="radio" name="crust" value="thing-med" id="thin-med">-->
+<!--                                    <label for="thin-med">Medium (12")</label>-->
+<!--                                </li>-->
+<!--                                <li class="list-group-item">-->
+<!--                                    <input type="radio" name="crust" value="thin-lg" id="thin-lg">-->
+<!--                                    <label for="thin-lg">Large (14 ")</label>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="card-footer d-flex justify-content-end">-->
+<!--                        <button class="btn btn-primary">Next Step <i class="fas fa-chevron-right"></i></button>-->
+<!--                    </div>-->
+
+                </div>
+
+            </div>
+            <!--tab pane 2-->
+            <div class="tab-pane fade" id="basic-info" role="tabpanel" aria-labelledby="basic-info-tab">
+                <div class="card">
+
+                    <div class="card-header bg-primary text-white">
+                    </div>
+                    <div class="card-body">
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                Basic Info
+                            </div>
+                            <div class="card-body">
+<!--                                <label for="cheese-amt">How Much?</label>-->
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Date of Birth: <span th:text="${user.dateOfBirth}"></span></li>
+                                    <li class="list-group-item">Address: <span th:text="${user.addressOne}"></span></li>
+                                    <li class="list-group-item">Email: <span th:text="${user.email}"></span></li>
+                                    <li class="list-group-item">First Name: <span th:text="${user.firstName}"></span></li>
+                                    <li class="list-group-item">Last Name: <span th:text="${user.lastName}"></span></li>
+                                    <li class="list-group-item">Phone Number: <span th:text="${user.phoneNumber}"></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-end">
+                        <div class="btn-grou">
+                            <button class="btn btn-primary"><i class="fas fa-chevron-left"></i> Previous Step</button>
+                            <button class="btn btn-primary">Next Step <i class="fas fa-chevron-right"></i></button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </form>
+
+</main>
 <script src="https://static.filestackapi.com/adaptive/1.4.0/adaptive.min.js" crossorigin="anonymous"></script>
 <script>
     const client = filestack.init(fileStackKey);
-    const options = {
-        alt: 'windsurfer',
-        sizes: {
-            fallback: '60vw',
-        }
-    };
-    const el = fsAdaptive.picture(FILESTACK_HANDLE, options);
-    document.body.appendChild(el);
 </script>
 </body>
 </html>

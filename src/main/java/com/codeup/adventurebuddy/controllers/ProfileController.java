@@ -17,7 +17,8 @@ public class ProfileController {
 
     @GetMapping("/profile")
     public String viewProfile(Model model) {
-        model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user",userDao.getOne(user.getId()));
         return "profile";
     }
 
