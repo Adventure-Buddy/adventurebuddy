@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="eng">
+<head th:include="partials/head.html :: header-links">
+    <meta charset="UTF-8">
+    <title>Username Edit</title>
+</head>
+<body>
+<nav th:replace="partials/navbar.html :: navbar"></nav>
+
+<div class="card">
+    <form th:action="@{/profile/{id}/username(id=${user.id})}" method="post" >
+        <div class="card-header bg-primary text-white">
+        </div>
+        <div class="card-body">
+            <div class="card mb-3">
+                <div class="card-header">
+                    Edit: Username / Email / Password
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Username: <input id="username" name="username" type="text" th:value="${user.username}"/></li>
+                        <li class="list-group-item">Email: <input id="email" name="email" type="text" th:value="${user.email}"/></li>
+                        <li class="list-group-item">Password:<input id="password" name="password" type="text"/></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer d-flex justify-content-end">
+            <div class="btn-group">
+                <button type="submit">Submit</button>
+            </div>
+    </form>
+</div>
+
+
+</body>
+</html>
