@@ -22,6 +22,7 @@ public class ProfileController {
         return "profile";
     }
 
+//    Get and Post Mapping for handling photo upload
     @GetMapping("/profile/{id}/add")
     public String viewAddProfilePhoto(@PathVariable long id, Model model) {
         model.addAttribute("user", userDao.getOne(id));
@@ -32,6 +33,25 @@ public class ProfileController {
     public String savePhoto(@RequestParam(name="profile_img") String img,@PathVariable long id){
         User user = userDao.getOne(id);
         user.setProfile_img(img);
+        userDao.save(user);
+        return "redirect:/profile";
+    }
+
+//    Get and Post mapping for handling basic edit
+    @GetMapping("/profile/{id}/basic")
+    public String editBasic(@PathVariable long id, Model model){
+        model.addAttribute("user", userDao.getOne(id));
+        return "basic-edit";
+    }
+
+    @PostMapping("/profile/{id}/basic")
+    public String insertBasic(@PathVariable long id, Model model, @RequestParam(name="dob") String dob,@RequestParam(name="phone") String phone,@RequestParam(name = "first") String first,@RequestParam(name="last") String last){
+        model.addAttribute("user", userDao.getOne(id));
+        User user = userDao.getOne(id);
+        user.setDateOfBirth(dob);
+        user.setPhoneNumber(phone);
+        user.setFirstName(first);
+        user.setLastName(last);
         userDao.save(user);
         return "redirect:/profile";
     }
