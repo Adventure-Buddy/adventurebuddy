@@ -16,7 +16,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public SecurityConfiguration(UserDetailsLoader usersLoader){this.usersLoader = usersLoader;}
 
     @Bean
-    public PasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder(); }
+    public PasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder(12); }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
@@ -30,23 +30,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http)throws Exception{
         http
                 .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/profile")
-                .permitAll()
+                    .loginPage("/login")
+                    .defaultSuccessUrl("/profile")
+                    .permitAll()
                 .and()
-                .logout()
-                .logoutSuccessUrl("/login?logout")
+                    .logout()
+                    .logoutSuccessUrl("/login?logout")
                 .and()
-                .authorizeRequests()
-                .antMatchers("/")
-                .permitAll()
+                    .authorizeRequests()
+                    .antMatchers("/", "/trails", "/trails/{id}")
+                    .permitAll()
                 .and()
-                .authorizeRequests()
-                .antMatchers(
+                    .authorizeRequests()
+                    .antMatchers(
                         "/profile",
-                        "/events/*",
-                        "/user","/user/*",
-                        "/event","event/*"
+                        "/events/create/{trailId}",
+                        "/events/{id}","events/{id}/edit"
                 )
                 .authenticated();
     }

@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.model.IModel;
 
+
 @Controller
 public class ProfileController {
     private final com.codeup.adventurebuddy.repositories.UserRepository userDao;
@@ -28,7 +29,6 @@ public class ProfileController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user",userDao.getOne(user.getId()));
         model.addAttribute("emergency",emergencyContactsDao.findAll());
-        return "profile";
     }
 
 //    Get and Post Mapping for handling photo upload
