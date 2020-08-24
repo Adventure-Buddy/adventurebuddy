@@ -2,14 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="eng">
 <head>
     <head th:include="partials/head.html :: header-links">
-        <title>View All Trails</title>
+        <meta charset="UTF-8">
+        <title></title>
     </head>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div class="container">
-    <h1>Viewing all Trails in: San Antonio, TX</h1>
-    <div th:each="trail: ${allTrails}">
-        <a th:href="@{|trails/${trail.id}|}"><h4 th:text="${trail.name}"></h4></a>
+    <h1>Results for: <span th:text="${keywords}"></span></h1>
+    <div th:each="trail: ${foundTrails}">
+        <a th:href="@{|/trails/${trail.id}|}"><h4 th:text="${trail.name}"></h4></a>
         <ul>
             <li th:text="${trail.summary}"></li>
             <li th:text="${trail.distanceInMi}"></li>

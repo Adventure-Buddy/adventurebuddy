@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 
 @Controller
@@ -70,5 +71,17 @@ public class ViewTrailsController {
         return "redirect:/trails";
     }
 
+    // SEARCH TRAILS
+    @GetMapping("trails/search")
+    public String showResults(){
+        return "trails/search";
+    }
+
+    @PostMapping("/trails/search")
+    public String results(Model model, @RequestParam String keywords){
+        model.addAttribute("keywords", keywords);
+        model.addAttribute("foundTrails", trailsDao.findTrailsByNameContaining(keywords));
+        return "trails/search";
+    }
 
 }
