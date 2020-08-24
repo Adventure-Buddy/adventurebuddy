@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="eng">
+<head th:include="partials/head.html :: header-links">
+    <meta charset="UTF-8">
+    <title>Basic Edit</title>
+</head>
+<body>
+<nav th:replace="partials/navbar.html :: navbar"></nav>
+
+<div class="card">
+<form th:action="@{/profile/{id}/basic(id=${user.id})}" method="post" >
+    <div class="card-header bg-primary text-white">
+    </div>
+    <div class="card-body">
+        <div class="card mb-3">
+            <div class="card-header">
+                Edit Basic Info
+            </div>
+            <div class="card-body">
+                <!--                                <label for="cheese-amt">How Much?</label>-->
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Date of Birth: <input id="dob" name="dob" type="text" th:value="${user.dateOfBirth}"/></li>
+                    <!--                                    <li class="list-group-item">Address: <span th:text="${}"></span></li>-->
+                    <li class="list-group-item">First Name: <input id="first" name="first" type="text" th:value="${user.firstName}"/></li>
+                    <li class="list-group-item">Last Name: <input id="last" name="last" type="text" th:value="${user.lastName}"/></li>
+                    <li class="list-group-item">Phone Number: <input id="phone" name="phone" type="text" th:value="${user.phoneNumber}"/></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer d-flex justify-content-end">
+        <div class="btn-group">
+            <button type="submit">Submit</button>
+<!--            <a th:href="@{/profile/{id}/basic(id=${user.id})}">Submit</a>-->
+        </div>
+</form>
+    </div>
+
+
+</body>
+</html>
