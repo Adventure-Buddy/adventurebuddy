@@ -26,6 +26,13 @@
                 </form>
             </li>
         </th:block>
+        <li class="nav-item">
+            <form th:action="@{/trails/search}" method="post" class="form-inline my-2 my-lg-0">
+                <label for="search" class="text-light">Search Trails:</label>
+                <input type="search" class="form-control mr-sm-2" id="search" name="keywords">
+                <button type="submit">Search</button>
+            </form>
+        </li>
     </ul>
 </nav>
 </body>

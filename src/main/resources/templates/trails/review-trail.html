@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
+    <head th:include="partials/head.html :: header-links">
+        <meta charset="UTF-8">
+        <title>Review</title>
+    </head>
 <body>
+<nav th:replace="partials/navbar.html :: navbar"></nav>
 <div class="container">
     <h1 class="text-center">Write a Review:</h1>
     <form th:method="post" th:action="@{/trails}" th:object="${review}">
