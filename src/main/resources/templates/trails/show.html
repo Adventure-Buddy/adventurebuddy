@@ -8,10 +8,12 @@
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div class="container">
     <h1 th:text="${singleTrail.name}"></h1>
-    <div id="map"></div>
+    <div id="map" style="width: 800px; height: 500px"></div>
+    <input type="hidden" name="lat" id="lat" th:value="${singleTrail.lat}">
+    <input type="hidden" name="lng" id="lng" th:value="${singleTrail.lng}">
     <ul>
-        <li th:text="${singleTrail.summary}"></li>
-        <li th:text="${singleTrail.distanceInMi}"></li>
+        <li>Trail Summary: <span th:text="${singleTrail.summary}"></span></li>
+        <li>Distance: <span th:text="${singleTrail.distanceInMi}">mi.</span></li>
         <li th:text="${singleTrail.type}"></li>
         <li>
             Ascent: <span th:text="${singleTrail.ascent}"></span>ft. / Descent: <span th:text="${singleTrail.descent}"></span>ft.
@@ -76,5 +78,6 @@
         </li>
     </ul>
 </div>
+<script th:src="@{/mapbox.js}"></script>
 </body>
 </html>

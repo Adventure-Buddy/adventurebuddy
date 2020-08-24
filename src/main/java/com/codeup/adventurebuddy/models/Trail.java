@@ -23,9 +23,6 @@ public class Trail {
     private double lat;
     @Column(nullable = false)
     private double lng;
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "address_id", referencedColumnName = "id")
-//    private Address address;
     @Column(nullable = false)
     private int ascent;
     @Column(nullable = false)
@@ -47,7 +44,6 @@ public class Trail {
         this.distanceInMi = distanceInMi;
         this.lat = lat;
         this.lng = lng;
-//        this.address = address;
         this.ascent = ascent;
         this.descent = descent;
         this.summary = summary;
@@ -58,7 +54,6 @@ public class Trail {
 
     public Trail() {
     }
-
     public double getDistanceInMi() {
         return distanceInMi;
     }
@@ -98,14 +93,6 @@ public class Trail {
     public void setLng(double lng) {
         this.lng = lng;
     }
-
-//    public Address getAddress() {
-//        return address;
-//    }
-//
-//    public void setAddress(Address address) {
-//        this.address = address;
-//    }
 
     public int getAscent() {
         return ascent;
@@ -154,17 +141,4 @@ public class Trail {
         this.user = user;
     }
 
-//    @JsonProperty("attributes")
-//    public void setTrail(List<Map<String, Object>> trailDetails) {
-//        Map<String, Object> attributes = trailDetails.get(0);
-//        setId((Long) attributes.get("id"));
-//        setName((String) attributes.get("name"));
-//        setSummary((String) attributes.get("summary"));
-//        setType((String) attributes.get("type"));
-//        setDistanceInMi((Double) attributes.get("length"));
-//        setAscent((Integer) attributes.get("ascent"));
-//        setDescent((Integer) attributes.get("descent"));
-//        setLat((Double) attributes.get("latitude"));
-//        setLng((Double) attributes.get("longitude"));
-//    }
 }

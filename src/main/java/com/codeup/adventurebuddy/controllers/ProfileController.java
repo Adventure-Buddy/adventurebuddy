@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.model.IModel;
 
-
 @Controller
 public class ProfileController {
     private final com.codeup.adventurebuddy.repositories.UserRepository userDao;
