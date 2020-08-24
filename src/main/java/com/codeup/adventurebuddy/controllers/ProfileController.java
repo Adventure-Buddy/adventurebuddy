@@ -28,6 +28,7 @@ public class ProfileController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user",userDao.getOne(user.getId()));
         model.addAttribute("emergency",emergencyContactsDao.findAll());
+        return "profile";
     }
 
 //    Get and Post Mapping for handling photo upload
