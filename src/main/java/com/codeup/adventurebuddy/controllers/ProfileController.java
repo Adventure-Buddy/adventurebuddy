@@ -4,6 +4,7 @@ import com.codeup.adventurebuddy.Repositories.EmergencyContactsRepository;
 import com.codeup.adventurebuddy.models.EmergencyContact;
 import com.codeup.adventurebuddy.models.User;
 import com.codeup.adventurebuddy.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,9 @@ public class ProfileController {
     private final com.codeup.adventurebuddy.repositories.UserRepository userDao;
     private final EmergencyContactsRepository emergencyContactsDao;
     private PasswordEncoder passwordEncoder;
+    @Value("${fileStackKey}")
+    private String fsKey;
+
 
 
     public ProfileController(UserRepository userDao, EmergencyContactsRepository emergencyContactsDao) {
@@ -28,11 +32,13 @@ public class ProfileController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user",userDao.getOne(user.getId()));
         model.addAttribute("emergency",emergencyContactsDao.findAll());
+        return "profile";
     }
 
 //    Get and Post Mapping for handling photo upload
     @GetMapping("/profile/{id}/add")
     public String viewAddProfilePhoto(@PathVariable long id, Model model) {
+        model.addAttribute("fsKey",fsKey);
         model.addAttribute("user", userDao.getOne(id));
         return "addProfilePhoto";
     }

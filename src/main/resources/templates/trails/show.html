@@ -78,6 +78,11 @@
         </li>
     </ul>
 </div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    const file = /*[[${mbKey}]]*/ 'default';
+    /*]]>*/
+</script>
 <script th:src="@{/mapbox.js}"></script>
 </body>
 </html>

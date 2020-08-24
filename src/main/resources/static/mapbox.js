@@ -1,7 +1,7 @@
 "use strict";
 
 (function () {
-    mapboxgl.accessToken = MAPBOX_KEY;
+    mapboxgl.accessToken = file;
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v9',
