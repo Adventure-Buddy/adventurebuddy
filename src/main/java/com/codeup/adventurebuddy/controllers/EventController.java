@@ -4,13 +4,21 @@ package com.codeup.adventurebuddy.controllers;
 import com.codeup.adventurebuddy.models.Event;
 import com.codeup.adventurebuddy.models.Trail;
 import com.codeup.adventurebuddy.models.User;
+//import com.codeup.adventurebuddy.models.UserEvents;
 import com.codeup.adventurebuddy.repositories.EventRepository;
 import com.codeup.adventurebuddy.repositories.TrailRepository;
+//import com.codeup.adventurebuddy.repositories.UserEventRepository;
 import com.codeup.adventurebuddy.repositories.UserRepository;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import java.awt.*;
 
 @Controller
 public class EventController {
@@ -18,11 +26,13 @@ public class EventController {
     private final EventRepository eventDao;
     private final UserRepository userDao;
     private final TrailRepository trailDao;
+//    private final UserEventRepository userEventDao;
 
     public EventController(EventRepository eventDao, UserRepository userDao, TrailRepository trailDao) {
         this.eventDao = eventDao;
         this.userDao = userDao;
         this.trailDao = trailDao;
+//        this.userEventDao = userEventDao;
     }
 
     @GetMapping("/events")
@@ -87,4 +97,32 @@ public class EventController {
         eventDao.deleteById(id);
         return "redirect:/events";
     }
+
+//    @GetMapping("/event/events.json")
+//    public @ResponseBody List<Event> viewAllEventsJson(){
+//        List<Event> events = eventDao.findAll();
+//
+//        for (int i=0; i<events.size();i++){
+//            String date = events.get(i).getDate();
+//            date = date.replace(" ", "D");
+//            events.get(i).setDate(date);
+//        }
+//        return events;
+//    }
+
+//    @GetMapping("/events/userevents.json")
+//    public @ResponseBody List<Event> viewEventUserEvents(){
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        List<UserEvents> userEvents = userEventDao.findAll();
+//        List<Event> events = new ArrayList<>();
+//
+//        for (int i=0; i < userEvents.size(); i++){
+//            if (userEvents.get(i).getUser().getId() == user.getId()){
+//                events.add(userEvents.get(i).getEvent());
+//            }
+//        }
+//        return events;
+//    }
+
+
 }
