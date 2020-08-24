@@ -7,6 +7,7 @@ import com.codeup.adventurebuddy.repositories.EventRepository;
 import com.codeup.adventurebuddy.repositories.ReviewRepository;
 import com.codeup.adventurebuddy.repositories.TrailRepository;
 import com.codeup.adventurebuddy.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +24,8 @@ public class ViewTrailsController {
     private final TrailRepository trailsDao;
     private final UserRepository usersDao;
     private final ReviewRepository reviewsDao;
+    @Value("${MAPBOX_KEY}")
+    private String mbKey;
 
     public ViewTrailsController(EventRepository eventsDao, TrailRepository trailsDao, UserRepository usersDao, ReviewRepository reviewsDao) {
         this.eventsDao = eventsDao;
@@ -39,6 +42,7 @@ public class ViewTrailsController {
 
     @GetMapping("/trails/{id}")
     public String trailDetails(@PathVariable long id, Model model){
+        model.addAttribute("mbKey",mbKey);
         model.addAttribute("singleTrail", trailsDao.getOne(id));
         return "trails/show";
     }
