@@ -16,12 +16,19 @@
     <p>Host: <span th:text="${event.user.username}"></span></p>
     <p>Activity: <span th:text="${event.activity}"></span></p>
 
-    <form th:action="@{'/events/' + ${event.id} + '/edit'}" method="get">
-        <button>Edit Post</button>
-    </form>
-    <form th:action="@{'/events/' + ${event.id} + '/delete'}" method="post">
-        <button>Delete Post</button>
-    </form>
+    <th:block sec:authorize="isAuthenticated()">
+<!--        <th:block th:if="${user.id} eq ${event.user.id}">-->
+            <p th:text="${event.user.id}"></p>
+            <p th:text="${user}"></p>
+
+            <form th:action="@{'/events/' + ${event.id} + '/edit'}" method="get">
+                <button>Edit Post</button>
+            </form>
+            <form th:action="@{'/events/' + ${event.id} + '/delete'}" method="post">
+                <button>Delete Post</button>
+            </form>
+<!--        </th:block>-->
+    </th:block>
 </div>
 </body>
 </html>

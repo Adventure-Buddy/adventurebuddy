@@ -7,7 +7,7 @@ import com.codeup.adventurebuddy.models.User;
 import com.codeup.adventurebuddy.repositories.EventRepository;
 import com.codeup.adventurebuddy.repositories.TrailRepository;
 import com.codeup.adventurebuddy.repositories.UserRepository;
-//import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +35,7 @@ public class EventController {
     public String eventId(@PathVariable long id, Model model) {
         Event event = eventDao.getOne(id);
         model.addAttribute("event", event);
+        model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         return "events/show";
     }
 
@@ -49,8 +50,8 @@ public class EventController {
 
     @PostMapping("/events/create/{trailId}")
     public String postCreateEvent(@PathVariable long trailId, @ModelAttribute Event event) {
-//        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User loggedInUser = userDao.getOne(1L);
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User loggedInUser = userDao.getOne(1L);
         event.setUser(loggedInUser);
         event.setTrail(trailDao.getOne(trailId));
         eventDao.save(event);
