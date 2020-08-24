@@ -17,17 +17,46 @@
     <p>Activity: <span th:text="${event.activity}"></span></p>
 
     <th:block sec:authorize="isAuthenticated()">
-<!--        <th:block th:if="${user.id} eq ${event.user.id}">-->
-            <p th:text="${event.user.id}"></p>
+        <th:block th:if="${user.id} eq ${event.user.id}">
             <p th:text="${user}"></p>
 
             <form th:action="@{'/events/' + ${event.id} + '/edit'}" method="get">
-                <button>Edit Post</button>
+                <button class="btn btn-primary">Edit Post</button>
             </form>
             <form th:action="@{'/events/' + ${event.id} + '/delete'}" method="post">
-                <button>Delete Post</button>
+                <button class="btn btn-danger">Delete Post</button>
             </form>
-<!--        </th:block>-->
+        </th:block>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            View Participants
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="pListTitle">List of Participants</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h5 class="modal-title" id="pListHost">Host:</h5>
+                        <p th:text="${event.user.username}"></p>
+                        <h5 class="modal-title" id="pListAccepted">Confirmed Participants:</h5>
+                        ...
+                        <h5 class="modal-title" id="pListPending">Pending Participants:</h5>
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </th:block>
 </div>
 </body>

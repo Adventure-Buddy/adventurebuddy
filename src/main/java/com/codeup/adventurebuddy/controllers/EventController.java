@@ -33,9 +33,10 @@ public class EventController {
 
     @GetMapping("/events/{id}")
     public String eventId(@PathVariable long id, Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Event event = eventDao.getOne(id);
         model.addAttribute("event", event);
-        model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        model.addAttribute("user", user);
         return "events/show";
     }
 
