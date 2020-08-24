@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
     <head th:include="partials/head.html :: header-links">
     <title>Profile</title>
@@ -8,7 +8,7 @@
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div id="inline">
-    <form id="image">
+    <form id="image" th:action="@{/profile/{id}/add(id=${user.id})}" th:method="POST">
         <label for="fileupload">Select a file to upload</label>
         <input type="hidden" id="fileupload">
         <button id="picker" type="button">Pick file</button>
@@ -16,18 +16,14 @@
         <input type="submit" value="Submit">
     </form>
 </div>
-<script src="https://static.filestackapi.com/v3/filestack.js"></script>
-<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
-<script
-        src="https://code.jquery.com/jquery-2.2.4.js"
-        integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
-        crossorigin="anonymous"></script>
+
 <script>
     const client = filestack.init(fileStackKey);
     const options = {
         onUploadDone: updateForm,
         onUploadDone: (res) =>
             $('#image').append(`<input type="hidden" name="profile_img" value="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}">`),
+
         maxSize: 10 * 1024 * 1024,
         accept: 'image/*',
         uploadInBackground: false,

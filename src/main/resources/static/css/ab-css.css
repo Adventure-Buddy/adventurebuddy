@@ -1,0 +1,16 @@
+.ab-bg-image {
+    background-image: url("../img/landing-page.jpg");
+}
+
+.sand-bg {
+    background-color: #fff1dc;
+}
+
+.ab-font{
+    font-family: 'Norwester', arial;
+    color: #fff1dc;
+}
+
+.green-trans-bg {
+    background: rgba(0, 128, 55, 0.6)
+}
