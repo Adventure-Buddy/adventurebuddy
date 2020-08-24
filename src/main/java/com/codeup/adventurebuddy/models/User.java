@@ -1,9 +1,12 @@
 package com.codeup.adventurebuddy.models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import java.awt.desktop.UserSessionEvent;
 import java.util.Collection;
 import java.util.List;
 
@@ -74,6 +77,7 @@ public class User {
             joinColumns={@JoinColumn(name="user_id")},
             inverseJoinColumns={@JoinColumn(name="event_id")}
     )
+
     private List<Event> events;
 
     public User(long id, String username, String email, String password, String phoneNumber, String dateOfBirth, long addressId, boolean isEnabled) {
