@@ -101,13 +101,13 @@ public class EventController {
 //        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Event event = eventDao.getOne(1L);
 //        List<Event> events = eventDao.findByUser(user.getId());
-//        for (int i=0; i<events.size();i++){
+//        for (int i=0; i < events.size();i++){
 //            String date = events.get(i).getDate();
 //            date = date.replace(" ", "D");
 //            events.get(i).setDate(date);
 //        }
-//        model.addAttribute("myevents",event.getTitle());
-        return "static/fullcalendar-5.3.0/examples/daygrid-views";
+        model.addAttribute("myevents",event.getTitle());
+        return "daygrid-views";
     }
 
 //    @GetMapping("/events/userevents")
