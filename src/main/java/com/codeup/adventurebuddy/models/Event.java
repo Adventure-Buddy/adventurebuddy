@@ -12,8 +12,6 @@ public class Event {
 
 //    private Set<UserEvent> userEvents = new HashSet<UserEvent>();
 
-    private List<UserEvent> userEvents = new ArrayList<>();
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -35,6 +33,8 @@ public class Event {
     private User user;
 
     @OneToMany(mappedBy = "event")
+    private List<UserEvent> userEvents = new ArrayList<>();
+
     public List<UserEvent> getUserEvents() {
         return userEvents;
     }

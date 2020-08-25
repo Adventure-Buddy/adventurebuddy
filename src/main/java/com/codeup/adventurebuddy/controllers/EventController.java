@@ -6,6 +6,7 @@ import com.codeup.adventurebuddy.models.Trail;
 import com.codeup.adventurebuddy.models.User;
 import com.codeup.adventurebuddy.repositories.EventRepository;
 import com.codeup.adventurebuddy.repositories.TrailRepository;
+import com.codeup.adventurebuddy.repositories.UserEventRepository;
 import com.codeup.adventurebuddy.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -18,11 +19,13 @@ public class EventController {
     private final EventRepository eventDao;
     private final UserRepository userDao;
     private final TrailRepository trailDao;
+    private final UserEventRepository userEventDao;
 
-    public EventController(EventRepository eventDao, UserRepository userDao, TrailRepository trailDao) {
+    public EventController(EventRepository eventDao, UserRepository userDao, TrailRepository trailDao, UserEventRepository userEventDao) {
         this.eventDao = eventDao;
         this.userDao = userDao;
         this.trailDao = trailDao;
+        this.userEventDao = userEventDao;
     }
 
     @GetMapping("/events")
@@ -86,5 +89,10 @@ public class EventController {
     public String deleteEvent(@PathVariable long id) {
         eventDao.deleteById(id);
         return "redirect:/events";
+    }
+
+    @PostMapping("events/{id}/join")
+    public String joinEvent(@PathVariable long id) {
+
     }
 }
