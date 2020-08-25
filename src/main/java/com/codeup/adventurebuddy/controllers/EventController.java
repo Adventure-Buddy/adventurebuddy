@@ -4,14 +4,21 @@ package com.codeup.adventurebuddy.controllers;
 import com.codeup.adventurebuddy.models.Event;
 import com.codeup.adventurebuddy.models.Trail;
 import com.codeup.adventurebuddy.models.User;
+//import com.codeup.adventurebuddy.models.UserEvents;
 import com.codeup.adventurebuddy.repositories.EventRepository;
 import com.codeup.adventurebuddy.repositories.TrailRepository;
 import com.codeup.adventurebuddy.repositories.UserEventRepository;
 import com.codeup.adventurebuddy.repositories.UserRepository;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import java.awt.*;
 
 @Controller
 public class EventController {
