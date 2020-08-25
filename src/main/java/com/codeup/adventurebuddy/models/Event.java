@@ -6,12 +6,18 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Table(name="events")
 public class Event {
+
+//    private Set<UserEvent> userEvents = new HashSet<UserEvent>();
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -26,23 +32,33 @@ public class Event {
     private String date;
     @Column(nullable = false)
     private String activity;
+    @Column(nullable = false)
+    private int roomSize;
     @ManyToOne
     @JoinColumn(name = "host_id")
     private User user;
-    @ManyToMany(mappedBy = "events")
-    private List<User> userLists;
-//    @OneToMany(mappedBy = "events")
-//    @JsonBackReference
-//    private List<UserEvents> UserEvents;
+
+    @OneToMany(mappedBy = "event")
+    private List<UserEvent> userEvents = new ArrayList<>();
+
+    public List<UserEvent> getUserEvents() {
+        return userEvents;
+    }
+
+    public void setUserEvents(List<UserEvent> events) {
+        this.userEvents = events;
+    }
+
+    public void addUserEvent(UserEvent userEvent) {
+        this.userEvents.add(userEvent);
+    }
 
     public Event() { }
 
-    public Event(long id, Trail trail, String date, User user, List<User> userLists) {
+    public Event(long id, Trail trail, String date) {
         this.id = id;
         this.trail = trail;
         this.date = date;
-        this.user = user;
-        this.userLists = userLists;
     }
 
     public String getActivity() {
@@ -105,20 +121,19 @@ public class Event {
         this.user = user;
     }
 
-    public List<User> getUserLists() {
-        return userLists;
+    public int getRoomSize() {
+        return roomSize;
     }
 
-    public void setUserLists(List<User> userLists) {
-        this.userLists = userLists;
+    public void setRoomSize(int roomSize) {
+        this.roomSize = roomSize;
     }
 
-//    public List<UserEvents> getUserEvents(){
-//        return UserEvents;
+    //    public List<User> getUserLists() {
+//        return userLists;
 //    }
-
-//    public void setUserEvents(List<UserEvents> userEvents){
-//        this.UserEvents = userEvents;
+//
+//    public void setUserLists(List<User> userLists) {
+//        this.userLists = userLists;
 //    }
-
 }

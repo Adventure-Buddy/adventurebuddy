@@ -23,6 +23,11 @@
 <body>
 <h1>TEST</h1>
 
+<div th:each = "event: ${events}">
+  <a th:ref="'/myevents/' + ${event.id}"><h3 th:text="${event.title}"></h3></a>
+  <p th:ref="${event.description}"></p>
+</div>
+
   <div id='calendar'></div>
   <input type="hidden" id="events" th:value="${myevents}">
   <script th:src='@{/fullcalendar-5.3.0/lib/main.js}'></script>
