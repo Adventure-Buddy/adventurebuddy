@@ -56,6 +56,12 @@ public class User {
 
     private boolean isEnabled;
 
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user1")
+//    private List<Buddy> buddybuddyList;
+//
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user2")
+//    private List<Buddy> buddybuddies;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<EmergencyContact> emergencyContactsList;
 

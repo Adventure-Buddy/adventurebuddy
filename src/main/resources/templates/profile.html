@@ -6,14 +6,16 @@
 </head>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
-<main class="container">
 <!--    Header-->
 <h1>Welcome, <span th:text="${user.username}">!</span></h1>
-<div id="profile-image">
-    <img th:src="${user.profile_img}" alt="profile" class="img-fluid align-self-center mr-3" width="25%" height="25%">
+<main class="container-fluid">
+    <div class="row">
+<div id="profile-image" class="col-2" style="height: 100vw">
+    <img th:src="${user.profile_img}" alt="profile" class="d-block m-0" width="200vw" height="200vh">
+    <a th:href="@{/profile/{id}/add(id=${user.id})}">Upload Profile Picture</a>
 </div>
-<a th:href="@{/profile/{id}/add(id=${user.id})}">Upload Profile Picture</a>
 <!--    menu tabs-->
+        <div class="col-10" style="height: 100vw">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true"><span class="badge badge-pill badge-secondary">1</span>
@@ -170,7 +172,7 @@
                                         <li class="list-group-item">Emergency Contact First Name: <span th:text="${emergencyCont.first_name}"></span></li>
                                         <li class="list-group-item">Emergency Contact Last Name: <span th:text="${emergencyCont.last_name}"></span></li>
                                         <li class="list-group-item">Email: <span th:text="${emergencyCont.email}"></span></li>
-                                        <li class="list-group-item">Email: <span th:text="${emergencyCont.phone_number}"></span></li>
+                                        <li class="list-group-item">Phone number: <span th:text="${emergencyCont.phone_number}"></span></li>
                                         <a class="btn btn-primary" th:href="@{/profile/{id}/emergencyCont(id=${emergencyCont.id})}">Edit Contancts</a>
 
                                     </ul>
@@ -192,7 +194,8 @@
             </div>
         </div>
     </form>
-
+        </div>
+    </div>
 </main>
 <script src="https://static.filestackapi.com/adaptive/1.4.0/adaptive.min.js" crossorigin="anonymous"></script>
 <script>
