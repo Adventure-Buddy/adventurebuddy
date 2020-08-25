@@ -32,3 +32,9 @@
 .green-ab-bg{
     background-color: #008037
 }
+
+.page-header {
+    padding: 1em 3em;
+    text-align: center;
+    margin: auto
+}
