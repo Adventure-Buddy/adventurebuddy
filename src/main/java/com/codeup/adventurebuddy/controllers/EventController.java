@@ -15,8 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import java.awt.*;
 
@@ -97,6 +95,34 @@ public class EventController {
         eventDao.deleteById(id);
         return "redirect:/events";
     }
+
+    @GetMapping("/event/events-calendar")
+    public String viewAllEventsJson(Model model){
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Event event = eventDao.getOne(1L);
+//        List<Event> events = eventDao.findByUser(user.getId());
+//        for (int i=0; i < events.size();i++){
+//            String date = events.get(i).getDate();
+//            date = date.replace(" ", "D");
+//            events.get(i).setDate(date);
+//        }
+        model.addAttribute("myevents",event.getTitle());
+        return "daygrid-views";
+    }
+
+//    @GetMapping("/events/userevents")
+//    public @ResponseBody List<Event> viewEventUserEvents(){
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        List<UserEvents> userEvents = userEventDao.findAll();
+//        List<Event> events = new ArrayList<>();
+//
+//        for (int i=0; i < userEvents.size(); i++){
+//            if (userEvents.get(i).getUser().getId() == user.getId()){
+//                events.add(userEvents.get(i).getEvent());
+//            }
+//        }
+//        return "";
+//    }
 
     @PostMapping("events/{id}/join")
     public String joinEvent(@PathVariable long id) {

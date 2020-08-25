@@ -43,7 +43,7 @@ public class User {
     @Column(nullable = true)
     private long addressId;
 
-    @Column(nullable = false, length = 200)
+    @Column(nullable = true, length = 200)
     private String profile_img;
 
     private boolean isEnabled;
