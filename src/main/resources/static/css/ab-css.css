@@ -8,6 +8,17 @@
 
 .ab-font{
     font-family: 'Norwester', arial, serif;
+
+}
+
+.ab-font-sand{
+    font-family: 'Norwester', arial, serif;
+    color: #fff1dc;
+}
+
+.ab-font-yellow {
+    font-family: 'Norwester', arial, serif;
+    color: #fffe73
 }
 
 .green-trans-bg {
