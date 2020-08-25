@@ -1,4 +1,4 @@
-.ab-bg-image {
+.ab-landing-bg-image {
     background-image: url("../img/landing-page.jpg");
 }
 
@@ -7,10 +7,17 @@
 }
 
 .ab-font{
-    font-family: 'Norwester', arial;
-    color: #fff1dc;
+    font-family: 'Norwester', arial, serif;
 }
 
 .green-trans-bg {
     background: rgba(0, 128, 55, 0.6)
+}
+
+.ab-all-trails-bg {
+    background-image: url("../img/forked-trail.jpg");
+}
+
+.green-ab-bg{
+    background-color: #008037
 }

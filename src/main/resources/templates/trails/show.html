@@ -13,17 +13,17 @@
     <input type="hidden" name="lng" id="lng" th:value="${singleTrail.lng}">
     <ul>
         <li>Trail Summary: <span th:text="${singleTrail.summary}"></span></li>
-        <li>Distance: <span th:text="${singleTrail.distanceInMi}">mi.</span></li>
+        <li>Distance: <span th:text="${singleTrail.distanceInMi}"></span>mi.</li>
         <li th:text="${singleTrail.type}"></li>
         <li>
             Ascent: <span th:text="${singleTrail.ascent}"></span>ft. / Descent: <span th:text="${singleTrail.descent}"></span>ft.
         </li>
     </ul>
-    <form th:method="post" th:action="@{/events/create}">
-        <button type="submit" th:object="${singleTrail}">Add To Redo</button>
+    <form th:method="post" th:action="@{/events/show}">
+        <button type="submit" th:object="${singleTrail}">Mark as Complete</button>
     </form>
-    <a th:href="@{|/events/create/${singleTrail.id}|}">Create Adventure!</a><br>
-    <a th:href="@{|/trails/${singleTrail.id}/review|}">Write a Review</a>
+    <button><a th:href="@{|/events/create/${singleTrail.id}|}">Create Adventure!</a></button><br>
+    <button><a th:href="@{|/trails/${singleTrail.id}/review|}">Write a Review</a></button>
     <h2>Reviews</h2>
     <ul>
         <li th:each="review : ${singleTrail.reviewsList}">

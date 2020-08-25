@@ -6,7 +6,7 @@
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div class="container">
-    <h1>Create an account</h1>
+    <h1 class="ab-font">Your Adventure Awaits!</h1>
     <form th:action="@{/sign-up}" method="POST" th:object="${user}">
         <div class="form-group">
             <label for="username">Username</label>
@@ -25,7 +25,7 @@
             <input id="confirm_password" name="confirm_password" class="form-control" type="password" maxlength="60"
                    required>
         </div>
-        <input type="submit" class="btn btn-primary btn-block">
+        <input type="submit" class="btn green-ab-bg btn-block">
     </form>
 </div>
 </body>
