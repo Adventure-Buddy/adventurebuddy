@@ -4,17 +4,28 @@
     <head th:include="partials/head.html :: header-links">
         <title>View All Trails</title>
     </head>
-<body>
+<body class="ab-all-trails-bg">
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div class="container">
-    <h1>Viewing all Trails in: San Antonio, TX</h1>
-    <div th:each="trail: ${allTrails}">
-        <a th:href="@{|trails/${trail.id}|}"><h4 th:text="${trail.name}"></h4></a>
-        <ul>
-            <li th:text="${trail.summary}"></li>
-            <li th:text="${trail.distanceInMi}"></li>
-            <li th:text="${trail.type}"></li>
-        </ul>
+    <div class="sand-bg ab-font page-header">
+        <h1>Viewing all Trails in: San Antonio, TX</h1>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3">
+        <div th:each="trail: ${allTrails}" class="col mb-5">
+            <div class="card m-auto" style="width: 18rem;">
+                <img th:src="@{/img/trail-placeholder.png}" class="card-img-left" alt="trail photo">
+                <div class="card-body">
+                    <h4 class="card-title" th:text="${trail.name}"></h4>
+                </div>
+                <div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Distance: <span th:text="${trail.distanceInMi}"></span>mi.</li>
+                        <li class="list-group-item" th:text="${trail.type}"></li>
+                        <li class="list-group-item"><a th:href="@{|trails/${trail.id}|}">More Info</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>
