@@ -4,12 +4,13 @@ package com.codeup.adventurebuddy.models;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name="users")
 public class User {
+
+//    private Set<UserEvent> userEvents = new HashSet<UserEvent>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,14 +44,6 @@ public class User {
     @Column(nullable = false, length = 200)
     private String profile_img;
 
-    public String getProfile_img() {
-        return profile_img;
-    }
-
-    public void setProfile_img(String profile_img) {
-        this.profile_img = profile_img;
-    }
-
     private boolean isEnabled;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -65,16 +58,22 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
     private List<Trail> trailsList;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
-    private List<Event> eventsList;
+    private List<UserEvent> userEvents = new ArrayList<>();
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name="event_user",
-            joinColumns={@JoinColumn(name="user_id")},
-            inverseJoinColumns={@JoinColumn(name="event_id")}
-    )
-    private List<Event> events;
+//    @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
+//    private List<Event> eventsList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    public List<UserEvent> getUserEvents() {
+        return userEvents;
+    }
+
+    public void setUserEvents(List<UserEvent> userEvents) {
+        this.userEvents = userEvents;
+    }
+
+    public void addUserEvent(UserEvent userEvent) {
+        this.userEvents.add(userEvent);
+    }
 
     public User(long id, String username, String email, String password, String phoneNumber, String dateOfBirth, long addressId, boolean isEnabled) {
         this.id = id;
@@ -196,24 +195,12 @@ public class User {
         this.trailsList = trailsList;
     }
 
-    public List<Event> getEventsList() {
-        return eventsList;
+    public String getProfile_img() {
+        return profile_img;
     }
 
-    public void setEventsList(List<Event> eventsList) {
-        this.eventsList = eventsList;
+    public void setProfile_img(String profile_img) {
+        this.profile_img = profile_img;
     }
-
-    public List<Event> getEvents() {
-        return events;
-    }
-
-    public void setEvents(List<Event> events) {
-        this.events = events;
-    }
-
-    public boolean isEnabled(){ return isEnabled;}
-
-    public void setEnabled(boolean enabled){ isEnabled = enabled; }
 
 }
