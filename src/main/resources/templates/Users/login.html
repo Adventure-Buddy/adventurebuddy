@@ -4,21 +4,27 @@
     <head th:include="partials/head.html :: header-links">
     <title>Title</title>
 </head>
-<body>
+<body class="sand-bg">
 <nav th:replace="partials/navbar.html :: navbar"></nav>
-<h1>Log In</h1>
-<div th:if="${param.error}">
-    Invalid Username and Password.
+<div class="container">
+    <h1>Log In</h1>
+    <div th:if="${param.error}">
+        Invalid Username and Password.
+    </div>
+    <div th:if="${param.logout}">
+        You have been logged out.
+    </div>
+    <form th:action="@{/login}" method="post">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" class="form-control" autofocus required/>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" class="form-control" autofocus required/>
+        </div>
+        <button type="submit" class="btn btn-block green-ab-bg yellow ab-font-yellow">Log in</button>
+    </form>
 </div>
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
-<form th:action="@{/login}" method="post">
-    <label for="username">Username</label>
-    <input id="username" name="username" type="text" />
-    <label for="password">Password</label>
-    <input id="password" name="password" type="password" />
-    <input type="submit" value="Log In" />
-</form>
 </body>
 </html>
