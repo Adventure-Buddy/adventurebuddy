@@ -19,7 +19,7 @@
             Ascent: <span th:text="${singleTrail.ascent}"></span>ft. / Descent: <span th:text="${singleTrail.descent}"></span>ft.
         </li>
     </ul>
-    <form th:method="post" th:action="@{/events/show}">
+    <form th:method="post" th:action="@{|/trails/${singleTrail.id}/add|}">
         <button type="submit" th:object="${singleTrail}" class="btn ab-font-yellow green-ab-bg">Mark as Complete</button>
     </form>
     <button class="btn green-ab-bg"><a th:href="@{|/events/create/${singleTrail.id}|}" class="ab-font-yellow">Create Adventure!</a></button><br>
