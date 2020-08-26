@@ -34,6 +34,8 @@ public class Event {
     private String activity;
     @Column(nullable = false)
     private int roomSize;
+    @Column(nullable = false)
+    private boolean isFull;
     @ManyToOne
     @JoinColumn(name = "host_id")
     private User user;
@@ -129,11 +131,11 @@ public class Event {
         this.roomSize = roomSize;
     }
 
-    //    public List<User> getUserLists() {
-//        return userLists;
-//    }
-//
-//    public void setUserLists(List<User> userLists) {
-//        this.userLists = userLists;
-//    }
+    public void setFull(boolean full) {
+        isFull = full;
+    }
+
+    public boolean getFull() {
+        return isFull;
+    }
 }

@@ -1,9 +1,12 @@
 package com.codeup.adventurebuddy.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name="users_events")
+@Table(name = "users_events", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"user_id", "event_id"})})
 public class UserEvent {
 
     @Id
@@ -11,11 +14,11 @@ public class UserEvent {
     @Column(columnDefinition = "INT(10) UNSIGNED")
     private long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "event_id")
     private Event event;
 
