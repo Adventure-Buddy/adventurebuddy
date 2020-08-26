@@ -126,6 +126,6 @@ public class EventController {
 
     @PostMapping("events/{id}/join")
     public String joinEvent(@PathVariable long id) {
-
+        return "events/show";
     }
 }
