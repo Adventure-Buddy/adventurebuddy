@@ -53,10 +53,10 @@
     console.log(description.val());
 
     var event = {
-      "id": eventId,
-      "title": title,
-      "description": description,
-      "start": date
+      "id": eventId.val(),
+      "title": title.val(),
+      "description": description.val(),
+      "start": date.val()
     };
 
     eventBucket.push(event);
@@ -64,14 +64,14 @@
   })
 
 
-  console.log(events);
+  console.log(eventBucket);
   var calendar = new FullCalendar.Calendar(calendarEl, {
   headerToolbar: {
   left: 'prevYear,prev,next,nextYear today',
   center: 'title',
   right: 'dayGridMonth,dayGridWeek,dayGridDay'
   },
-  initialDate: '2020-06-12',
+  initialDate: new Date(),
   navLinks: true, // can click day/week names to navigate views
   editable: true,
   dayMaxEvents: true, // allow "more" link when too many events
