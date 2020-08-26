@@ -9,12 +9,14 @@ import com.codeup.adventurebuddy.repositories.TrailRepository;
 import com.codeup.adventurebuddy.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -43,6 +45,13 @@ public class ViewTrailsController {
 
     @GetMapping("/trails/{id}")
     public String trailDetails(@PathVariable long id, Model model){
+        Object loggedInUser = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(loggedInUser instanceof UserDetails) {
+            User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User user = usersDao.getOne(currentUser.getId());
+            boolean completed = user.getTrailsList().contains(trailsDao.getOne(id));
+            model.addAttribute("completed", completed);
+        }
         model.addAttribute("mbKey",mbKey);
         model.addAttribute("singleTrail", trailsDao.getOne(id));
         return "trails/show";
@@ -82,6 +91,29 @@ public class ViewTrailsController {
         model.addAttribute("keywords", keywords);
         model.addAttribute("foundTrails", trailsDao.findTrailsByNameContaining(keywords));
         return "trails/search";
+    }
+
+    // USER TRAILS ADD/DELETE
+    @PostMapping("/trails/{trailId}/add")
+    public String addTrailToComplete(@PathVariable long trailId){
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = usersDao.getOne(loggedInUser.getId());
+        List<Trail> trailsList = user.getTrailsList();
+        trailsList.add(trailsDao.getOne(trailId));
+        user.setTrailsList(trailsList);
+        usersDao.save(user);
+        return "redirect:/profile";
+    }
+
+    @PostMapping("/trails/{trailId}/delete")
+    public String removeTrailFromComplete(@PathVariable long trailId){
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = usersDao.getOne(loggedInUser.getId());
+        List<Trail> trailsList = user.getTrailsList();
+        trailsList.remove(trailsDao.getOne(trailId));
+        user.setTrailsList(trailsList);
+        usersDao.save(user);
+        return "redirect:/profile";
     }
 
 }

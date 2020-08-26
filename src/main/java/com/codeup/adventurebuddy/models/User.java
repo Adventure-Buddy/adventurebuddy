@@ -57,14 +57,17 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
     private List<Review> reviewsList;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
+    @ManyToMany
+    @JoinTable(name = "user_trail",
+    joinColumns = {@JoinColumn(name = "user_id")},
+    inverseJoinColumns = {@JoinColumn(name = "trail_id")})
     private List<Trail> trailsList;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<UserEvent> userEvents = new ArrayList<>();
 
-//    @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
-//    private List<Event> eventsList;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
+    private List<Event> eventsList;
 
     public List<UserEvent> getUserEvents() {
         return userEvents;
@@ -78,7 +81,7 @@ public class User {
         this.userEvents.add(userEvent);
     }
 
-    public User(long id, String username, String email, String password, String phoneNumber, String dateOfBirth, long addressId, boolean isEnabled) {
+    public User(long id, String firstName, String lastName, String username, String email, String password, String phoneNumber, String dateOfBirth, long addressId, String profile_img, boolean isEnabled, List<EmergencyContact> emergencyContactsList, List<Address> addressList, List<Review> reviewsList, List<Trail> trailsList, List<UserEvent> userEvents) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -88,6 +91,13 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.dateOfBirth = dateOfBirth;
         this.addressId = addressId;
+        this.profile_img = profile_img;
+        this.isEnabled = isEnabled;
+        this.emergencyContactsList = emergencyContactsList;
+        this.addressList = addressList;
+        this.reviewsList = reviewsList;
+        this.trailsList = trailsList;
+        this.userEvents = userEvents;
     }
 
     public User() {
@@ -100,6 +110,11 @@ public class User {
         email = copy.email;
         username = copy.username;
         password = copy.password;
+        userEvents = copy.userEvents;
+        trailsList = copy.trailsList;
+        reviewsList = copy.reviewsList;
+
+
     }
 
     public long getId() {

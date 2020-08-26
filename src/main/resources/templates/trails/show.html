@@ -2,9 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
     <head th:include="partials/head.html :: header-links">
-    <title th:text="${singleTrail.name}"></title>
-</head>
-<body>
+        <title th:text="${singleTrail.name}"></title>
+    </head>
+<body class="sand-bg">
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div class="container">
     <h1 th:text="${singleTrail.name}"></h1>
@@ -13,18 +13,25 @@
     <input type="hidden" name="lng" id="lng" th:value="${singleTrail.lng}">
     <ul>
         <li>Trail Summary: <span th:text="${singleTrail.summary}"></span></li>
-        <li>Distance: <span th:text="${singleTrail.distanceInMi}">mi.</span></li>
+        <li>Distance: <span th:text="${singleTrail.distanceInMi}"></span>mi.</li>
         <li th:text="${singleTrail.type}"></li>
         <li>
-            Ascent: <span th:text="${singleTrail.ascent}"></span>ft. / Descent: <span th:text="${singleTrail.descent}"></span>ft.
+            Ascent: <span th:text="${singleTrail.ascent}"></span>ft. / Descent: <span
+                th:text="${singleTrail.descent}"></span>ft.
         </li>
     </ul>
-    <form th:method="post" th:action="@{/events/create}">
-        <button type="submit" th:object="${singleTrail}">Add To Redo</button>
-    </form>
-    <a th:href="@{|/events/create/${singleTrail.id}|}">Create Adventure!</a><br>
-    <a th:href="@{|/trails/${singleTrail.id}/review|}">Write a Review</a>
-    <h2>Reviews</h2>
+    <div sec:authorize="isAuthenticated()">
+        <form th:method="post" th:action="@{|/trails/${singleTrail.id}/add|}" th:unless="${completed}">
+            <button type="submit" th:object="${singleTrail}" class="btn ab-font-yellow green-ab-bg">Mark as Complete
+            </button>
+        </form>
+        <button class="btn green-ab-bg"><a th:href="@{|/events/create/${singleTrail.id}|}" class="ab-font-yellow">Create
+            Adventure!</a></button>
+        <br>
+        <button class="btn green-ab-bg"><a th:href="@{|/trails/${singleTrail.id}/review|}" class="ab-font-yellow">Write
+            a Review</a></button>
+    </div>
+    <h2 class="ab-font">Reviews</h2>
     <ul>
         <li th:each="review : ${singleTrail.reviewsList}">
             <h5 th:text="${review.user.username}"></h5>
