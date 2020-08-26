@@ -45,6 +45,6 @@ INSERT INTO events (id, date, host_id, trail_id, description, title)
 VALUES (1, '2020-09-15', 1,  1, 'Going on a quick hike on the Outer Loop at Friedrich!', 'Outer Loop Hike'),
        (2, '2020-10-15', 1,  2, 'I plan on doing two laps of the loop this time. So make sure to bring plenty of water!', 'Outer Loop Trail x2');
 
-INSERT INTO event_user (user_id, event_id)
+INSERT INTO users_events (user_id, event_id)
 VALUES (1, 1),
        (1, 2);

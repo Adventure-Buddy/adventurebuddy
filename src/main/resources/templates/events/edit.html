@@ -24,6 +24,11 @@
         <input type="datetime-local" name="date" id="date" th:value="*{event.date}">
     </div>
 
+    <div class="input">
+        <label for="size">Room Size:</label>
+        <input type="number" name="size" id="size" th:field="*{event.roomSize}">
+    </div>
+
     <input type="radio" name="activity" value="hiking" th:field="*{event.activity}" checked>hiking<br>
     <input type="radio" name="activity" value="mountain biking" th:field="*{event.activity}">mountain biking<br>
     <input type="radio" name="activity" value="cycling" th:field="*{event.activity}">cycling<br>
