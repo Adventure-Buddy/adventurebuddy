@@ -4,7 +4,6 @@ package com.codeup.adventurebuddy.controllers;
 import com.codeup.adventurebuddy.models.Event;
 import com.codeup.adventurebuddy.models.Trail;
 import com.codeup.adventurebuddy.models.User;
-//import com.codeup.adventurebuddy.models.UserEvents;
 import com.codeup.adventurebuddy.repositories.EventRepository;
 import com.codeup.adventurebuddy.repositories.TrailRepository;
 import com.codeup.adventurebuddy.repositories.UserEventRepository;
@@ -15,8 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
-import java.awt.*;
 
 @Controller
 public class EventController {
@@ -98,15 +97,22 @@ public class EventController {
 
     @GetMapping("/event/events-calendar")
     public String viewAllEventsJson(Model model){
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Event event = eventDao.getOne(1L);
-//        List<Event> events = eventDao.findByUser(user.getId());
+        User user ;
+        try { user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        } catch (Exception e ){
+            e.printStackTrace();
+            return "redirect:/login";
+        }
+//        Event event = eventDao.getOne(1L);
+        List<Event> events = eventDao.findByUser(user);
 //        for (int i=0; i < events.size();i++){
+//            String title = events.get(i).getTitle();
 //            String date = events.get(i).getDate();
 //            date = date.replace(" ", "D");
 //            events.get(i).setDate(date);
+//            events.get(i).setTitle(title);
 //        }
-        model.addAttribute("myevents",event.getTitle());
+        model.addAttribute("myevents",events);
         return "daygrid-views";
     }
 

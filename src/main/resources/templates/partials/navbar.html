@@ -9,25 +9,25 @@
     <ul class="navbar-nav">
         <li class="nav-item"><h3 class="text-light pl-0 pr-3">Adventure Buddy</h3></li>
         <li class="nav-item"><a class="nav-link" href="/trails">View Trails</a></li>
-        <th:block sec:authorize="!isAuthenticated()">
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/login}">Log in</a></li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/sign-up}">Register</a></li>
-        </th:block>
         <th:block sec:authorize="isAuthenticated()">
             <li class="nav-item"><a class="nav-link" href="/event/events-calendar">Calendar</a></li>
 
             <li class="nav-item"><a class="nav-link" href="/events">View Events</a></li>
             <li class="nav-item"><a class="nav-link" href="/profile">View Profile</a></li>
             <li class="nav-item">
-                <form class="form-inline" th:action="@{/logout}" th:method="post">
-                    <button class="btn-link btn">Logout</button>
-                </form>
-            </li>
+        <form class="form-inline" th:action="@{/logout}" th:method="post">
+        <button class="btn-link btn">Logout</button>
+        </form>
+        </li>
+        </th:block>
+        <th:block sec:authorize="!isAuthenticated()">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/login}">Log in</a></li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/sign-up}">Register</a></li>
         </th:block>
         <li class="nav-item">
-            <form th:action="@{/trails/search}" method="post" class="form-inline my-2 my-lg-0">
+        <form th:action="@{/trails/search}" method="post" class="form-inline my-2 my-lg-0">
                 <label for="search" class="text-light">Search Trails:</label>
                 <input type="search" class="form-control mr-sm-2" id="search" name="keywords">
                 <button type="submit">Search</button>

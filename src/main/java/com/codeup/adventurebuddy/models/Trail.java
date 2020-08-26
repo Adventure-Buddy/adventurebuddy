@@ -33,7 +33,7 @@ public class Trail {
     private String type;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "trail")
     private List<Review> reviewsList;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 
