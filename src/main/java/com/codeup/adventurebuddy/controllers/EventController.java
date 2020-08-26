@@ -103,40 +103,13 @@ public class EventController {
             e.printStackTrace();
             return "redirect:/login";
         }
-//        Event event = eventDao.getOne(1L);
         List<Event> events = eventDao.findByUser(user);
-//        for (int i=0; i < events.size();i++){
-//            String title = events.get(i).getTitle();
-//            String date = events.get(i).getDate();
-//            date = date.replace(" ", "D");
-//            events.get(i).setDate(date);
-//            events.get(i).setTitle(title);
-//        }
         model.addAttribute("myevents",events);
         return "daygrid-views";
     }
 
-//    @GetMapping("/events/userevents")
-//    public @ResponseBody List<Event> viewEventUserEvents(){
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        List<UserEvents> userEvents = userEventDao.findAll();
-//        List<Event> events = new ArrayList<>();
-//
-//        for (int i=0; i < userEvents.size(); i++){
-//            if (userEvents.get(i).getUser().getId() == user.getId()){
-//                events.add(userEvents.get(i).getEvent());
-//            }
-//        }
-//        return "";
-//    }
-
     @PostMapping("events/{id}/join")
     public String joinEvent(@PathVariable long id) {
-<<<<<<< HEAD
-
-    return "redirect:/events" + id;
-=======
         return "events/show";
->>>>>>> 2a83c1262b22946be087c542f9f3f84b0357d86f
     }
 }

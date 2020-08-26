@@ -33,14 +33,8 @@ public class Trail {
     private String type;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "trail")
     private List<Review> reviewsList;
-<<<<<<< HEAD
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private User user;
-=======
     @ManyToMany(mappedBy = "trailsList")
     private List<User> users;
->>>>>>> 2a83c1262b22946be087c542f9f3f84b0357d86f
 
 
     public Trail(long id, String name, double distanceInMi, double lat, double lng, Address address, int ascent, int descent, String summary, String type, List<Review> reviewsList, List<User> users) {
