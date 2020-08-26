@@ -33,12 +33,11 @@ public class Trail {
     private String type;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "trail")
     private List<Review> reviewsList;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @ManyToMany(mappedBy = "trailsList")
+    private List<User> users;
 
 
-    public Trail(long id, String name, double distanceInMi, double lat, double lng, Address address, int ascent, int descent, String summary, String type, List<Review> reviewsList, User user) {
+    public Trail(long id, String name, double distanceInMi, double lat, double lng, Address address, int ascent, int descent, String summary, String type, List<Review> reviewsList, List<User> users) {
         this.id = id;
         this.name = name;
         this.distanceInMi = distanceInMi;
@@ -49,7 +48,7 @@ public class Trail {
         this.summary = summary;
         this.type = type;
         this.reviewsList = reviewsList;
-        this.user = user;
+        this.users = users;
     }
 
     public Trail() {
@@ -133,12 +132,12 @@ public class Trail {
         this.reviewsList = reviewsList;
     }
 
-    public User getUser() {
-        return user;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
 }

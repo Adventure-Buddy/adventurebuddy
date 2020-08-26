@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -82,6 +83,29 @@ public class ViewTrailsController {
         model.addAttribute("keywords", keywords);
         model.addAttribute("foundTrails", trailsDao.findTrailsByNameContaining(keywords));
         return "trails/search";
+    }
+
+    // USER TRAILS ADD/DELETE
+    @PostMapping("/trails/{trailId}/add")
+    public String addTrailToComplete(@PathVariable long trailId){
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = usersDao.getOne(loggedInUser.getId());
+        List<Trail> trailsList = user.getTrailsList();
+        trailsList.add(trailsDao.getOne(trailId));
+        user.setTrailsList(trailsList);
+        usersDao.save(user);
+        return "redirect:/profile";
+    }
+
+    @PostMapping("/trails/{trailId}/delete")
+    public String removeTrailFromComplete(@PathVariable long trailId){
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = usersDao.getOne(loggedInUser.getId());
+        List<Trail> trailsList = user.getTrailsList();
+        trailsList.remove(trailsDao.getOne(trailId));
+        user.setTrailsList(trailsList);
+        usersDao.save(user);
+        return "redirect:/profile";
     }
 
 }
