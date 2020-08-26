@@ -135,6 +135,7 @@ public class EventController {
         return "daygrid-views";
     }
 
+
     @PostMapping("events/{id}/join")
     public String joinEvent(@PathVariable long id) {
         UserEvent userEvent = new UserEvent();

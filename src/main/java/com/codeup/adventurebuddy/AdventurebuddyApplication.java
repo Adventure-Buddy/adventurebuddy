@@ -32,9 +32,9 @@ public class AdventurebuddyApplication {
 //                trailService.save(trails);
 //                System.out.println("Trails saved!");
 //            } catch (IOException e) {
-//                System.out.println("Unable to save trails: " + e.getMessage());
+//               System.out.println("Unable to save trails: " + e.getMessage());
 //            }
 //        };
-//    }
+//   }
 
 }
