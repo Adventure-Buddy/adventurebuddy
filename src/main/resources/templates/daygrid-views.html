@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/html" lang="en">
 <head>
   <title>title</title>
 <meta charset='utf-8' />
@@ -21,91 +22,61 @@
 </style>
 </head>
 <body>
-<h1>TEST</h1>
+<h1>Events Calendar</h1>
+
+<div class="event-group" th:each = "event: ${myevents}">
+  <input type="hidden" th:value="${event.id}">
+  <input type="hidden" th:value="${event.title}">
+  <input type="hidden" th:value="${event.description}">
+  <input type="hidden" th:value="${event.date}">
+</div>
 
   <div id='calendar'></div>
   <input type="hidden" id="events" th:value="${myevents}">
+
   <script th:src='@{/fullcalendar-5.3.0/lib/main.js}'></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
   <script>
 
   document.addEventListener('DOMContentLoaded', function() {
   var calendarEl = document.getElementById('calendar');
   var events = document.getElementById("events").value;
-  console.log(events);
+  var eventDivs = $(".event-group");
+  var eventBucket = [];
+  eventDivs.each(function (index) {
+    console.log($(this));
+
+    var eventId = ($(this).children().eq(0));
+    var title = $(this).children().eq(1);
+    var description = $(this).children().eq(2);
+    var date = $(this).children().eq(3);
+    console.log(description.val());
+
+    var event = {
+      "id": eventId.val(),
+      "title": title.val(),
+      "description": description.val(),
+      "start": date.val()
+    };
+
+    eventBucket.push(event);
+
+  })
+
+
+  console.log(eventBucket);
   var calendar = new FullCalendar.Calendar(calendarEl, {
   headerToolbar: {
   left: 'prevYear,prev,next,nextYear today',
   center: 'title',
   right: 'dayGridMonth,dayGridWeek,dayGridDay'
   },
-  initialDate: '2020-06-12',
+  initialDate: new Date(),
   navLinks: true, // can click day/week names to navigate views
   editable: true,
   dayMaxEvents: true, // allow "more" link when too many events
-  events: [
-  {
-  title: 'All Day Event',
-  start: '2020-06-01'
-  },
-  {
-  title: 'Long Event',
-  start: '2020-06-07',
-  end: '2020-06-10'
-  },
-  {
-  groupId: 999,
-  title: 'Repeating Event',
-  start: '2020-06-09T16:00:00'
-  },
-  {
-  groupId: 999,
-  title: 'Repeating Event',
-  start: '2020-06-16T16:00:00'
-  },
-  {
-  title: 'Conference',
-  start: '2020-06-11',
-  end: '2020-06-13'
-  },
-  {
-  title: 'Meeting',
-  start: '2020-06-12T10:30:00',
-  end: '2020-06-12T12:30:00'
-  },
-  {
-  title: 'Lunch',
-  start: '2020-06-12T12:00:00'
-  },
-  {
-  title: 'Meeting',
-  start: '2020-06-12T14:30:00'
-  },
-  {
-  title: 'Happy Hour',
-  start: '2020-06-12T17:30:00'
-  },
-  {
-  title: 'Dinner',
-  start: '2020-06-12T20:00:00'
-  },
-  {
-  title: 'Birthday Party',
-  start: '2020-06-13T07:00:00'
-  },
-  {
-  title: 'Click for Google',
-  url: 'http://google.com/',
-  start: '2020-06-28'
-  },
-  {
-      title: events,
-              start: '2020-08-29'
-    }
-    ]
+  events: eventBucket
   });
-  // console.log(calendar.currentData.calendarOptions);
-  // var testEvent =
-  // calendar.currentData.calendarOptions.events.push(testEvent);
   calendar.render();
   });
 
