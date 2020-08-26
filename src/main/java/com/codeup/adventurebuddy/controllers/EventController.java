@@ -132,7 +132,11 @@ public class EventController {
 
     @PostMapping("events/{id}/join")
     public String joinEvent(@PathVariable long id) {
+<<<<<<< HEAD
 
     return "redirect:/events" + id;
+=======
+        return "events/show";
+>>>>>>> 2a83c1262b22946be087c542f9f3f84b0357d86f
     }
 }
