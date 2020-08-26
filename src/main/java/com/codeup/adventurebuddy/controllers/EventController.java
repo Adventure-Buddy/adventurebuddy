@@ -124,8 +124,8 @@ public class EventController {
 //        return "";
 //    }
 
-    @PostMapping("events/{id}/join")
-    public String joinEvent(@PathVariable long id) {
-
-    }
+//    @PostMapping("events/{id}/join")
+//    public String joinEvent(@PathVariable long id) {
+//
+//    }
 }
