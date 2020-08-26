@@ -9,6 +9,7 @@ import com.codeup.adventurebuddy.repositories.TrailRepository;
 import com.codeup.adventurebuddy.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -44,6 +45,13 @@ public class ViewTrailsController {
 
     @GetMapping("/trails/{id}")
     public String trailDetails(@PathVariable long id, Model model){
+        Object loggedInUser = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(loggedInUser instanceof UserDetails) {
+            User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User user = usersDao.getOne(currentUser.getId());
+            boolean completed = user.getTrailsList().contains(trailsDao.getOne(id));
+            model.addAttribute("completed", completed);
+        }
         model.addAttribute("mbKey",mbKey);
         model.addAttribute("singleTrail", trailsDao.getOne(id));
         return "trails/show";
