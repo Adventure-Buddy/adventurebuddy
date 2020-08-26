@@ -9,11 +9,11 @@
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div th:each="item : ${events}">
-    <th:block th:if="${!item.getFull()}">
+<!--    <th:block th:if="${!item.getFull()}">-->
         <a th:href="@{'/events/' + ${item.id}}"><h3 th:text="${item.title}"></h3></a>
         <p th:text="${item.description}"></p>
         <p>Date: <span th:text="${item.date}"></span></p>
-    </th:block>
+<!--    </th:block>-->
 </div>
 </body>
 </html>

@@ -83,15 +83,13 @@
                                         Events host
                                     </div>
                                     <div class="card-body">
-                                        <ul class="list-group">
-                                            <li class="list-group-item" th:each="event : ${user.trailsList}">
-                                                <span th:text="${trail.name}"></span>
-                                                <form th:action="@{|/trails/${trail.id}/delete|}" th:method="post">
-                                                    <button type="submit" th:value="${trail.id}">x</button>
-                                                </form>
-                                            </li>
-                                        </ul>
-                                    </div>
+<!--                                        <ul th:each="item : ${events}">-->
+<!--                                            <li>-->
+<!--                                                <a th:href="@{'/events/' + ${item.id}}"><h3 th:text="${item.title}"></h3></a>-->
+<!--                                                <p th:text="${item.description}"></p>-->
+<!--                                                <p>Date: <span th:text="${item.date}"></span></p>-->
+<!--                                            </li>-->
+<!--                                    </ul>-->
                                 </div>
                             </div>
                         </div>
