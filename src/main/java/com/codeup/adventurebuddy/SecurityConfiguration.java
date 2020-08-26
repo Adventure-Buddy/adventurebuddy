@@ -45,7 +45,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .antMatchers(
                         "/profile",
                         "/events/create/{trailId}",
-                        "/events/{id}","events/{id}/edit"
+                        "/events/{id}","events/{id}/edit",
+                            "event/events-calendar"
                 )
                 .authenticated();
     }

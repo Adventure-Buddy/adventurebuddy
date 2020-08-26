@@ -72,8 +72,8 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<UserEvent> userEvents = new ArrayList<>();
 
-//    @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
-//    private List<Event> eventsList;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
+    private List<Event> eventsList;
 
     public List<UserEvent> getUserEvents() {
         return userEvents;

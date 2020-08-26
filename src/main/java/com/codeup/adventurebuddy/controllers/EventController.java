@@ -5,6 +5,7 @@ import com.codeup.adventurebuddy.models.Event;
 import com.codeup.adventurebuddy.models.Trail;
 import com.codeup.adventurebuddy.models.User;
 //import com.codeup.adventurebuddy.models.UserEvents;
+import com.codeup.adventurebuddy.models.UserEvent;
 import com.codeup.adventurebuddy.repositories.EventRepository;
 import com.codeup.adventurebuddy.repositories.TrailRepository;
 import com.codeup.adventurebuddy.repositories.UserEventRepository;
@@ -15,8 +16,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
+import javax.validation.ConstraintDeclarationException;
+import javax.validation.ConstraintViolationException;
 import java.awt.*;
+import java.util.ArrayList;
 
 @Controller
 public class EventController {
@@ -42,9 +47,28 @@ public class EventController {
     @GetMapping("/events/{id}")
     public String eventId(@PathVariable long id, Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userDao.getOne(user.getId());
         Event event = eventDao.getOne(id);
+        ArrayList<User> users = new ArrayList<>();
+        int usersJoined = 0;
+        int amountOfUsers = 0;
+        for (UserEvent userEvent : event.getUserEvents() ) {
+             users.add(userEvent.getUser());
+             if(userEvent.getAccepted() == true)
+                usersJoined++;
+             else
+                amountOfUsers++;
+        }
+        boolean joined = users.contains(currentUser);
+        boolean canJoin = !users.contains(currentUser) && usersJoined < event.getRoomSize();
+        model.addAttribute("canJoin", canJoin);
+        model.addAttribute("joined", joined);
+        model.addAttribute("usersJoined", usersJoined);
+        model.addAttribute("amountOfUsers", amountOfUsers);
         model.addAttribute("event", event);
         model.addAttribute("user", user);
+        event.setFull(usersJoined >= event.getRoomSize());
+        eventDao.save(event);
         return "events/show";
     }
 
@@ -78,12 +102,14 @@ public class EventController {
                                 @RequestParam String title,
                                 @RequestParam String description,
                                 @RequestParam String date,
-                                @RequestParam String activity) {
+                                @RequestParam String activity,
+                                @RequestParam int roomSize) {
         Event eventToEdit = eventDao.getOne(id);
         eventToEdit.setTitle(title);
         eventToEdit.setDescription(description);
         eventToEdit.setDate(date);
         eventToEdit.setActivity(activity);
+        eventToEdit.setRoomSize(roomSize);
 
         eventDao.save(eventToEdit);
 
@@ -98,35 +124,47 @@ public class EventController {
 
     @GetMapping("/event/events-calendar")
     public String viewAllEventsJson(Model model){
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Event event = eventDao.getOne(1L);
-//        List<Event> events = eventDao.findByUser(user.getId());
-//        for (int i=0; i < events.size();i++){
-//            String date = events.get(i).getDate();
-//            date = date.replace(" ", "D");
-//            events.get(i).setDate(date);
-//        }
-        model.addAttribute("myevents",event.getTitle());
+        User user ;
+        try { user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        } catch (Exception e ){
+            e.printStackTrace();
+            return "redirect:/login";
+        }
+        List<Event> events = eventDao.findByUser(user);
+        model.addAttribute("myevents",events);
         return "daygrid-views";
     }
-
-//    @GetMapping("/events/userevents")
-//    public @ResponseBody List<Event> viewEventUserEvents(){
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        List<UserEvents> userEvents = userEventDao.findAll();
-//        List<Event> events = new ArrayList<>();
-//
-//        for (int i=0; i < userEvents.size(); i++){
-//            if (userEvents.get(i).getUser().getId() == user.getId()){
-//                events.add(userEvents.get(i).getEvent());
-//            }
-//        }
-//        return "";
-//    }
 
 
     @PostMapping("events/{id}/join")
     public String joinEvent(@PathVariable long id) {
-        return "events/show";
+        UserEvent userEvent = new UserEvent();
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        userEvent.setUser(loggedInUser);
+        userEvent.setEvent(eventDao.getOne(id));
+        userEvent.setAccepted(false);
+        try{
+        userEventDao.save(userEvent);
+        } catch (ConstraintViolationException e) {
+//            System.out.println(e);
+            return "redirect:/events/" + id;
+        }
+        return "redirect:/events/" + id;
+    }
+
+    @PostMapping("events/{id}/allow/{userEventId}")
+    public String allowJoin(@PathVariable long id, @PathVariable long userEventId) {
+        UserEvent ueToEdit = userEventDao.getOne(userEventId);
+        ueToEdit.setAccepted(true);
+        userEventDao.save(ueToEdit);
+        return"redirect:/events/" + id;
+    }
+
+    @PostMapping("events/{id}/remove/{userEventId}")
+    public String removeJoin(@PathVariable long id, @PathVariable long userEventId) {
+        UserEvent ueToEdit = userEventDao.getOne(userEventId);
+        ueToEdit.setAccepted(false);
+        userEventDao.save(ueToEdit);
+        return"redirect:/events/" + id;
     }
 }
