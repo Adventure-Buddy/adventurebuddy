@@ -6,14 +6,19 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body class="sand-bg trail-details-bg">
+<div class="black-trans-bg m-0 float-right" style="width: 100vw; height: 100vh;">
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div th:each="item : ${events}">
-<!--    <th:block th:if="${!item.getFull()}">-->
+<!--    <th:block th:if="${!item.getFull()}" class="card">-->
+    <div class="card m-5">
+        <img th:src="${item.user.profile_img}" alt="profile" class="d-block m-0" width="200vw" height="200vh">
         <a th:href="@{'/events/' + ${item.id}}"><h3 th:text="${item.title}"></h3></a>
         <p th:text="${item.description}"></p>
         <p>Date: <span th:text="${item.date}"></span></p>
+    </div>
 <!--    </th:block>-->
+</div>
 </div>
 </body>
 </html>

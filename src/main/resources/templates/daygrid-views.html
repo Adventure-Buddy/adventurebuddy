@@ -23,7 +23,7 @@
 </head>
 <body>
 <h1>Events Calendar</h1>
-
+<a th:href="@{'/trails'}">Return</a>
 <div class="event-group" th:each = "event: ${myevents}">
   <input type="hidden" th:value="${event.id}">
   <input type="hidden" th:value="${event.title}">
