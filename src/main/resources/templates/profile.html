@@ -74,30 +74,32 @@
                         <div class="card-footer d-flex justify-content-end">
                         </div>
                     </div>
-                    <!--            tab pane host-->
+<!--                                tab pane host-->
                     <div class="tab-pane fade" id="host" role="tabpanel" aria-labelledby="host-tab">
                         <div class="card">
                             <div class="card-body">
                                 <div class="card mb-3">
                                     <div class="card-header">
-                                        Events host
+                                        Events Hosting
                                     </div>
                                     <div class="card-body">
-                                        <ul class="list-group">
-                                            <li class="list-group-item" th:each="event : ${user.trailsList}">
-                                                <span th:text="${trail.name}"></span>
-                                                <form th:action="@{|/trails/${trail.id}/delete|}" th:method="post">
-                                                    <button type="submit" th:value="${trail.id}">x</button>
-                                                </form>
-                                            </li>
+                                        <ul class="list-group list-group-flush" th:each="item : ${events}">
+                                            <li class="list-group-item">Event Name: <span th:text="${item.title}"></span></li>
+                                            <li class="list-group-item">Event: <span th:text="${item.roomSize}"></span></li>
+                                            <li class="list-group-item">Event: <span th:text="${item.title}"></span></li>
+
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-footer d-flex justify-content-end">
+                            <div class="card-footer d-flex justify-content-end">
+                                <div class="btn-group">
+                                    <a class="btn btn-primary" th:href="@{/profile/{id}/basic(id=${user.id})}">Edit</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                 <!--tab pane 2-->
                 <div class="tab-pane fade" id="basic-info" role="tabpanel" aria-labelledby="basic-info-tab">
                     <div class="card">

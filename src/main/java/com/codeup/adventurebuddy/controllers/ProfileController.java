@@ -3,6 +3,8 @@ package com.codeup.adventurebuddy.controllers;
 import com.codeup.adventurebuddy.Repositories.EmergencyContactsRepository;
 import com.codeup.adventurebuddy.models.EmergencyContact;
 import com.codeup.adventurebuddy.models.User;
+import com.codeup.adventurebuddy.repositories.EventRepository;
+import com.codeup.adventurebuddy.repositories.TrailRepository;
 import com.codeup.adventurebuddy.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,28 +12,35 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.thymeleaf.model.IModel;
 
 @Controller
 public class ProfileController {
     private final com.codeup.adventurebuddy.repositories.UserRepository userDao;
     private final EmergencyContactsRepository emergencyContactsDao;
     private PasswordEncoder passwordEncoder;
+    private final com.codeup.adventurebuddy.repositories.EventRepository eventDao;
+    private final com.codeup.adventurebuddy.repositories.TrailRepository trailsDao;
+
     @Value("${fileStackKey}")
     private String fsKey;
 
 
 
-    public ProfileController(UserRepository userDao, EmergencyContactsRepository emergencyContactsDao) {
+    public ProfileController(UserRepository userDao, EmergencyContactsRepository emergencyContactsDao, EventRepository eventDao, TrailRepository trailsDao) {
         this.userDao = userDao;
         this.emergencyContactsDao = emergencyContactsDao;
+        this.eventDao = eventDao;
+        this.trailsDao = trailsDao;
     }
 
     @GetMapping("/profile")
     public String viewProfileTwo(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userDao.getOne(user.getId());
         model.addAttribute("user",userDao.getOne(user.getId()));
         model.addAttribute("emergency",emergencyContactsDao.findAll());
+        model.addAttribute("events",currentUser.getEventsList());
+
         return "profile";
     }
 
