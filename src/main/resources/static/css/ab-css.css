@@ -1,6 +1,23 @@
 .ab-landing-bg-image {
     background-image: url("../img/landing-page.jpg");
 }
+.ab-all-trails-bg {
+    background-image: url("../img/forked-trail.jpg");
+    background-repeat: repeat-x;
+    background-attachment: fixed;
+}
+
+.trail-details-bg{
+    background-image: url("../img/trail-details-bg.jpg");
+    background-size: auto;
+    background-attachment: fixed;
+}
+
+.sandy-bg-logo {
+    background-image: url("../img/sandy-logo-ab.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
 
 .sand-bg {
     background-color: #fff1dc;
@@ -21,12 +38,12 @@
     color: #fffe73!important
 }
 
-.green-trans-bg {
-    background: rgba(0, 128, 55, 0.6)
+.black-trans-bg {
+    background: rgba(0, 0, 0, 0.6)
 }
 
-.ab-all-trails-bg {
-    background-image: url("../img/forked-trail.jpg");
+.green-trans-bg {
+    background: rgba(0, 128, 55, 0.6)
 }
 
 .green-ab-bg{
