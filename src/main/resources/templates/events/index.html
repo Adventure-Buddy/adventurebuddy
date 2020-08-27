@@ -10,7 +10,6 @@
 <div class="black-trans-bg m-0 float-right" style="width: 100vw; height: 100vh;">
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div th:each="item : ${events}">
-
 <!--    <th:block th:if="${!item.getFull()}" class="card">-->
     <div class="card m-5">
         <img th:src="${item.user.profile_img}" alt="profile" class="d-block m-0" width="200vw" height="200vh">
