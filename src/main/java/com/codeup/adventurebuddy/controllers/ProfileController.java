@@ -36,9 +36,10 @@ public class ProfileController {
     @GetMapping("/profile")
     public String viewProfileTwo(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userDao.getOne(user.getId());
         model.addAttribute("user",userDao.getOne(user.getId()));
         model.addAttribute("emergency",emergencyContactsDao.findAll());
-//        model.addAttribute("events",user.getUserEvents());
+        model.addAttribute("events",currentUser.getEventsList());
 
         return "profile";
     }

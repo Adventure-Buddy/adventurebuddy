@@ -75,6 +75,14 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
     private List<Event> eventsList;
 
+    public List<Event> getEventsList() {
+        return eventsList;
+    }
+
+    public void setEventsList(List<Event> eventsList) {
+        this.eventsList = eventsList;
+    }
+
     public List<UserEvent> getUserEvents() {
         return userEvents;
     }
