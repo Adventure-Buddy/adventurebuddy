@@ -3,30 +3,38 @@
 <head th:include="partials/head.html :: header-links">
     <title>Sign up</title>
 </head>
-<body class="sand-bg">
-<nav th:replace="partials/navbar.html :: navbar"></nav>
-<div class="container">
-    <h1 class="ab-font">Your Adventure Awaits!</h1>
-    <form th:action="@{/sign-up}" method="POST" th:object="${user}">
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input id="username" th:field="*{username}" class="form-control" type="text" maxlength="60" autofocus required>
+<body class="sand-bg trail-details-bg">
+<div class="black-trans-bg m-0 float-right" style="width: 100vw; height: 100vh;">
+    <nav th:replace="partials/navbar.html :: navbar"></nav>
+    <div class="container">
+        <div class="card px-5 pb-5 pt-4 mt-5 white-trans-bg z-index-0">
+            <h1 class="ab-font">Your Adventure Awaits!</h1>
+            <form th:action="@{/sign-up}" method="POST" th:object="${user}">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input id="username" th:field="*{username}" class="form-control" type="text" maxlength="60"
+                           autofocus
+                           required>
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input id="email" th:field="*{email}" class="form-control" type="text" maxlength="60" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input id="password" th:field="*{password}" class="form-control" type="password" maxlength="60"
+                           required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password</label>
+                    <input id="confirm_password" name="confirm_password" class="form-control" type="password"
+                           maxlength="60"
+                           required>
+                </div>
+                <button type="submit" class="btn btn-block green-ab-bg yellow ab-font-yellow mt-5">Sign Up</button>
+            </form>
         </div>
-        <div>
-            <label for="email">Email</label>
-            <input id="email" th:field="*{email}" class="form-control" type="text" maxlength="60" required>
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input id="password" th:field="*{password}" class="form-control" type="password" maxlength="60" required>
-        </div>
-        <div class="form-group">
-            <label for="confirm_password">Confirm Password</label>
-            <input id="confirm_password" name="confirm_password" class="form-control" type="password" maxlength="60"
-                   required>
-        </div>
-        <input type="submit" class="btn green-ab-bg btn-block ab-font-yellow">
-    </form>
+    </div>
 </div>
 </body>
 </html>
