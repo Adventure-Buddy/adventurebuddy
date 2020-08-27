@@ -4,10 +4,20 @@
     <head th:include="partials/head.html :: header-links">
         <title></title>
     </head>
-<body class="ab-landing-bg-image">
+<body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
-<div class="green-trans-bg">
-    <h2 class="ab-font-sand">Welcome To Adventure Buddy, Where The Adventure Starts With You.</h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col col-md-4 ab-landing-bg-image" style="height: 100vh;">
+            <div class="green-trans-bg mx-auto mt-5">
+                <h2 class="ab-font-sand text-center">Welcome To Adventure Buddy, Where The Adventure Starts With You.</h2>
+            </div>
+        </div>
+        <div class="col-md-8 sand-bg" style="height: 100vh;">
+            <div class="sandy-bg-logo m-auto" style="height: 300px;">
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
