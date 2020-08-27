@@ -2,29 +2,33 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
     <head th:include="partials/head.html :: header-links">
-    <title>Title</title>
-</head>
-<body class="sand-bg">
-<nav th:replace="partials/navbar.html :: navbar"></nav>
-<div class="container">
-    <h1>Log In</h1>
-    <div th:if="${param.error}">
-        Invalid Username and Password.
-    </div>
-    <div th:if="${param.logout}">
-        You have been logged out.
-    </div>
-    <form th:action="@{/login}" method="post">
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input id="username" name="username" type="text" class="form-control" autofocus required/>
+        <title>Title</title>
+    </head>
+<body class="sand-bg trail-details-bg">
+<div class="black-trans-bg m-0 float-right" style="width: 100vw; height: 100vh;">
+    <nav th:replace="partials/navbar.html :: navbar" class="z-index-0"></nav>
+    <div class="container">
+        <div class="card px-5 pb-5 pt-4 mt-5 white-trans-bg z-index-0">
+            <h1 class="mb-3">Log In</h1>
+            <div th:if="${param.error}">
+                Invalid Username and Password.
+            </div>
+            <div th:if="${param.logout}">
+                You have been logged out.
+            </div>
+            <form th:action="@{/login}" method="post">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input id="username" name="username" type="text" class="form-control" autofocus required/>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input id="password" name="password" type="password" class="form-control" autofocus required/>
+                </div>
+                <button type="submit" class="btn btn-block green-ab-bg yellow ab-font-yellow mt-5">Log in</button>
+            </form>
         </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input id="password" name="password" type="password" class="form-control" autofocus required/>
-        </div>
-        <button type="submit" class="btn btn-block green-ab-bg yellow ab-font-yellow">Log in</button>
-    </form>
+    </div>
 </div>
 </body>
 </html>

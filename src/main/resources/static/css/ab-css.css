@@ -9,7 +9,7 @@
 
 .trail-details-bg{
     background-image: url("../img/trail-details-bg.jpg");
-    background-size: auto;
+    background-size: contain;
     background-attachment: fixed;
 }
 
@@ -48,6 +48,10 @@
 
 .green-ab-bg{
     background-color: #008037
+}
+
+.white-trans-bg {
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
 .page-header {

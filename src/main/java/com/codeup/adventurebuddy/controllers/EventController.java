@@ -40,6 +40,8 @@ public class EventController {
 
     @GetMapping("/events")
     public String events(Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userDao.getOne(user.getId());
         model.addAttribute("events", eventDao.findAll());
         return "events/index";
     }
