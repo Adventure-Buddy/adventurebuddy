@@ -7,16 +7,22 @@
 <link th:href='@{/fullcalendar-5.3.0/lib/main.css}'  rel='stylesheet'  />
 <style >
   .edit-btn {
-    background-color: #008037;
+    display: inline-block;
+    font-weight: 400;
     color: #fffe73;
-    border-radius: 9999px;
-    padding: .4rem 1rem;
-    margin-bottom: .4rem;
-    cursor: pointer;
-  }
-  .edit-btn:hover{
-    transition: color .40s ease-out;
-    color: whitesmoke;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #008037;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
   }
 
   body {
