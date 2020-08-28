@@ -5,13 +5,10 @@
     <meta charset="UTF-8">
     <title>Emergency Contact Create</title>
 </head>
-<body>
+<body class="profile-bg-image">
 <nav th:replace="partials/navbar.html :: navbar"></nav>
-
-<div class="card">
+<div class="card sand-bg offset-1 col-10 mt-5">
     <form th:action="@{/profile/{id}/emergencyCont(id=${emergency.id})}" method="post" >
-        <div class="card-header bg-primary text-white">
-        </div>
         <div class="card-body">
             <div class="card mb-3">
                 <div class="card-header">

@@ -23,6 +23,10 @@
     background-color: #fff1dc;
 }
 
+.profile-bg-image {
+    background-image: url("../img/profileleaves.jpg");
+}
+
 .ab-font{
     font-family: 'Norwester', arial, serif;
 
@@ -58,4 +62,19 @@
     padding: 1em 3em;
     text-align: center;
     margin: auto
+}
+
+/*Profile styling*/
+.nav-tabs{
+    background-color:#0A8038;
+    color: #FCFE72;
+}
+.nav-link{
+    color: #FCFE72;
+}
+
+.btn-green{
+    background-color:#0A8038;
+    color: #FCFE72;
+
 }

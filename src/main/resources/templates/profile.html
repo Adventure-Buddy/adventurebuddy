@@ -4,47 +4,42 @@
     <head th:include="partials/head.html :: header-links">
         <title>Profile</title>
     </head>
-<body class="sand-bg">
+<body class="profile-bg-image">
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <!--    Header-->
-<h1>Welcome, <span th:text="${user.username}">!</span></h1>
-<main class="container-fluid">
+<main class="offset-1 col-10 card sand-bg container-fluid">
+    <h1>Welcome, <span th:text="${user.username}">!</span></h1>
     <div class="row">
-        <div id="profile-image" class="col-2" style="height: 100vw">
+        <div id="profile-image" class="col-2" style="height: 200vh">
             <img th:src="${user.profile_img}" alt="profile" class="d-block m-0" width="200vw" height="200vh">
             <a th:href="@{/profile/{id}/add(id=${user.id})}">Upload Profile Picture</a>
         </div>
         <!--    menu tabs-->
-        <div class="col-9" style="height: 100vw">
+        <div class="offset-1 col-9" style="height: 200vh">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                       aria-controls="profile" aria-selected="true"><span
-                            class="badge badge-pill badge-secondary">1</span>
+                       aria-controls="profile" aria-selected="true">
                         Completed Trails</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="host-tab" data-toggle="tab" href="#host" role="tab"
-                       aria-controls="host" aria-selected="false"><span
-                            class="badge badge-pill badge-secondary">2</span>
+                       aria-controls="host" aria-selected="false">
                         Events Hosting</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="basic-info-tab" data-toggle="tab" href="#basic-info" role="tab"
-                       aria-controls="basic-info" aria-selected="false"><span
-                            class="badge badge-pill badge-secondary">3</span>
+                       aria-controls="basic-info" aria-selected="false">
                         Basic Info</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="username-tab" data-toggle="tab" href="#username" role="tab"
-                       aria-controls="username" aria-selected="false"><span
-                            class="badge badge-pill badge-secondary">4</span>
-                        Username/Email/Password</a>
+                       aria-controls="username" aria-selected="false">
+                        User Info</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="emergency-tab" data-toggle="tab" href="#emergency" role="tab"
-                       aria-controls="emergency" aria-selected="false"><span
-                            class="badge badge-pill badge-secondary">5</span>
+                       aria-controls="emergency" aria-selected="false">
                         Emergency</a>
                 </li>
             </ul>
@@ -94,7 +89,6 @@
                             </div>
                             <div class="card-footer d-flex justify-content-end">
                                 <div class="btn-group">
-                                    <a class="btn btn-primary" th:href="@{/profile/{id}/basic(id=${user.id})}">Edit</a>
                                 </div>
                             </div>
                         </div>
@@ -125,7 +119,7 @@
                         </div>
                         <div class="card-footer d-flex justify-content-end">
                             <div class="btn-group">
-                                <a class="btn btn-primary" th:href="@{/profile/{id}/basic(id=${user.id})}">Edit</a>
+                                <a class="btn btn-green" th:href="@{/profile/{id}/basic(id=${user.id})}">Edit</a>
                             </div>
                         </div>
                     </div>
@@ -150,7 +144,7 @@
                         </div>
                         <div class="card-footer d-flex justify-content-end">
                             <div class="btn-group">
-                                <a class="btn btn-primary" th:href="@{/profile/{id}/username(id=${user.id})}">Edit</a>
+                                <a class="btn btn-green" th:href="@{/profile/{id}/username(id=${user.id})}">Edit</a>
                             </div>
                         </div>
                     </div>
@@ -165,7 +159,9 @@
                                 </div>
                                 <div class="card-body">
                                     <div th:each="emergencyCont: ${user.emergencyContactsList}">
-                                        <ul class="list-group list-group-flush">
+                                        <ul class="list-group list-group-flush mt-3">
+                                            <li class="list-group-item font-weight-bold ">Emergency Contact <span
+                                                    th:text="${emergencyCont.id}" class="font-wieght-bold"></span></li>
                                             <li class="list-group-item">Emergency Contact First Name: <span
                                                     th:text="${emergencyCont.first_name}"></span></li>
                                             <li class="list-group-item">Emergency Contact Last Name: <span
@@ -174,9 +170,11 @@
                                                     th:text="${emergencyCont.email}"></span></li>
                                             <li class="list-group-item">Phone number: <span
                                                     th:text="${emergencyCont.phone_number}"></span></li>
-                                            <a class="btn btn-primary"
+                                            <div class="text-right">
+                                            <a class="btn-sm btn-green"
                                                th:href="@{/profile/{id}/emergencyCont(id=${emergencyCont.id})}">Edit
-                                                Contancts</a>
+                                                Contacts</a>
+                                            </div>
                                         </ul>
                                     </div>
                                 </div>
@@ -184,7 +182,7 @@
                         </div>
                         <div class="card-footer d-flex justify-content-end">
                             <div class="btn-group">
-                                <a class="btn btn-primary" th:href="@{/profile/{id}/emergencyCreate(id=${user.id})}">Add
+                                <a class="btn btn-green" th:href="@{/profile/{id}/emergencyCreate(id=${user.id})}">Add
                                     Contact</a>
                             </div>
                         </div>

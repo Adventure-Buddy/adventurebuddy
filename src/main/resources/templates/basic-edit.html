@@ -5,20 +5,17 @@
     <meta charset="UTF-8">
     <title>Basic Edit</title>
 </head>
-<body>
+<body class="profile-bg-image">
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 
-<div class="card">
+<div class="card sand-bg offset-1 col-10 mt-5">
 <form th:action="@{/profile/{id}/basic(id=${user.id})}" method="post" >
-    <div class="card-header bg-primary text-white">
-    </div>
     <div class="card-body">
         <div class="card mb-3">
             <div class="card-header">
                 Edit Basic Info
             </div>
             <div class="card-body">
-                <!--                                <label for="cheese-amt">How Much?</label>-->
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Date of Birth: <input id="dob" name="dob" type="text" th:value="${user.dateOfBirth}"/></li>
                     <!--                                    <li class="list-group-item">Address: <span th:text="${}"></span></li>-->
