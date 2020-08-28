@@ -56,7 +56,7 @@
                                     <div class="card-body">
                                         <ul class="list-group">
                                             <li class="list-group-item" th:each="trail : ${user.trailsList}">
-                                                <span th:text="${trail.name}"></span>
+                                                <a th:href="@{|/trails/${trail.id}|}"><span th:text="${trail.name}"></span></a>
                                                 <form th:action="@{|/trails/${trail.id}/delete|}" th:method="post">
                                                     <button type="submit" th:value="${trail.id}">x</button>
                                                 </form>
