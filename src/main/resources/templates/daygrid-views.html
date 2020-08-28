@@ -1,11 +1,23 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+<html xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/html" lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Your Calendar</title>
-<meta charset='utf-8' />
-<link th:href='@{/fullcalendar-5.3.0/lib/main.css}'  rel='stylesheet' />
-<style>
+<link th:href='@{/fullcalendar-5.3.0/lib/main.css}'  rel='stylesheet'  />
+<style >
+  .edit-btn {
+    background-color: #008037;
+    color: #fffe73;
+    border-radius: 9999px;
+    padding: .4rem 1rem;
+    margin-bottom: .4rem;
+    cursor: pointer;
+  }
+  .edit-btn:hover{
+    transition: color .40s ease-out;
+    color: whitesmoke;
+  }
 
   body {
     margin: 40px 10px;
@@ -23,7 +35,9 @@
 </head>
 <body>
 <h1>Events Calendar</h1>
-<a th:href="@{'/trails'}">Return</a>
+<form th:action="@{'/trails'}" method="GET">
+<button class="edit-btn">Return</button>
+</form>
 <div class="event-group" th:each = "event: ${myevents}">
   <input type="hidden" th:value="${event.id}">
   <input type="hidden" th:value="${event.title}">
