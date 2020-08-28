@@ -7,19 +7,24 @@
 <body class="trail-details-bg">
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div class="container">
-    <div class="card sand-bg">
-        <h1 th:text="${singleTrail.name}"></h1>
-        <div id="map" class="m-auto" style="width: 800px; height: 500px"></div>
+    <div class="card sand-bg mt-5">
+        <h1 class="text-center p-3" th:text="${singleTrail.name}"></h1>
+        <div id="map" class="m-auto" style="width: 600px; height: 300px"></div>
         <input type="hidden" name="lat" id="lat" th:value="${singleTrail.lat}">
         <input type="hidden" name="lng" id="lng" th:value="${singleTrail.lng}">
-        <ul>
-            <li>Trail Summary: <span th:text="${singleTrail.summary}"></span></li>
-            <li>Distance: <span th:text="${singleTrail.distanceInMi}"></span>mi.</li>
-            <li th:text="${singleTrail.type}"></li>
-            <li>
-                Ascent: <span th:text="${singleTrail.ascent}"></span>ft. / Descent: <span
-                    th:text="${singleTrail.descent}"></span>ft.
+        <ul class="list-group">
+            <li class="p-3 no-bullets font-weight-bold">Trail Summary:<br><span class="font-weight-normal"
+                                                                                th:text="${singleTrail.summary}"></span>
             </li>
+            <li class="p-3 no-bullets font-weight-bold">Distance: <span class="font-weight-normal"
+                                                                        th:text="${singleTrail.distanceInMi}"></span><span
+                    class="font-weight-normal">mi.</span></li>
+            <li class="p-3 no-bullets font-weight-bold">
+                Ascent: <span class="font-weight-normal" th:text="${singleTrail.ascent}"></span><span
+                    class="font-weight-normal">ft.</span> / Descent: <span
+                    class="font-weight-normal" th:text="${singleTrail.descent}"></span><span class="font-weight-normal">ft.</span>
+            </li>
+            <li class="p-3 no-bullets font-weight-bold" th:text="${singleTrail.type}"></li>
         </ul>
         <div sec:authorize="isAuthenticated()">
             <form th:method="post" th:action="@{|/trails/${singleTrail.id}/add|}" th:unless="${completed}">
@@ -32,9 +37,9 @@
             <button class="btn green-ab-bg"><a th:href="@{|/trails/${singleTrail.id}/review|}" class="ab-font-yellow">Write
                 a Review</a></button>
         </div>
-        <h2 class="ab-font">Reviews</h2>
-        <ul>
-            <li th:each="review : ${singleTrail.reviewsList}">
+        <h2 class="text-center green-ab-bg yellow">Reviews</h2>
+        <ul class="list-group sand-bg">
+            <li th:each="review : ${singleTrail.reviewsList}" class="list-group-item sand-bg">
                 <h5 th:text="${review.user.username}"></h5>
                 <p>Rating: </p>
                 <th:block th:switch="${review.rating}">
@@ -86,6 +91,7 @@
             </li>
         </ul>
     </div>
+</div>
 </div>
 <script th:inline="javascript">
     /*<![CDATA[*/

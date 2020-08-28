@@ -38,6 +38,10 @@
     color: #fffe73!important
 }
 
+.yellow{
+    color: #fffe73!important
+}
+
 .black-trans-bg {
     background: rgba(0, 0, 0, 0.6)
 }
@@ -58,4 +62,8 @@
     padding: 1em 3em;
     text-align: center;
     margin: auto
+}
+
+.no-bullets {
+    list-style: none;
 }
