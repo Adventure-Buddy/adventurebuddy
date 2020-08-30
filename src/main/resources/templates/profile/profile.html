@@ -5,9 +5,10 @@
         <title>Profile</title>
     </head>
 <body class="profile-bg-image">
+<div class="black-trans-bg">
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <!--    Header-->
-<main class="offset-md-1 col-md-10 card sand-bg container-fluid">
+<main class="offset-md-1 col-md-10 card sand-bg container-fluid mt-5">
     <h1>Welcome, <span th:text="${user.username}">!</span></h1>
     <div class="row">
         <div id="profile-image" class="col-md-2" style="@media screen and (min-width:768px){height: 200vh}">
@@ -59,7 +60,7 @@
                                                     <a th:href="@{|/trails/${trail.id}|}"><span class="photo-upload"
                                                                                               th:text="${trail.name}"></span></a>
                                                         <form th:action="@{|/trails/${trail.id}/delete|}" th:method="post">
-                                                        <div class="d-inline"><button class="btn-danger" type="submit" th:value="${trail.id}">x</button></div>
+                                                        <div class="d-inline"><button class="btn-danger" type="submit" >x</button></div>
                                                 </form>
                                             </li>
                                         </ul>
@@ -200,6 +201,7 @@
         </div>
     </div>
 </main>
+</div>
 <script src="https://static.filestackapi.com/adaptive/1.4.0/adaptive.min.js" crossorigin="anonymous"></script>
 <script>
     const client = filestack.init(fileStackKey);
