@@ -6,17 +6,31 @@
   <title>Your Calendar</title>
 <link th:href='@{/fullcalendar-5.3.0/lib/main.css}'  rel='stylesheet'  />
 <style >
-  .edit-btn {
-    background-color: #008037;
-    color: #fffe73;
-    border-radius: 9999px;
-    padding: .4rem 1rem;
-    margin-bottom: .4rem;
-    cursor: pointer;
+  .edit-color{
+    color: white;
   }
-  .edit-btn:hover{
-    transition: color .40s ease-out;
-    color: whitesmoke;
+
+  .edit-btn-spacing{
+    margin-bottom: 1em;
+  }
+
+  .edit-btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #fffe73;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #008037;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
   }
 
   body {
@@ -24,18 +38,24 @@
     padding: 0;
     font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
     font-size: 14px;
+    background-size: cover;
+    background-image: url("/img/Forrest-Trail.jpg");
+    background-repeat: no-repeat;
+    height: 100%;
   }
 
   #calendar {
     max-width: 1100px;
     margin: 0 auto;
+    background-color: white;
+    overflow: auto;
   }
 
 </style>
 </head>
 <body>
-<h1>Events Calendar</h1>
-<form th:action="@{'/trails'}" method="GET">
+<h1 class="edit-color">Events Calendar</h1>
+<form th:action="@{'/trails'}" class="edit-btn-spacing" method="GET">
 <button class="edit-btn">Return</button>
 </form>
 <div class="event-group" th:each = "event: ${myevents}">
@@ -95,6 +115,5 @@
   });
 
   </script>
-
 </body>
 </html>

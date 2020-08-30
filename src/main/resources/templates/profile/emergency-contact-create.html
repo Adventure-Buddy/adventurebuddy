@@ -1,25 +1,26 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org" lang="eng">
 <head th:include="partials/head.html :: header-links">
     <meta charset="UTF-8">
-    <title>Username Edit</title>
+    <title>Emergency Contact Create</title>
 </head>
 <body class="profile-bg-image">
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 
 <div class="card sand-bg offset-1 col-10 mt-5">
-    <form th:action="@{/profile/{id}/username(id=${user.id})}" method="post" >
+    <form th:action="@{/profile/{id}/emergencyCreate(id=${user.id})}" method="post" >
         <div class="card-body">
             <div class="card mb-3">
                 <div class="card-header">
-                    Edit: Username / Email / Password
+                    Create an Emergency Contact
                 </div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Username: <input id="username" name="username" type="text" th:value="${user.username}"/></li>
-                        <li class="list-group-item">Email: <input id="email" name="email" type="text" th:value="${user.email}"/></li>
-                        <li class="list-group-item">Password:<input id="password" name="password" type="text"/></li>
+                        <li class="list-group-item">Email: <input class="w-100" id="email" name="email" type="text"/></li>
+                        <li class="list-group-item">First Name: <input class="w-100" id="first" name="first" type="text" /></li>
+                        <li class="list-group-item">Last Name: <input class="w-100" id="last" name="last" type="text" /></li>
+                        <li class="list-group-item">Phone Number: <input class="w-100" id="phone" name="phone" type="text"/></li>
                     </ul>
                 </div>
             </div>
