@@ -41,7 +41,7 @@ public class ProfileController {
         model.addAttribute("emergency",emergencyContactsDao.findAll());
         model.addAttribute("events",currentUser.getEventsList());
 
-        return "profile";
+        return "profile/profile";
     }
 
 //    Get and Post Mapping for handling photo upload
@@ -49,7 +49,7 @@ public class ProfileController {
     public String viewAddProfilePhoto(@PathVariable long id, Model model) {
         model.addAttribute("fsKey",fsKey);
         model.addAttribute("user", userDao.getOne(id));
-        return "addProfilePhoto";
+        return "profile/addProfilePhoto";
     }
 
     @PostMapping("/profile/{id}/add")
@@ -57,14 +57,14 @@ public class ProfileController {
         User user = userDao.getOne(id);
         user.setProfile_img(img);
         userDao.save(user);
-        return "redirect:/profile";
+        return "redirect:profile/profile";
     }
 
 //    Get and Post mapping for handling basic edit
     @GetMapping("/profile/{id}/basic")
     public String editBasic(@PathVariable long id, Model model){
         model.addAttribute("user", userDao.getOne(id));
-        return "basic-edit";
+        return "profile/basic-edit";
     }
 
     @PostMapping("/profile/{id}/basic")
@@ -76,7 +76,7 @@ public class ProfileController {
         user.setFirstName(first);
         user.setLastName(last);
         userDao.save(user);
-        return "redirect:/profile";
+        return "redirect:profile/profile";
     }
 
 //    Get and Post mapping for handling editing username / email / password
@@ -84,7 +84,7 @@ public class ProfileController {
     @GetMapping("/profile/{id}/username")
     public String editUsername(@PathVariable long id, Model model){
         model.addAttribute("user", userDao.getOne(id));
-        return "username-edit";
+        return "profile/username-edit";
     }
 
     @PostMapping("/profile/{id}/username")
@@ -100,7 +100,7 @@ public class ProfileController {
         user.setPassword(hash);
         }
         userDao.save(user);
-        return "redirect:/profile";
+        return "redirect:profile/profile";
     }
 
 //    Get and Post for mapping the create an emergency contact page
@@ -108,7 +108,7 @@ public class ProfileController {
     public String insertEmergencyContact(@PathVariable long id, Model model){
         model.addAttribute("user", userDao.getOne(id));
         model.addAttribute("emergency", new EmergencyContact());
-        return "emergency-contact-create";
+        return "profile/emergency-contact-create";
     }
 
     @PostMapping("/profile/{id}/emergencyCreate")
@@ -121,14 +121,14 @@ public class ProfileController {
         emergencyContact.setLast_name(last);
         emergencyContact.setPhone_number(phone);
         emergencyContactsDao.save(emergencyContact);
-        return "redirect:/profile";
+        return "redirect:profile/profile";
     }
 
 //    Get and Post mapping for the edit emergency contact page
     @GetMapping("/profile/{id}/emergencyCont")
     public String editEmergencyContactShow(@PathVariable long id, Model model){
         model.addAttribute("emergency",emergencyContactsDao.getOne(id));
-        return "emergency-edit";
+        return "profile/emergency-edit";
     }
 
     @PostMapping("/profile/{id}/emergencyCont")
@@ -140,6 +140,6 @@ public class ProfileController {
         emergencyContact.setLast_name(last);
         emergencyContact.setPhone_number(phone);
         emergencyContactsDao.save(emergencyContact);
-        return "redirect:/profile";
+        return "redirect:profile/profile";
     }
 }
