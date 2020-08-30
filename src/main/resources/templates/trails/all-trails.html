@@ -13,7 +13,7 @@
     <div class="row row-cols-1 row-cols-md-3">
         <div th:each="trail: ${allTrails}" class="col mt-5">
             <div class="card m-auto" style="width: 18rem; height: 35rem;">
-                <img th:src="@{/img/trail-placeholder.png}" class="card-img-left" alt="trail photo">
+                <img th:src="@{/img/trail_placeholder_image.png}" class="card-img-left" alt="trail photo" style="height: 286px; width: 286px">
                 <div class="card-body">
                     <h4 class="card-title" th:text="${trail.name}"></h4>
                 </div>

@@ -42,6 +42,10 @@
     color: #fffe73!important
 }
 
+.yellow{
+    color: #fffe73!important
+}
+
 .black-trans-bg {
     background: rgba(0, 0, 0, 0.6)
 }
@@ -64,6 +68,9 @@
     margin: auto
 }
 
+.no-bullets {
+    list-style: none;
+}
 /*Profile styling*/
 .nav-tabs{
     background-color:#0A8038;
