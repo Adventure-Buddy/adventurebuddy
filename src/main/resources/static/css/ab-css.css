@@ -81,5 +81,8 @@
 
 .photo-upload{
     color: black;
+}
 
+a:hover.nav-hover {
+    color: white;
 }

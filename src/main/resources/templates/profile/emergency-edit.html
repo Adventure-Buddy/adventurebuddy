@@ -7,9 +7,8 @@
 </head>
 <body class="profile-bg-image">
 <nav th:replace="partials/navbar.html :: navbar"></nav>
-
 <div class="card sand-bg offset-1 col-10 mt-5">
-    <form th:action="@{/profile/{id}/emergencyCreate(id=${user.id})}" method="post" >
+    <form th:action="@{/profile/{id}/emergencyCont(id=${emergency.id})}" method="post" >
         <div class="card-body">
             <div class="card mb-3">
                 <div class="card-header">
@@ -17,10 +16,10 @@
                 </div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Email: <input id="email" name="email" type="text"/></li>
-                        <li class="list-group-item">First Name: <input id="first" name="first" type="text" /></li>
-                        <li class="list-group-item">Last Name: <input id="last" name="last" type="text" /></li>
-                        <li class="list-group-item">Phone Number: <input id="phone" name="phone" type="text"/></li>
+                        <li class="list-group-item">Email: <input class="w-100" id="email" name="email" type="text" th:value="${emergency.email}"/></li>
+                        <li class="list-group-item">First Name: <input class="w-100" id="first" name="first" type="text" th:value="${emergency.first_name}" /></li>
+                        <li class="list-group-item">Last Name: <input class="w-100" id="last" name="last" type="text" th:value="${emergency.last_name}" /></li>
+                        <li class="list-group-item">Phone Number: <input class="w-100" id="phone" name="phone" type="text" th:value="${emergency.phone_number}"/></li>
                     </ul>
                 </div>
             </div>
