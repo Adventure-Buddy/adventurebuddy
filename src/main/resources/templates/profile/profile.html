@@ -12,7 +12,7 @@
     <div class="row">
         <div id="profile-image" class="col-md-2" style="@media screen and (min-width:768px){height: 200vh}">
             <img th:src="${user.profile_img}" alt="profile" class="d-block m-0" width="200vw" height="200vh">
-            <a th:href="@{/profile/{id}/add(id=${user.id})}" class="photo-upload">Upload Profile Photo</a>
+            <a th:href="@{/profile/{id}/add(id=${user.id})}" class="photo-upload nav-hover">Upload Profile Photo</a>
         </div>
         <!--    menu tabs-->
         <div class="offset-md-1 col-md-9" style="height: 200vh">
@@ -54,11 +54,12 @@
                                         Completed Trails
                                     </div>
                                     <div class="card-body">
-                                        <ul class="list-group">
-                                            <li class="list-group-item" th:each="trail : ${user.trailsList}">
-                                                <a th:href="@{|/trails/${trail.id}|}"><span class="photo-upload" th:text="${trail.name}"></span></a>
-                                                <form th:action="@{|/trails/${trail.id}/delete|}" th:method="post">
-                                                    <button class="btn-danger" type="submit" th:value="${trail.id}">x</button>
+                                        <ul class="list-group" th:each="trail : ${user.trailsList}">
+                                            <li class="list-group-item d-flex justify-content-between">
+                                                    <a th:href="@{|/trails/${trail.id}|}"><span class="photo-upload"
+                                                                                              th:text="${trail.name}"></span></a>
+                                                        <form th:action="@{|/trails/${trail.id}/delete|}" th:method="post">
+                                                        <div class="d-inline"><button class="btn-danger" type="submit" th:value="${trail.id}">x</button></div>
                                                 </form>
                                             </li>
                                         </ul>
@@ -69,7 +70,7 @@
                         <div class="card-footer d-flex justify-content-end">
                         </div>
                     </div>
-<!--                                tab pane host-->
+                    <!--                                tab pane host-->
                     <div class="tab-pane fade" id="host" role="tabpanel" aria-labelledby="host-tab">
                         <div class="card">
                             <div class="card-body">
@@ -79,8 +80,11 @@
                                     </div>
                                     <div class="card-body">
                                         <ul class="list-group list-group-flush" th:each="item : ${events}">
-                                            <li class="list-group-item"><a th:href="@{|/events/${item.id}|}"><span class="photo-upload font-weight-bold" th:text="${item.title}"></span></a></li>
-                                            <li class="list-group-item">Group size: <span th:text="${item.roomSize}"></span></li>
+                                            <li class="list-group-item"><a th:href="@{|/events/${item.id}|}"><span
+                                                    class="photo-upload font-weight-bold"
+                                                    th:text="${item.title}"></span></a></li>
+                                            <li class="list-group-item">Group size: <span
+                                                    th:text="${item.roomSize}"></span></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -92,103 +96,108 @@
                         </div>
                     </div>
 
-                <!--tab pane 2-->
-                <div class="tab-pane fade" id="basic-info" role="tabpanel" aria-labelledby="basic-info-tab">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    Basic Info
-                                </div>
-                                <div class="card-body">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Date of Birth: <span
-                                                th:text="${user.dateOfBirth}"></span></li>
-                                        <li class="list-group-item">Email: <span th:text="${user.email}"></span></li>
-                                        <li class="list-group-item">First Name: <span
-                                                th:text="${user.firstName}"></span></li>
-                                        <li class="list-group-item">Last Name: <span th:text="${user.lastName}"></span>
-                                        </li>
-                                        <li class="list-group-item">Phone Number: <span
-                                                th:text="${user.phoneNumber}"></span></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer d-flex justify-content-end">
-                            <div class="btn-group">
-                                <a class="btn btn-green" th:href="@{/profile/{id}/basic(id=${user.id})}">Edit</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--            tab pane 3-->
-                <div class="tab-pane fade" id="username" role="tabpanel" aria-labelledby="username-tab">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    Username / Email / Password
-                                </div>
-                                <div class="card-body">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Username: <span th:text="${user.username}"></span>
-                                        </li>
-                                        <li class="list-group-item">Email: <span th:text="${user.email}"></span></li>
-                                        <li class="list-group-item">Password:</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer d-flex justify-content-end">
-                            <div class="btn-group">
-                                <a class="btn btn-green" th:href="@{/profile/{id}/username(id=${user.id})}">Edit</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--            Emergency Contact Pane-->
-                <div class="tab-pane fade" id="emergency" role="tabpanel" aria-labelledby="emergency-tab">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    Emergency Contact
-                                </div>
-                                <div class="card-body">
-                                    <div th:each="emergencyCont: ${user.emergencyContactsList}">
-                                        <ul class="list-group list-group-flush mt-3">
-                                            <li class="list-group-item font-weight-bold ">Emergency Contact <span
-                                                    th:text="${emergencyCont.id}" class="font-wieght-bold"></span></li>
-                                            <li class="list-group-item">Emergency Contact First Name: <span
-                                                    th:text="${emergencyCont.first_name}"></span></li>
-                                            <li class="list-group-item">Emergency Contact Last Name: <span
-                                                    th:text="${emergencyCont.last_name}"></span></li>
-                                            <li class="list-group-item">Email: <span
-                                                    th:text="${emergencyCont.email}"></span></li>
-                                            <li class="list-group-item">Phone number: <span
-                                                    th:text="${emergencyCont.phone_number}"></span></li>
-                                            <div class="text-right">
-                                            <a class="btn-sm btn-green"
-                                               th:href="@{/profile/{id}/emergencyCont(id=${emergencyCont.id})}">Edit
-                                                Contacts</a>
-                                            </div>
+                    <!--tab pane 2-->
+                    <div class="tab-pane fade" id="basic-info" role="tabpanel" aria-labelledby="basic-info-tab">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        Basic Info
+                                    </div>
+                                    <div class="card-body">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">Date of Birth: <span
+                                                    th:text="${user.dateOfBirth}"></span></li>
+                                            <li class="list-group-item">Email: <span th:text="${user.email}"></span>
+                                            </li>
+                                            <li class="list-group-item">First Name: <span
+                                                    th:text="${user.firstName}"></span></li>
+                                            <li class="list-group-item">Last Name: <span
+                                                    th:text="${user.lastName}"></span>
+                                            </li>
+                                            <li class="list-group-item">Phone Number: <span
+                                                    th:text="${user.phoneNumber}"></span></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
+                            <div class="card-footer d-flex justify-content-end">
+                                <div class="btn-group">
+                                    <a class="btn btn-green" th:href="@{/profile/{id}/basic(id=${user.id})}">Edit</a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-footer d-flex justify-content-end">
-                            <div class="btn-group">
-                                <a class="btn btn-green" th:href="@{/profile/{id}/emergencyCreate(id=${user.id})}">Add
-                                    Contact</a>
+                    </div>
+                    <!--            tab pane 3-->
+                    <div class="tab-pane fade" id="username" role="tabpanel" aria-labelledby="username-tab">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        Username / Email / Password
+                                    </div>
+                                    <div class="card-body">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">Username: <span
+                                                    th:text="${user.username}"></span>
+                                            </li>
+                                            <li class="list-group-item">Email: <span th:text="${user.email}"></span>
+                                            </li>
+                                            <li class="list-group-item">Password:</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer d-flex justify-content-end">
+                                <div class="btn-group">
+                                    <a class="btn btn-green" th:href="@{/profile/{id}/username(id=${user.id})}">Edit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--            Emergency Contact Pane-->
+                    <div class="tab-pane fade" id="emergency" role="tabpanel" aria-labelledby="emergency-tab">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        Emergency Contact
+                                    </div>
+                                    <div class="card-body">
+                                        <div th:each="emergencyCont: ${user.emergencyContactsList}">
+                                            <ul class="list-group list-group-flush mt-3">
+                                                <li class="list-group-item font-weight-bold ">Emergency Contact <span
+                                                        th:text="${emergencyCont.id}" class="font-wieght-bold"></span>
+                                                </li>
+                                                <li class="list-group-item">Emergency Contact First Name: <span
+                                                        th:text="${emergencyCont.first_name}"></span></li>
+                                                <li class="list-group-item">Emergency Contact Last Name: <span
+                                                        th:text="${emergencyCont.last_name}"></span></li>
+                                                <li class="list-group-item">Email: <span
+                                                        th:text="${emergencyCont.email}"></span></li>
+                                                <li class="list-group-item">Phone number: <span
+                                                        th:text="${emergencyCont.phone_number}"></span></li>
+                                                <div class="text-right">
+                                                    <a class="btn-sm btn-green"
+                                                       th:href="@{/profile/{id}/emergencyCont(id=${emergencyCont.id})}">Edit
+                                                        Contacts</a>
+                                                </div>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer d-flex justify-content-end">
+                                <div class="btn-group">
+                                    <a class="btn btn-green" th:href="@{/profile/{id}/emergencyCreate(id=${user.id})}">Add
+                                        Contact</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </form>
         </div>
-        </form>
-    </div>
     </div>
 </main>
 <script src="https://static.filestackapi.com/adaptive/1.4.0/adaptive.min.js" crossorigin="anonymous"></script>
