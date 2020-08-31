@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
-<head th:include="partials/head.html :: header-links">
+<head th:include="partials/head.html :: header-links (pageTitle='Create Event')">
     <head>
         <meta charset="UTF-8">
-        <title>Create Events</title>
     </head>
 <body class="sand-bg trail-details-bg">
 <div class="black-trans-bg m-0 float-right" style="width: 100vw; height: 100vh;">
@@ -35,10 +34,10 @@
                     <input type="number" id="size" th:field="*{roomSize}" class="w-100">
                 </div>
 
-                <input type="radio" name="activity" value="hiking" th:field="*{activity}" checked>hiking<br>
-                <input type="radio" name="activity" value="mountain biking" th:field="*{activity}">mountain biking<br>
-                <input type="radio" name="activity" value="cycling" th:field="*{activity}">cycling<br>
-                <input type="radio" name="activity" value="other" th:field="*{activity}">other<br>
+                <input type="radio" name="activity" value="hiking" th:field="*{activity}" checked class="m-1 mt-3">hiking<br>
+                <input type="radio" name="activity" value="mountain biking" th:field="*{activity}" class="m-1">mountain biking<br>
+                <input type="radio" name="activity" value="cycling" th:field="*{activity}" class="m-1">cycling<br>
+                <input type="radio" name="activity" value="other" th:field="*{activity}" class="m-1 mb-3">other<br>
 
                 <button class="btn green-ab-bg ab-font-yellow">Create Event</button>
 
