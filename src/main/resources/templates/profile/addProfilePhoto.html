@@ -6,7 +6,7 @@
     <script src="/keys.js"></script>
 </head>
 <body class="profile-bg-image">
-<div class="black-trans-bg">
+<div class="black-trans-bg" style="height: 100vh">
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div id="inline" class="card sand-bg offset-1 col-10 mt-5 p-5">
     <form id="image" th:action="@{/profile/{id}/add(id=${user.id})}" th:method="POST">
