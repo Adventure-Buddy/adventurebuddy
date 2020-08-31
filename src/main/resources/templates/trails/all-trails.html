@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="eng">
-<head>
-    <head th:include="partials/head.html :: header-links">
-        <title>View All Trails</title>
-    </head>
+<head th:include="partials/head.html :: header-links (pageTitle='View All Trails')">
+</head>
 <body class="ab-all-trails-bg">
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div class="container">
