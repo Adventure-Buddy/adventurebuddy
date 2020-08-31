@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
-<head>
     <head th:include="partials/head.html :: header-links">
         <title>Profile</title>
     </head>
@@ -17,7 +16,7 @@
                  <img th:src="@{../img/trail-placeholder.png}" alt="profile" class="d-block m-0">
             </th:block>
             <th:block th:if="${user.profile_img} != null">
-            <img th:src="${user.profile_img}" alt="profile" class="d-block m-0" >
+            <img th:src="${user.profile_img}" alt="profile" class="d-block m-0">
             </th:block>
 
             <a th:href="@{/profile/{id}/add(id=${user.id})}" class="photo-hover p-1 btn btn-green mx-auto">Upload Profile Photo</a>
