@@ -1,24 +1,47 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head th:include="partials/head.html :: header-links">
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
 <body class="sand-bg trail-details-bg">
-<div class="black-trans-bg m-0 float-right" style="width: 100vw; height: 100vh;">
-<nav th:replace="partials/navbar.html :: navbar"></nav>
-<div th:each="item : ${events}">
-    <th:block th:if="${!item.getFull()}" class="card">
-    <div class="card m-5 p-4" style="width: 40em;">
-        <img th:src="${item.user.profile_img}" alt="profile" class="d-block m-0" width="200vw" height="200vh">
-        <a th:href="@{'/events/' + ${item.id}}"><h3 th:text="${item.title}"></h3></a>
-        <p th:text="${item.description}"></p>
-        <p>Date: <span th:text="${item.date}"></span></p>
+<div class="black-trans-bg m-0 float-right" style="width: 100vw; height: 100%;">
+    <nav th:replace="partials/navbar.html :: navbar"></nav>
+    <div class="container">
+        <div class="sand-bg ab-font page-header">
+            <h1>Public Events</h1>
+        </div>
+        <div class="row row-cols-1 row-cols-md-3">
+            <div th:each="item : ${events}" class="col mt-5">
+                <th:block th:if="${!item.getFull()}" class="card">
+                    <div class="card m-auto" style="width: 20rem; height: 35rem;">
+                        <img th:src="${item.user.profile_img}" alt="profile" class="d-block m-auto" width="200vw"
+                             height="200vh">
+                        <a th:href="@{'/events/' + ${item.id}}" class="m-auto"><h3 th:text="${item.title}"></h3></a>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><h4><strong><span th:text="${item.trail.name}"></span></strong>
+                            </h4></li>
+                            <li class="list-group-item"><p th:text="${item.description}"></p></li>
+                            <li class="list-group-item"><p>Date: <span th:text="${item.date}"></span></p></li>
+                        </ul>
+                        <input type="hidden" th:value="${item.date}" class="date">
+                    </div>
+                </th:block>
+            </div>
+        </div>
     </div>
-    </th:block>
 </div>
-</div>
+<!--<script>-->
+<!--    const dateString = document.getElementsByClassName("date").value;-->
+<!--    const formatDate = (dateString) => {-->
+<!--        const options = { year: "numeric", month: "long", day: "numeric" }-->
+<!--        return new Date(dateString).toLocaleDateString(undefined, options)-->
+<!--    }-->
+<!--    document.getElementsByClassName("formatDate").innerText = formatDate(dateString);-->
+<!--    console.log(dateString);-->
+<!--    console.log(formatDate());-->
+<!--</script>-->
 </body>
 </html>
