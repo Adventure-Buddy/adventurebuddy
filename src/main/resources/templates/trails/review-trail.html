@@ -1,28 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
-<head th:include="partials/head.html :: header-links">
-        <meta charset="UTF-8">
-        <title>Review</title>
+<head th:include="partials/head.html :: header-links (pageTitle='Write a Review')">
 </head>
-<body>
+<body class="review-bg">
 <nav th:replace="partials/navbar.html :: navbar"></nav>
-<div class="container">
-    <h1 class="text-center">Write a Review:</h1>
-    <form th:method="post" th:action="@{/trails}" th:object="${review}">
-        <input type="hidden" th:value="${trail.id}" th:name="trailId">
-        <label for="comment">Description:</label><br>
-        <textarea id="comment" th:field="*{comment}" placeholder="Write about your experience here."></textarea>
-        <label for="rating">Rating:</label>
-        <select th:field="*{rating}" id="rating">
-            <option th:value="0">0</option>
-            <option th:value="1">1</option>
-            <option th:value="2">2</option>
-            <option th:value="3">3</option>
-            <option th:value="4">4</option>
-            <option th:value="5">5</option>
-        </select>
-        <button type="submit">Submit</button>
-    </form>
+<div class="black-trans-bg m-0" style="height: 100vh; width: 100vw">
+    <div class="container">
+        <h1 class="text-center ab-font sand-bg">Write a Review:</h1>
+        <form th:method="post" th:action="@{/trails}" th:object="${review}">
+            <input type="hidden" th:value="${trail.id}" th:name="trailId">
+            <div class="white-trans-bg p-5">
+                <h3 class="ab-font text-center">Let other people know what you thought about your adventure!</h3>
+                <div class="input">
+                    <label for="comment">Description:</label><br>
+                    <textarea id="comment" th:field="*{comment}" placeholder="Write about your experience here."
+                              class="w-100"
+                              rows="10"></textarea>
+                </div>
+                <div class="input">
+                    <label for="rating">Rating:</label>
+                    <select th:field="*{rating}" id="rating">
+                        <option th:value="0">0</option>
+                        <option th:value="1">1</option>
+                        <option th:value="2">2</option>
+                        <option th:value="3">3</option>
+                        <option th:value="4">4</option>
+                        <option th:value="5">5</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn green-ab-bg ab-font-yellow">Submit</button>
+            </div>
+        </form>
+    </div>
 </div>
 </body>
 </html>

@@ -11,7 +11,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <a th:href="@{'/'}"><h3 class="ab-font-yellow pl-0 pr-3 m-auto">Adventure Buddy</h3></a>
+        <a th:href="@{'/'}" style="text-decoration: none"><h3 class="ab-font-yellow pl-0 pr-3 m-auto">Adventure Buddy</h3></a>
         <ul class="navbar-nav ml-auto ab-font-yellow">
             <li class="nav-item"><a class="nav-link ab-font-yellow" href="/trails">Trails</a></li>
             <th:block sec:authorize="!isAuthenticated()">
