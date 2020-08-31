@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="eng">
-<head>
-    <head th:include="partials/head.html :: header-links">
-        <title></title>
-    </head>
+<head th:include="partials/head.html :: header-links (pageTitle='Adventure Buddy')" >
+</head>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div class="container-fluid">

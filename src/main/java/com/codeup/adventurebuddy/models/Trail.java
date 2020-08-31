@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Map;
 
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -35,9 +34,11 @@ public class Trail {
     private List<Review> reviewsList;
     @ManyToMany(mappedBy = "trailsList")
     private List<User> users;
+    @Column(nullable = true)
+    private String trailImage;
 
 
-    public Trail(long id, String name, double distanceInMi, double lat, double lng, Address address, int ascent, int descent, String summary, String type, List<Review> reviewsList, List<User> users) {
+    public Trail(long id, String name, double distanceInMi, double lat, double lng, int ascent, int descent, String summary, String type, List<Review> reviewsList, List<User> users, String trailImage) {
         this.id = id;
         this.name = name;
         this.distanceInMi = distanceInMi;
@@ -49,6 +50,7 @@ public class Trail {
         this.type = type;
         this.reviewsList = reviewsList;
         this.users = users;
+        this.trailImage = trailImage;
     }
 
     public Trail() {
@@ -140,4 +142,11 @@ public class Trail {
         this.users = users;
     }
 
+    public String getTrailImage() {
+        return trailImage;
+    }
+    @JsonSetter("imgMedium")
+    public void setTrailImage(String trailImage) {
+        this.trailImage = trailImage;
+    }
 }
