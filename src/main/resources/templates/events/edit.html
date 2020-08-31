@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head th:include="partials/head.html :: header-links">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit Event</title>
 </head>
 <body class="sand-bg trail-details-bg">
 <div class="black-trans-bg m-0 float-right" style="width: 100vw; height: 100vh;">
@@ -21,7 +21,7 @@
 
                 <div class="input">
                     <label for="description">Description:</label>
-                    <input type="textarea" name="description" id="description" th:value="*{event.description}" class="w-100">
+                    <input type="text" name="description" id="description" th:value="*{event.description}" class="w-100">
                 </div>
 
                 <div class="input">
@@ -34,10 +34,10 @@
                     <input type="number" name="size" id="size" th:field="*{event.roomSize}" class="w-100">
                 </div>
 
-                <input type="radio" name="activity" value="hiking" th:field="*{event.activity}" checked>hiking<br>
-                <input type="radio" name="activity" value="mountain biking" th:field="*{event.activity}">mountain biking<br>
-                <input type="radio" name="activity" value="cycling" th:field="*{event.activity}">cycling<br>
-                <input type="radio" name="activity" value="other" th:field="*{event.activity}">other<br>
+                <input type="radio" name="activity" value="hiking" th:field="*{event.activity}" class="m-1 mt-3">hiking<br>
+                <input type="radio" name="activity" value="mountain biking" th:field="*{event.activity}" class="m-1">mountain biking<br>
+                <input type="radio" name="activity" value="cycling" th:field="*{event.activity}" class="m-1">cycling<br>
+                <input type="radio" name="activity" value="other" th:field="*{event.activity}" class="m-1 mb-3">other<br>
 
                 <button class="btn green-ab-bg ab-font-yellow m-2">Save Changes</button>
 
