@@ -11,17 +11,19 @@
 <main class="offset-md-1 col-md-10 card sand-bg container-fluid mt-5">
     <h1 class="border-bottom border-dark">Welcome, <span th:text="${user.username}">!</span></h1>
     <div class="row">
-        <div id="profile-image" class="col-md-2" style="@media screen and (min-width:768px){height: 200vh}">
+        <div id="profile-image" class="col-md-3" style="@media screen and (min-width:768px){height: 200vh}">
             <th:block th:if="${user.profile_img} == null">
                  <img th:src="@{../img/trail-placeholder.png}" alt="profile" class="d-block m-0" width="268vw" height="268vh" >
             </th:block>
             <th:block th:if="${user.profile_img} != null">
             <img th:src="${user.profile_img}" alt="profile" class="d-block m-0" width="268vw" height="268vh">
             </th:block>
-            <a th:href="@{/profile/{id}/add(id=${user.id})}" class="photo-upload photo-hover">Upload Profile Photo</a>
+            <div class="container-fluid text-center">
+            <a th:href="@{/profile/{id}/add(id=${user.id})}" class="photo-hover p-1 btn btn-green mx-auto">Upload Profile Photo</a>
+            </div>
         </div>
         <!--    menu tabs-->
-        <div class="offset-md-1 col-md-9 border-left border-dark" style="height: 200vh">
+        <div class="col-md-9 border-left border-dark" style="height: 200vh">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active nav-hover" id="profile-tab" data-toggle="tab" href="#profile" role="tab"

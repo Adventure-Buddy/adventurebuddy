@@ -13,7 +13,7 @@
 <form th:action="@{/profile/{id}/basic(id=${user.id})}" method="post" >
     <div class="card-body">
         <div class="card mb-3">
-            <div class="card-header">
+            <div class="card-header nav-tabs">
                 Edit Basic Info
             </div>
             <div class="card-body">
@@ -29,7 +29,7 @@
     </div>
     <div class="card-footer d-flex justify-content-end">
         <div class="btn-group">
-            <button type="submit">Submit</button>
+            <button class="btn btn-green" type="submit">Submit</button>
 <!--            <a th:href="@{/profile/{id}/basic(id=${user.id})}">Submit</a>-->
         </div>
 </form>
