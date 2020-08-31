@@ -46,6 +46,7 @@ public class User {
     @Column(nullable = true, length = 200)
     private String profile_img;
 
+
     private boolean isEnabled;
 
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user1")
