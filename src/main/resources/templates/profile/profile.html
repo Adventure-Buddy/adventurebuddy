@@ -13,7 +13,7 @@
     <div class="row">
         <div id="profile-image" class="col-md-2" style="@media screen and (min-width:768px){height: 200vh}">
             <img th:src="${user.profile_img}" alt="profile" class="d-block m-0" width="268vw" height="268vh">
-            <a th:href="@{/profile/{id}/add(id=${user.id})}" class="photo-upload nav-hover">Upload Profile Photo</a>
+            <a th:href="@{/profile/{id}/add(id=${user.id})}" class="photo-upload photo-hover">Upload Profile Photo</a>
         </div>
         <!--    menu tabs-->
         <div class="offset-md-1 col-md-9 border-left border-dark" style="height: 200vh">

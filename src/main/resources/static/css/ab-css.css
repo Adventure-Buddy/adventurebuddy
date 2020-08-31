@@ -103,3 +103,6 @@
 a:hover.nav-hover {
     color: white;
 }
+a:hover.photo-hover {
+    color: #0A8038;
+}
