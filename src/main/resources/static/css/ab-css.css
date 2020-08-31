@@ -7,6 +7,12 @@
     background-attachment: fixed;
 }
 
+.review-bg {
+    background-image: url("../img/review-bg.jpg");
+    background-size: contain;
+    background-attachment: fixed;
+}
+
 .trail-details-bg{
     background-image: url("../img/trail-details-bg.jpg");
     background-size: contain;

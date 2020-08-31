@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="eng">
-<head>
-    <head th:include="partials/head.html :: header-links">
-        <meta charset="UTF-8">
-        <title>Search Trails</title>
-    </head>
+<head th:include="partials/head.html :: header-links (pageTitle='Search Trails')">
+</head>
 <body class="ab-all-trails-bg">
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div class="container">
@@ -14,7 +11,12 @@
     <div class="row row-cols-1 row-cols-md-3">
         <div th:each="trail: ${foundTrails}" class="col mb-5">
             <div class="card m-auto" style="width: 18rem; height: 35rem;">
-                <img th:src="@{/img/trail_placeholder_image.png}" class="card-img-left" alt="trail photo" style="height: 286px; width: 286px">
+                <div class="imgHolder">
+                    <img th:src="@{${trail.trailImage}}" class="card-img-left goodImg" alt="trail photo"
+                         style="height: 286px; width: 286px; display: none">
+                    <img th:src="@{../img/trail_placeholder_image.png}" class="card-img-left badImg" alt="notrail photo"
+                         style="width:286px; height:286px; display: none">
+                </div>
                 <div class="card-body">
                     <h4 class="card-title" th:text="${trail.name}"></h4>
                 </div>
@@ -27,5 +29,15 @@
         </div>
     </div>
 </div>
+<script>
+    var imgDiv = $(".imgHolder")
+    for (var i = 0; i < imgDiv.length; i++) {
+        if (imgDiv.eq(i).children().first().attr("src") === "") {
+            imgDiv.eq(i).children().last().css("display", "block")
+        } else {
+            imgDiv.eq(i).children().first().css("display", "block")
+        }
+    }
+</script>
 </body>
 </html>

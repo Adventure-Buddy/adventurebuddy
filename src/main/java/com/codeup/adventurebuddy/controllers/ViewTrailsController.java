@@ -40,6 +40,8 @@ public class ViewTrailsController {
     @GetMapping("/trails")
     public String viewAllTrails(Model model){
         model.addAttribute("allTrails", trailsDao.findAll());
+        String emptyString = "";
+        model.addAttribute("string", emptyString);
         return "trails/all-trails";
     }
 
