@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:include="partials/head.html :: header-links">
     <meta charset="UTF-8"/>
     <title th:text="'Ooops, ' + ${error}"></title>
 </head>
-<body>
-<th:block th:switch="${error}">
-    <div th:case="'Not Found'">
+<body class="profile-bg-image">
+<div class="black-trans-bg">
+<nav th:replace="partials/navbar.html :: navbar"></nav>
+<div class="offset-2">
+<div th:switch="${error}">
+    <div class="card sand-bg mt-5 col-10 text-center p-3" th:case="'Not Found'">
         <h1>Page not found!!</h1>
     </div>
     <div th:case="'Forbidden'">
         <h1>You don't have permission to view this page.</h1>
     </div>
+</div>
 </th:block>
-<p>Watch a video instead</p>
-<iframe
-        width="420"
-        height="315"
-        src="https://www.youtube.com/embed/NN75im_us4k?autoplay=1"
-        frameborder="0"
-        allowfullscreen="allowfullscreen"
->
-</iframe>
+<!--<p>Watch a video instead</p>-->
+<!--<iframe-->
+<!--        width="420"-->
+<!--        height="315"-->
+<!--        src="https://www.youtube.com/embed/NN75im_us4k?autoplay=1"-->
+<!--        frameborder="0"-->
+<!--        allowfullscreen="allowfullscreen"-->
+<!--&gt;-->
+<!--</iframe>-->
+</div>
+</div>
 </body>
 </html>

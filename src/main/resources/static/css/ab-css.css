@@ -28,17 +28,23 @@
 }
 
 .ab-font{
-    font-family: 'Norwester', arial, serif;
+    /*font-family: 'Norwester', arial, serif;*/
+    font-family: 'Graduate', cursive;
+
 
 }
 
 .ab-font-sand{
-    font-family: 'Norwester', arial, serif;
+    /*font-family: 'Norwester', arial, serif;*/
+    font-family: 'Graduate', cursive;
+
     color: #fff1dc;
 }
 
 .ab-font-yellow {
-    font-family: 'Norwester', arial, serif;
+    /*font-family: 'Norwester', arial, serif;*/
+    font-family: 'Graduate', cursive;
+
     color: #fffe73!important
 }
 
@@ -96,4 +102,7 @@
 
 a:hover.nav-hover {
     color: white;
+}
+a:hover.photo-hover {
+    color: #0A8038;
 }

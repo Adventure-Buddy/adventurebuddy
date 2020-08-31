@@ -9,14 +9,19 @@
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <!--    Header-->
 <main class="offset-md-1 col-md-10 card sand-bg container-fluid mt-5">
-    <h1>Welcome, <span th:text="${user.username}">!</span></h1>
+    <h1 class="border-bottom border-dark">Welcome, <span th:text="${user.username}">!</span></h1>
     <div class="row">
         <div id="profile-image" class="col-md-2" style="@media screen and (min-width:768px){height: 200vh}">
-            <img th:src="${user.profile_img}" alt="profile" class="d-block m-0" width="200vw" height="200vh">
-            <a th:href="@{/profile/{id}/add(id=${user.id})}" class="photo-upload nav-hover">Upload Profile Photo</a>
+            <th:block th:if="${user.profile_img} == null">
+                 <img th:src="@{../img/trail-placeholder.png}" alt="profile" class="d-block m-0" width="268vw" height="268vh" >
+            </th:block>
+            <th:block th:if="${user.profile_img} != null">
+            <img th:src="${user.profile_img}" alt="profile" class="d-block m-0" width="268vw" height="268vh">
+            </th:block>
+            <a th:href="@{/profile/{id}/add(id=${user.id})}" class="photo-upload photo-hover">Upload Profile Photo</a>
         </div>
         <!--    menu tabs-->
-        <div class="offset-md-1 col-md-9" style="height: 200vh">
+        <div class="offset-md-1 col-md-9 border-left border-dark" style="height: 200vh">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active nav-hover" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
@@ -167,9 +172,7 @@
                                     <div class="card-body">
                                         <div th:each="emergencyCont: ${user.emergencyContactsList}">
                                             <ul class="list-group list-group-flush mt-3">
-                                                <li class="list-group-item font-weight-bold ">Emergency Contact <span
-                                                        th:text="${emergencyCont.id}" class="font-wieght-bold"></span>
-                                                </li>
+                                                <li class="list-group-item font-weight-bold ">Emergency Contact</li>
                                                 <li class="list-group-item">Emergency Contact First Name: <span
                                                         th:text="${emergencyCont.first_name}"></span></li>
                                                 <li class="list-group-item">Emergency Contact Last Name: <span
