@@ -57,7 +57,7 @@ public class ProfileController {
         User user = userDao.getOne(id);
         user.setProfile_img(img);
         userDao.save(user);
-        return "redirect:profile/profile";
+        return "redirect:/profile";
     }
 
 //    Get and Post mapping for handling basic edit
@@ -76,7 +76,7 @@ public class ProfileController {
         user.setFirstName(first);
         user.setLastName(last);
         userDao.save(user);
-        return "redirect:profile/profile";
+        return "redirect:/profile";
     }
 
 //    Get and Post mapping for handling editing username / email / password
@@ -100,7 +100,7 @@ public class ProfileController {
         user.setPassword(hash);
         }
         userDao.save(user);
-        return "redirect:profile/profile";
+        return "redirect:/profile";
     }
 
 //    Get and Post for mapping the create an emergency contact page
@@ -121,7 +121,7 @@ public class ProfileController {
         emergencyContact.setLast_name(last);
         emergencyContact.setPhone_number(phone);
         emergencyContactsDao.save(emergencyContact);
-        return "redirect:profile/profile";
+        return "redirect:/profile";
     }
 
 //    Get and Post mapping for the edit emergency contact page
@@ -140,6 +140,6 @@ public class ProfileController {
         emergencyContact.setLast_name(last);
         emergencyContact.setPhone_number(phone);
         emergencyContactsDao.save(emergencyContact);
-        return "redirect:profile/profile";
+        return "redirect:/profile";
     }
 }

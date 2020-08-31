@@ -6,6 +6,7 @@
     <title>Emergency Contact Create</title>
 </head>
 <body class="profile-bg-image">
+<div class="black-trans-bg">
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div class="card sand-bg offset-1 col-10 mt-5">
     <form th:action="@{/profile/{id}/emergencyCont(id=${emergency.id})}" method="post" >
@@ -30,7 +31,6 @@
             </div>
     </form>
 </div>
-
-
+</div>
 </body>
 </html>
