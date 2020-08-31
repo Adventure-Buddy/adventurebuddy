@@ -52,6 +52,10 @@
     color: #fffe73!important
 }
 
+.black {
+    color: black;
+}
+
 .black-trans-bg {
     background: rgba(0, 0, 0, 0.6)
 }
