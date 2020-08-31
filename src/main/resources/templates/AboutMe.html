@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
-<head th:include="partials/head.html :: header-links">
-    <meta charset="UTF-8">
-    <title>About Us</title>
+<head th:include="partials/head.html :: header-links (pageTitle='About Us')">
 </head>
 <body class="profile-bg-image">
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div class="container">
     <h1 class="text-center my-5 sand-bg ab-font">About Us</h1>
-    <div class="row">
-        <div class="card col mx-2" style="width: 18rem;">
+    <div class="row row-cols-1 row-cols-md-5">
+        <div class="card m-auto" style="width: 18rem;">
             <div class="m-3">
                 <a href="https://alumni.codeup.com/students/856"><img class="card-img-top" th:src="@{../img/JayArredondo.jpg}" alt=""></a>
             </div>
             <div class="card-body">
-                <h5 class="card-title text-center">Jay Arredondo</h5>
+                <h6 class="card-title text-center">Jay Arredondo</h6>
                 <div class="d-flex justify-content-around">
                     <a href="mailto:jearredondo13@gmail.com"><i class="fas fa-envelope fa-2x black"></i></a>
                     <a href="https://www.github.com/jayarredondo"><i class="fab fa-github fa-2x black"></i></a>
@@ -23,13 +21,13 @@
                 </div>
             </div>
         </div>
-        <div class="card col mx-2" style="width: 18rem;">
+        <div class="card m-auto" style="width: 18rem;">
             <div class="m-3">
                 <a href="https://alumni.codeup.com/students/854"><img class="card-img-top"
                                                                       th:src="@{../img/LarryCastillo2.jpg}" alt=""></a>
             </div>
             <div class="card-body">
-                <h5 class="card-title text-center">Larry Castillo</h5>
+                <h6 class="card-title text-center">Larry Castillo</h6>
                 <div class="d-flex justify-content-around">
                     <a href="mailto:larrycastillo2009@gmail.com"><i class="fas fa-envelope fa-2x black"></i></a>
                     <a href="https://www.github.com/larrycastillo2009"><i class="fab fa-github fa-2x black"></i></a>
@@ -37,14 +35,14 @@
                 </div>
             </div>
         </div>
-        <div class="card col mx-2" style="width: 18rem;">
+        <div class="card m-auto" style="width: 18rem;">
             <div class="m-3">
                 <a href="https://alumni.codeup.com/students/861"><img class="card-img-top m-auto"
                                                                       th:src="@{../img/FernandoHernandez.jpg}"
                                                                       alt=""></a>
             </div>
             <div class="card-body">
-                <h5 class="card-title text-center">Fernando Hernandez</h5>
+                <h6 class="card-title text-center">Fernando Hernandez</h6>
                 <div class="d-flex justify-content-around">
                     <a href="mailto:Fernando.Hernandez.Fabars@gmail.com"><i class="fas fa-envelope fa-2x black"></i></a>
                     <a href="https://www.github.com/fernando5712"><i class="fab fa-github fa-2x black"></i></a>
@@ -53,13 +51,13 @@
                 </div>
             </div>
         </div>
-        <div class="card col mx-2" style="width: 18rem;">
+        <div class="card m-auto" style="width: 18rem;">
             <div class="m-3">
                 <a href="https://alumni.codeup.com/students/869"><img class="card-img-top"
                                                                       th:src="@{../img/TrevorMullis.jpg}" alt=""></a>
             </div>
             <div class="card-body">
-                <h5 class="card-title text-center">Trevor Mullis</h5>
+                <h6 class="card-title text-center">Trevor Mullis</h6>
                 <div class="d-flex justify-content-around">
                     <a href="mailto:trevormullis12@gmail.com"><i class="fas fa-envelope fa-2x black"></i></a>
                     <a href="https://www.github.com/trevormullis12"><i class="fab fa-github fa-2x black"></i></a>
