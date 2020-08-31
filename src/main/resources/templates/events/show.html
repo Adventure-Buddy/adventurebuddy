@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
-<head th:include="partials/head.html :: header-links">
+<head th:include="partials/head.html :: header-links (pageTitle=${event.user.username} +'\'s Event')">
     <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title th:text="${event.user.username}"></title>
     </head>
     <nav th:replace="partials/navbar.html :: navbar"></nav>
 <body class="trail-details-bg">
@@ -27,7 +26,7 @@
                     <th:block th:if="${user.id} eq ${event.user.id}">
                         <div class="col my-4 col-md-2 text-left">
                             <form th:action="@{'/events/' + ${event.id} + '/edit'}" th:method="get">
-                                <button class="btn green-ab-bg ab-font-yellow my-3">Edit Event</button>
+                                <button class="btn green-ab-bg ab-font-yellow my-3 py-auto w-100">Edit<br>Event</button>
                             </form>
                         </div>
                         <div class="col my-4 col-md-2 text-left">
