@@ -52,66 +52,67 @@
                             View Participants
                         </button>
                     </div>
-                    <!-- Modal -->
-                    <div class="modal fade" id="participantModal" tabindex="-1" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="pListTitle">List of Participants</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <h5 class="modal-title" id="pListHost">Host:</h5>
-                                    <p th:text="${event.user.username}"></p>
-                                    <h5 class="modal-title" id="pListAccepted">Confirmed Participants:</h5>
-                                    <div th:each="item : ${event.userEvents}">
-                                        <div th:if="${item.accepted == true}">
-                                            <span th:text="${item.user.username}"></span>
-                                            <th:block th:if="${user.id} eq ${event.user.id}">
-                                                <form th:action="@{'/events/' + ${event.id} + '/remove/' + ${item.id}}"
-                                                      th:method="post">
-                                                    <button class="btn btn-danger my-3">Remove</button>
-                                                </form>
-                                            </th:block>
-                                        </div>
-                                    </div>
-                                    <h5 class="modal-title" id="pListPending">Pending Participants:</h5>
-                                    <div th:each="item : ${event.userEvents}">
-                                        <div th:if="${item.accepted == false}">
-                                            <span th:text="${item.user.username}"></span>
-                                            <th:block th:if="${user.id} eq ${event.user.id}" th:unless="${!canJoin}">
-                                                <form th:action="@{'/events/' + ${event.id} + '/allow/' + ${item.id}}"
-                                                      th:method="post">
-                                                    <button class="btn green-ab-bg ab-font-yellow my-3">Confirm
-                                                        Participant
-                                                    </button>
-                                                </form>
-                                            </th:block>
-                                        </div>
+                </th:block>
+            </div>
+                <!-- Modal -->
+                <div class="modal fade" id="participantModal" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="pListTitle">List of Participants</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <h5 class="modal-title" id="pListHost">Host:</h5>
+                                <p th:text="${event.user.username}"></p>
+                                <h5 class="modal-title" id="pListAccepted">Confirmed Participants:</h5>
+                                <div th:each="item : ${event.userEvents}">
+                                    <div th:if="${item.accepted == true}">
+                                        <span th:text="${item.user.username}"></span>
+                                        <th:block th:if="${user.id} eq ${event.user.id}">
+                                            <form th:action="@{'/events/' + ${event.id} + '/remove/' + ${item.id}}"
+                                                  th:method="post">
+                                                <button class="btn btn-danger my-3">Remove</button>
+                                            </form>
+                                        </th:block>
                                     </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <h5 class="modal-title" id="pListPending">Pending Participants:</h5>
+                                <div th:each="item : ${event.userEvents}">
+                                    <div th:if="${item.accepted == false}">
+                                        <span th:text="${item.user.username}"></span>
+                                        <th:block th:if="${user.id} eq ${event.user.id}" th:unless="${!canJoin}">
+                                            <form th:action="@{'/events/' + ${event.id} + '/allow/' + ${item.id}}"
+                                                  th:method="post">
+                                                <button class="btn green-ab-bg ab-font-yellow my-3">Confirm
+                                                    Participant
+                                                </button>
+                                            </form>
+                                        </th:block>
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
+                </div>
                 </th:block>
             </div>
         </div>
     </div>
-</div>
-<script>
-    const dateString = document.getElementById("date").value;
-    const formatDate = (dateString) => {
-        const options = { year: "numeric", month: "long", day: "numeric" }
-        return new Date(dateString).toLocaleDateString(undefined, options)
-    }
-    document.getElementById("formatDate").innerText = formatDate(dateString);
-    console.log(dateString);
-    console.log(formatDate());
-</script>
+    <script>
+        const dateString = document.getElementById("date").value;
+        const formatDate = (dateString) => {
+            const options = {year: "numeric", month: "long", day: "numeric"}
+            return new Date(dateString).toLocaleDateString(undefined, options)
+        }
+        document.getElementById("formatDate").innerText = formatDate(dateString);
+        console.log(dateString);
+        console.log(formatDate());
+    </script>
 </body>
 </html>

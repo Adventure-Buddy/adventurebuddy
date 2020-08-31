@@ -1,42 +1,50 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head th:include="partials/head.html :: header-links">
-<head>
-    <meta charset="UTF-8">
-    <title>Create Events</title>
-</head>
-<body>
-<nav th:replace="partials/navbar.html :: navbar"></nav>
-<h1>Create Event</h1>
-<form th:action="@{/events/create/{trailId}(trailId=${trail.id})}" th:method="POST" th:object="${event}">
-
-    <div class="input">
-        <label for="title">Title:</label>
-        <input type="text" id="title" th:field="*{title}">
+    <head>
+        <meta charset="UTF-8">
+        <title>Create Events</title>
+    </head>
+<body class="sand-bg trail-details-bg">
+<div class="black-trans-bg m-0 float-right" style="width: 100vw; height: 100vh;">
+    <nav th:replace="partials/navbar.html :: navbar"></nav>
+    <div class="sand-bg ab-font page-header">
+        <h1>Create Event</h1>
     </div>
+    <div class="container">
+        <div class="card px-5 pb-5 pt-4 mt-5 white-trans-bg z-index-0">
+            <form th:action="@{/events/create/{trailId}(trailId=${trail.id})}" th:method="POST" th:object="${event}">
 
-    <div class="input">
-        <label for="description">Description:</label>
-        <input type="text" id="description" th:field="*{description}">
+                <div class="input">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" th:field="*{title}" class="w-100">
+                </div>
+
+                <div class="input">
+                    <label for="description">Description:</label>
+                    <input type="textarea" id="description" th:field="*{description}" class="w-100">
+                </div>
+
+                <div class="input">
+                    <label for="date">Date:</label>
+                    <input type="datetime-local" id="date" th:field="*{date}" class="w-100">
+                </div>
+
+                <div class="input">
+                    <label for="size">Room Size:</label>
+                    <input type="number" id="size" th:field="*{roomSize}" class="w-100">
+                </div>
+
+                <input type="radio" name="activity" value="hiking" th:field="*{activity}" checked>hiking<br>
+                <input type="radio" name="activity" value="mountain biking" th:field="*{activity}">mountain biking<br>
+                <input type="radio" name="activity" value="cycling" th:field="*{activity}">cycling<br>
+                <input type="radio" name="activity" value="other" th:field="*{activity}">other<br>
+
+                <button class="btn green-ab-bg ab-font-yellow">Create Event</button>
+
+            </form>
+        </div>
     </div>
-
-    <div class="input">
-        <label for="date">Date:</label>
-        <input type="datetime-local" id="date" th:field="*{date}">
-    </div>
-
-    <div class="input">
-        <label for="size">Room Size:</label>
-        <input type="number" id="size" th:field="*{roomSize}">
-    </div>
-
-    <input type="radio" name="activity" value="hiking" th:field="*{activity}" checked>hiking<br>
-    <input type="radio" name="activity" value="mountain biking" th:field="*{activity}">mountain biking<br>
-    <input type="radio" name="activity" value="cycling" th:field="*{activity}">cycling<br>
-    <input type="radio" name="activity" value="other" th:field="*{activity}">other<br>
-
-    <button class="btn btn-primary">Create Event</button>
-
-</form>
+</div>
 </body>
 </html>
