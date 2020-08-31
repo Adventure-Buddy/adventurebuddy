@@ -19,11 +19,11 @@
             </li>
             <li class="p-3 no-bullets font-weight-bold list-group-item">Distance: <span class="font-weight-normal"
                                                                                         th:text="${singleTrail.distanceInMi}"></span><span
-                    class="font-weight-normal">mi.</span></li>
+                    class="font-weight-normal"> mi</span></li>
             <li class="p-3 no-bullets font-weight-bold list-group-item">
                 Ascent: <span class="font-weight-normal" th:text="${singleTrail.ascent}"></span><span
-                    class="font-weight-normal">ft.</span> / Descent: <span
-                    class="font-weight-normal" th:text="${singleTrail.descent}"></span><span class="font-weight-normal">ft.</span>
+                    class="font-weight-normal"> ft</span> / Descent: <span
+                    class="font-weight-normal" th:text="${singleTrail.descent}"></span><span class="font-weight-normal"> ft</span>
             </li>
             <li class="p-3 no-bullets font-weight-bold list-group-item" th:text="${singleTrail.type}"></li>
         </ul>
@@ -53,7 +53,7 @@
                 </div>
             </div>
         </div>
-        <h2 class="text-center green-ab-bg yellow">Reviews</h2>
+        <h2 class="text-center green-ab-bg yellow m-0">Reviews</h2>
         <ul class="list-group">
             <li th:each="review : ${singleTrail.reviewsList}" class="list-group-item">
                 <h5 th:text="${review.user.username}"></h5>
