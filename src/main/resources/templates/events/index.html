@@ -24,7 +24,8 @@
                             <li class="list-group-item"><h4><strong><span th:text="${item.trail.name}"></span></strong>
                             </h4></li>
                             <li class="list-group-item"><p th:text="${item.description}"></p></li>
-                            <li class="list-group-item"><p>Date: <span th:text="${item.date}"></span></p></li>
+                            <li class="list-group-item"><p>Date: <span class="date"><span th:text="${item.date}"></span>
+                            </p></li>
                         </ul>
                         <input type="hidden" th:value="${item.date}" class="date">
                     </div>
@@ -33,15 +34,14 @@
         </div>
     </div>
 </div>
-<!--<script>-->
-<!--    const dateString = document.getElementsByClassName("date").value;-->
-<!--    const formatDate = (dateString) => {-->
-<!--        const options = { year: "numeric", month: "long", day: "numeric" }-->
-<!--        return new Date(dateString).toLocaleDateString(undefined, options)-->
-<!--    }-->
-<!--    document.getElementsByClassName("formatDate").innerText = formatDate(dateString);-->
-<!--    console.log(dateString);-->
-<!--    console.log(formatDate());-->
-<!--</script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+<script>
+    // to view the many options for how to display a date, visit: https://momentjs.com/docs/#/displaying/
+    "use strict";
+    const dates = document.querySelectorAll(".date");
+    for (let date of dates) {
+        date.innerText = moment(date.innerText).format("l");
+    }
+</script>
 </body>
 </html>
