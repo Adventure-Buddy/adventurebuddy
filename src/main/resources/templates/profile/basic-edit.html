@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org" lang="eng">
-<head th:include="partials/head.html :: header-links">
+<head th:include="partials/head.html :: header-links (pageTitle='Basic Info Edit')" >
     <meta charset="UTF-8">
     <title>Basic Edit</title>
 </head>
@@ -13,7 +13,7 @@
 <form th:action="@{/profile/{id}/basic(id=${user.id})}" method="post" >
     <div class="card-body">
         <div class="card mb-3">
-            <div class="card-header">
+            <div class="card-header nav-tabs">
                 Edit Basic Info
             </div>
             <div class="card-body">
@@ -29,7 +29,7 @@
     </div>
     <div class="card-footer d-flex justify-content-end">
         <div class="btn-group">
-            <button type="submit">Submit</button>
+            <button class="btn btn-green" type="submit">Submit</button>
 <!--            <a th:href="@{/profile/{id}/basic(id=${user.id})}">Submit</a>-->
         </div>
 </form>

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
-<head>
-    <head th:include="partials/head.html :: header-links">
+<head th:include="partials/head.html :: header-links (pageTitle='Profile')" >
     <title>Profile</title>
     <script src="/keys.js"></script>
 </head>
@@ -12,9 +11,9 @@
     <form id="image" th:action="@{/profile/{id}/add(id=${user.id})}" th:method="POST">
         <label for="fileupload">Select a file to upload</label>
         <input type="hidden" id="fileupload">
-        <button id="picker" type="button">Pick file</button>
+        <button class=" btn btn-green" id="picker" type="button">Pick file</button>
         <div id="thumbnail-container"></div>
-        <input type="submit" value="Submit">
+        <input class="btn btn-green" type="submit" value="Submit">
     </form>
 </div>
 </div>
@@ -26,7 +25,6 @@
         onUploadDone: updateForm,
         onUploadDone: (res) =>
             $('#image').append(`<input type="hidden" name="profile_img" value="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}">`),
-
         maxSize: 10 * 1024 * 1024,
         accept: 'image/*',
         uploadInBackground: false,
@@ -54,6 +52,7 @@
     });
 
     // Helper to overwrite the field input value
+
     function updateForm (result) {
         const fileData = result.filesUploaded[0];
         fileInput.value = fileData.url;
@@ -74,7 +73,16 @@
             }
         }
 
+        // Some ugly DOM code to show some data.
+        const name = document.createTextNode('Selected: ' + fileData.filename);
+        const url = document.createElement('a');
+        url.href = fileData.url;
+        url.appendChild(document.createTextNode(fileData.url));
+        nameBox.appendChild(name);
+        urlBox.appendChild(document.createTextNode('Uploaded to: '));
+        urlBox.appendChild(url);
     };
+
     /*]]>*/
 </script>
 </body>
