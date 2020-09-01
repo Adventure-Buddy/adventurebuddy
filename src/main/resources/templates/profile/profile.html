@@ -10,16 +10,15 @@
 <main class="offset-md-1 col-md-10 card sand-bg container-fluid mt-5">
     <h1 class="border-bottom border-dark">Welcome, <span th:text="${user.username}">!</span></h1>
     <div class="row">
-        <div id="profile-image" class="col-md-3" style="@media screen and (min-width:768px){height: 200vh}">
-            <div class="container-fluid text-center">
+        <div id="profile-image" class="ml-0 col-md-3" style="@media screen and (min-width:768px){height: 200vh}">
             <th:block th:if="${user.profile_img} == null">
-                 <img th:src="@{../img/trail-placeholder.png}" alt="profile" class="d-block m-0">
+                 <img th:src="@{../img/trail-placeholder.png}" alt="profile" class="d-block m-0" width="250vw" height="250vh">
             </th:block>
             <th:block th:if="${user.profile_img} != null">
-            <img th:src="${user.profile_img}" alt="profile" class="d-block m-0">
+            <img th:src="${user.profile_img}" alt="profile" class="d-block m-0" width="250vw" height="250vh">
             </th:block>
-
-            <a th:href="@{/profile/{id}/add(id=${user.id})}" class="photo-hover p-1 btn btn-green mx-auto">Upload Profile Photo</a>
+            <div class="container-fluid">
+            <a th:href="@{/profile/{id}/add(id=${user.id})}" class="photo-hover p-1 btn btn-green mt-1" style="margin-left:2em ">Upload Profile Photo</a>
             </div>
         </div>
         <!--    menu tabs-->
