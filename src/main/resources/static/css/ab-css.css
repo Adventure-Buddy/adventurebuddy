@@ -109,6 +109,7 @@
 a:hover.nav-hover {
     color: white;
 }
-a:hover.photo-hover {
-    color: #0A8038;
+
+.linkco{
+    color: #578ED6;
 }

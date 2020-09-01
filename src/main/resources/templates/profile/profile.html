@@ -18,7 +18,7 @@
             <img th:src="${user.profile_img}" alt="profile" class="d-block m-0" width="250vw" height="250vh">
             </th:block>
             <div class="container-fluid">
-            <a th:href="@{/profile/{id}/add(id=${user.id})}" class="photo-hover p-1 btn btn-green mt-1" style="margin-left:2em ">Upload Profile Photo</a>
+            <a th:href="@{/profile/{id}/add(id=${user.id})}" class="nav-hover p-1 btn btn-green mt-1" style="margin-left:2em ">Upload Profile Photo</a>
             </div>
         </div>
         <!--    menu tabs-->
@@ -88,7 +88,7 @@
                                     <div class="card-body">
                                         <ul class="list-group list-group-flush" th:each="item : ${events}">
                                             <li class="list-group-item"><a th:href="@{|/events/${item.id}|}"><span
-                                                    class="photo-upload font-weight-bold"
+                                                    class="photo-upload font-weight-bold linkco"
                                                     th:text="${item.title}"></span></a></li>
                                             <li class="list-group-item">Group size: <span
                                                     th:text="${item.roomSize}"></span></li>

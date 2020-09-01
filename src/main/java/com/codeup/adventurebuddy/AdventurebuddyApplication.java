@@ -20,22 +20,22 @@ public class AdventurebuddyApplication {
         SpringApplication.run(AdventurebuddyApplication.class, args);
     }
 
-    @Bean
-    CommandLineRunner runner (TrailService trailService) {
-        return args -> {
-            // read json and write to db
-          ObjectMapper mapper = new ObjectMapper();
-          TypeReference<List<Trail>> typeReference = new TypeReference<List<Trail>>(){};
-            InputStream inputStream = TypeReference.class.getResourceAsStream("/json/trails.json");
-            try{
-                List<Trail> trails = mapper.readValue(inputStream, typeReference);
-                trailService.save(trails);
-                System.out.println("Trails saved!");
-            } catch (IOException e) {
-               System.out.println("Unable to save trails: " + e.getMessage());
-            }
-        };
-   }
+//    @Bean
+//    CommandLineRunner runner (TrailService trailService) {
+//        return args -> {
+//            // read json and write to db
+//          ObjectMapper mapper = new ObjectMapper();
+//          TypeReference<List<Trail>> typeReference = new TypeReference<List<Trail>>(){};
+//            InputStream inputStream = TypeReference.class.getResourceAsStream("/json/trails.json");
+//            try{
+//                List<Trail> trails = mapper.readValue(inputStream, typeReference);
+//                trailService.save(trails);
+//                System.out.println("Trails saved!");
+//            } catch (IOException e) {
+//               System.out.println("Unable to save trails: " + e.getMessage());
+//            }
+//        };
+//   }
 //   comment
 
 }
